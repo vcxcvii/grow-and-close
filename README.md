@@ -18,18 +18,18 @@ npm test
 npm run lint
 ```
 
-## Cloudflare Pages
+## Cloudflare Workers
 
-Connect this GitHub repository to Cloudflare Pages with:
+Production uses Cloudflare Workers Builds connected to this GitHub repository:
 
 - Production branch: `main`
-- Framework preset: `None`
-- Build command: `npm run build:static`
-- Build output directory: `dist/client`
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
 - Root directory: `/`
 - Node.js version: `22`
+- Production domain: `https://growandclose.com`
 
-Cloudflare builds and deploys every push to `main`. Other branches become preview deployments.
+The Vinext build generates Wrangler's deployment bundle and static-asset manifest. `vite.config.ts` targets the Worker created by Cloudflare's dashboard. Every push to `main` triggers a production build.
 
 ## Project map
 
@@ -38,8 +38,8 @@ Cloudflare builds and deploys every push to `main`. Other branches become previe
 - `app/layout.tsx`: metadata and social sharing
 - `public/og.png`: social card
 - `design.md`: complete design/content specification
-- `scripts/export-static.mjs`: static export for Cloudflare Pages
+- `scripts/export-static.mjs`: optional static-export fallback
 
 ## Runtime note
 
-Current landing page is static. Payment links work directly. Newsletter delivery through Resend requires a server-side Cloudflare Pages Function; never expose a Resend API key in browser code.
+Payment links work directly. Newsletter delivery through Resend requires a server-side Worker endpoint; never expose a Resend API key in browser code.

@@ -407,7 +407,7 @@ Mandatory test widths: 320, 375, 390, 430, 768, 1024, and 1440px.
 
 Current safe placeholders:
 
-- Production domain: `growandclose.com`; Cloudflare Pages DNS pending.
+- Production domain: `growandclose.com`; live on Cloudflare Workers.
 - Email CTAs: `hello@growandclose.com`.
 - Payment: not connected.
 - Newsletter: not connected.

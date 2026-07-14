@@ -101,7 +101,7 @@ const faqs = [
 
 export default function Home() {
   return (
-    <main>
+    <main data-brand-system="gc-logic-v1">
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Grow and Close home">
           <span className="brand-glyph" aria-hidden="true"><b>G</b><i>/</i><b>C</b></span>

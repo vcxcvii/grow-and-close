@@ -60,6 +60,7 @@ test("server-renders the Grow & Close landing page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Grow &amp; Close — Your GTM backlog, shipped\.<\/title>/i);
   assert.match(html, /Your GTM backlog/);
+  assert.match(html, /data-brand-system="gc-logic-v1"/);
   assert.match(html, /FOR FOUNDERS/);
   assert.match(html, /FOR CMOs/);
   assert.match(html, /FOR HEADS OF MARKETING/);

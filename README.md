@@ -65,9 +65,9 @@ Production uses Cloudflare Workers Builds connected to this repository:
 - Root directory: `/`
 - Node.js version: `22`
 - Production domain: `https://growandclose.com`
-- Custom domains: `growandclose.com` and `www.growandclose.com`
+- Custom domains: `growandclose.com` and `www.growandclose.com`, managed separately in the Cloudflare dashboard
 
-Vinext generates the Wrangler bundle and static-asset manifest. `vite.config.ts` targets the existing production Worker and declares both hostnames as Cloudflare Custom Domains. Cloudflare creates their DNS records and certificates during deployment. Merges to `main` trigger production deployment.
+Vinext generates the Wrangler bundle and static-asset manifest. `vite.config.ts` targets the existing production Worker and keeps its `workers.dev` fallback enabled. Cloudflare custom domains remain dashboard-managed because the Git build token does not own zone routing. Add apex and `www` as two separate domains; never use **Edit** to replace one with the other. Merges to `main` trigger production deployment.
 
 If repository visibility changes, confirm Cloudflare's GitHub app retains access and verify one post-change deployment before treating the integration as healthy.
 

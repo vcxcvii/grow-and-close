@@ -16,10 +16,7 @@ const localBindingConfig = {
   name: "withered-shape-addd",
   main: "./worker/index.ts",
   compatibility_flags: ["nodejs_compat"],
-  routes: [
-    { pattern: "growandclose.com", custom_domain: true },
-    { pattern: "www.growandclose.com", custom_domain: true },
-  ],
+  workers_dev: true,
   d1_databases: d1
     ? [
         {

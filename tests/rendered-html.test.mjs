@@ -102,9 +102,8 @@ test("brand system ships deterministic reusable assets", async () => {
   assert.match(favicon, />C</);
 });
 
-test("deployment config owns both production custom domains", async () => {
+test("deployment keeps its direct Worker fallback available", async () => {
   const config = await readFile(new URL("../vite.config.ts", import.meta.url), "utf8");
 
-  assert.match(config, /pattern: "growandclose\.com", custom_domain: true/);
-  assert.match(config, /pattern: "www\.growandclose\.com", custom_domain: true/);
+  assert.match(config, /workers_dev: true/);
 });

@@ -21,13 +21,13 @@ function contrastRatio(first, second) {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-async function render() {
+async function render(requestUrl = "http://localhost/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("http://localhost/", {
+    new Request(requestUrl, {
       headers: { accept: "text/html" },
     }),
     {
@@ -41,6 +41,16 @@ async function render() {
     },
   );
 }
+
+test("redirects www requests to the canonical apex domain", async () => {
+  const response = await render("https://www.growandclose.com/services?ref=www");
+
+  assert.equal(response.status, 301);
+  assert.equal(
+    response.headers.get("location"),
+    "https://growandclose.com/services?ref=www",
+  );
+});
 
 test("server-renders the Grow & Close landing page", async () => {
   const response = await render();

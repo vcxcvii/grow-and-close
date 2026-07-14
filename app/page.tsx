@@ -1,16 +1,21 @@
+import Image from "next/image";
+
 const motionExamples = [
   {
     number: "01",
+    glyph: "and",
     title: "Sharpen the story",
     copy: "Positioning, messaging, homepage narratives, launch angles, and sales stories that make the value obvious.",
   },
   {
     number: "02",
+    glyph: "or",
     title: "Launch the motion",
     copy: "Landing pages, outbound sequences, campaign assets, founder content, and enablement built as one connected system.",
   },
   {
     number: "03",
+    glyph: "ship",
     title: "Learn and improve",
     copy: "A clear ship log, useful signals, and the next best iteration—so execution compounds instead of resetting every month.",
   },
@@ -216,11 +221,20 @@ export default function Home() {
         <div className="motion-list">
           {motionExamples.map((motion) => (
             <article className="motion-card" key={motion.number}>
-              <span>{motion.number}</span>
+              <span className="motion-number">{motion.number}</span>
               <div>
                 <h3>{motion.title}</h3>
                 <p>{motion.copy}</p>
               </div>
+              <Image
+                className="motion-glyph"
+                src={`/brand/logic-${motion.glyph}.svg`}
+                alt=""
+                aria-hidden="true"
+                width="180"
+                height="96"
+                unoptimized
+              />
             </article>
           ))}
         </div>
@@ -406,6 +420,15 @@ export default function Home() {
       </section>
 
       <footer className="site-footer">
+        <Image
+          className="footer-logic"
+          src="/brand/logic-system.svg"
+          alt=""
+          aria-hidden="true"
+          width="1200"
+          height="630"
+          unoptimized
+        />
         <div className="footer-intro">
           <a className="brand footer-brand" href="#top" aria-label="Grow and Close home">
             <span className="brand-glyph" aria-hidden="true"><b>G</b><i>/</i><b>C</b></span>

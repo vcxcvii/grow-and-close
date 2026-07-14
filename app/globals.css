@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #11120f;
-  --paper: #f3f0e6;
-  --paper-deep: #e8e3d5;
-  --signal: #ff7a00;
-  --electric: #175cff;
-  --muted: #6b6c64;
-  --line: rgba(17, 18, 15, 0.22);
-  --mono: var(--font-geist-mono), "SFMono-Regular", Consolas, monospace;
-  --sans: var(--font-geist-sans), Arial, sans-serif;
+  --ink: #090a0c;
+  --paper: #f6f7fb;
+  --paper-deep: #e7eaf0;
+  --electric: #0b4fe8;
+  --electric-light: #8aabff;
+  --muted: #565b66;
+  --line: rgba(9, 10, 12, 0.22);
+  --mono: var(--font-ibm-plex-mono), "SFMono-Regular", Consolas, monospace;
+  --sans: var(--font-ibm-plex-sans), Arial, sans-serif;
 }
 
 * {
@@ -24,14 +24,26 @@ html {
 body {
   margin: 0;
   background:
-    linear-gradient(rgba(17, 18, 15, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17, 18, 15, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(9, 10, 12, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(9, 10, 12, 0.035) 1px, transparent 1px),
     var(--paper);
   background-size: 48px 48px;
   color: var(--ink);
   font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
+}
+
+main,
+main > section,
+main > footer {
+  min-width: 0;
+}
+
+img {
+  max-width: 100%;
 }
 
 [id] {
@@ -56,8 +68,8 @@ summary:focus-visible {
 }
 
 ::selection {
-  background: var(--signal);
-  color: var(--ink);
+  background: var(--electric);
+  color: white;
 }
 
 .site-header {
@@ -85,7 +97,7 @@ summary:focus-visible {
   align-items: center;
   border-right: 1px solid currentColor;
   display: inline-flex;
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 24px;
   height: 34px;
   justify-content: center;
@@ -100,7 +112,7 @@ summary:focus-visible {
 
 .brand-glyph i {
   color: var(--electric);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--sans);
   font-size: 28px;
   font-style: italic;
   font-weight: 400;
@@ -164,8 +176,8 @@ summary:focus-visible {
 }
 
 .header-cta:hover {
-  background: var(--signal);
-  color: var(--ink);
+  background: var(--electric);
+  color: white;
 }
 
 .hero {
@@ -214,7 +226,7 @@ summary:focus-visible {
 .hero h1 span {
   color: var(--electric);
   display: block;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--sans);
   font-style: italic;
   font-weight: 400;
   letter-spacing: -0.07em;
@@ -250,14 +262,10 @@ summary:focus-visible {
   transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
 }
 
-.button:hover {
-  box-shadow: 5px 5px 0 var(--ink);
-  transform: translate(-3px, -3px);
-}
-
 .button-primary,
 .button-accent {
-  background: var(--signal);
+  background: var(--electric);
+  color: white;
 }
 
 .button-dark {
@@ -283,7 +291,7 @@ summary:focus-visible {
 .hero-system {
   align-self: center;
   background: var(--ink);
-  box-shadow: 14px 14px 0 var(--signal);
+  box-shadow: 14px 14px 0 var(--electric);
   color: white;
   margin-right: 14px;
   max-width: 650px;
@@ -311,9 +319,9 @@ summary:focus-visible {
 }
 
 .live-dot::before {
-  background: var(--signal);
+  background: var(--electric-light);
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(255, 122, 0, 0.12);
+  box-shadow: 0 0 0 4px rgba(138, 171, 255, 0.16);
   content: "";
   display: inline-block;
   height: 6px;
@@ -322,7 +330,7 @@ summary:focus-visible {
 }
 
 .system-label {
-  color: var(--signal);
+  color: var(--electric-light);
   margin: 54px 0 15px;
 }
 
@@ -354,9 +362,9 @@ summary:focus-visible {
 }
 
 .system-progress span.complete {
-  background: var(--signal);
-  border-color: var(--signal);
-  color: var(--ink);
+  background: var(--electric);
+  border-color: var(--electric);
+  color: white;
 }
 
 .system-progress i {
@@ -408,12 +416,13 @@ summary:focus-visible {
 }
 
 .signal-strip {
-  background: var(--signal);
+  background: var(--electric);
   border-bottom: 1px solid var(--ink);
   border-top: 1px solid var(--ink);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 0 clamp(20px, 4vw, 72px);
+  color: white;
 }
 
 .signal-strip p {
@@ -564,7 +573,7 @@ summary:focus-visible {
   border-bottom: 1px solid var(--line);
   display: grid;
   gap: clamp(25px, 4vw, 70px);
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr) minmax(110px, 180px);
   padding: clamp(36px, 4vw, 68px) 0;
 }
 
@@ -577,11 +586,18 @@ summary:focus-visible {
   padding-bottom: 0;
 }
 
-.motion-card > span,
+.motion-number,
 .capability-item span {
   color: var(--electric);
   font-family: var(--mono);
   font-size: 11px;
+}
+
+.motion-glyph {
+  align-self: center;
+  display: block;
+  height: auto;
+  width: 100%;
 }
 
 .motion-card h3 {
@@ -626,7 +642,7 @@ summary:focus-visible {
 }
 
 .workflow-number {
-  color: var(--signal);
+  color: var(--electric-light);
   font-family: var(--mono);
   font-size: 11px;
   padding-top: 7px;
@@ -648,7 +664,7 @@ summary:focus-visible {
 }
 
 .workflow-step small {
-  color: var(--signal);
+  color: var(--electric-light);
   display: block;
   font-family: var(--mono);
   font-size: 9px;
@@ -692,7 +708,7 @@ summary:focus-visible {
 }
 
 .capability-item:hover span {
-  color: var(--signal);
+  color: var(--electric-light);
 }
 
 .capability-item p {
@@ -721,7 +737,7 @@ summary:focus-visible {
 }
 
 .section-kicker-light {
-  color: var(--signal);
+  color: var(--electric-light);
 }
 
 .operator-copy > p:not(.section-kicker) {
@@ -742,8 +758,8 @@ summary:focus-visible {
 }
 
 .operator-core {
-  background: var(--signal);
-  color: var(--ink);
+  background: var(--electric);
+  color: white;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -885,7 +901,7 @@ summary:focus-visible {
 }
 
 .price-card-featured li::before {
-  color: var(--signal);
+  color: var(--electric-light);
 }
 
 .price-card .button {
@@ -932,6 +948,10 @@ summary:focus-visible {
 .first-ship-copy .button {
   background: var(--paper);
   color: var(--ink);
+}
+
+.first-ship .section-kicker {
+  color: white;
 }
 
 .first-ship-copy small {
@@ -1069,7 +1089,26 @@ summary:focus-visible {
   display: grid;
   gap: 70px;
   grid-template-columns: minmax(280px, 1fr) minmax(460px, 1.25fr);
+  isolation: isolate;
+  overflow: hidden;
   padding: clamp(65px, 8vw, 120px) clamp(20px, 6vw, 100px) 28px;
+  position: relative;
+}
+
+.site-footer > :not(.footer-logic) {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-logic {
+  bottom: -90px;
+  height: auto;
+  opacity: 0.18;
+  pointer-events: none;
+  position: absolute;
+  right: -80px;
+  width: min(900px, 68vw);
+  z-index: 0;
 }
 
 .site-footer p {
@@ -1085,7 +1124,7 @@ summary:focus-visible {
 }
 
 .footer-email {
-  color: var(--signal);
+  color: var(--electric-light);
   font-family: var(--mono);
   font-size: 12px;
 }
@@ -1102,7 +1141,7 @@ summary:focus-visible {
 }
 
 .footer-links p {
-  color: var(--signal);
+  color: var(--electric-light);
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.09em;
@@ -1132,6 +1171,13 @@ summary:focus-visible {
   letter-spacing: 0.06em;
   padding-top: 24px;
   text-transform: uppercase;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    box-shadow: 5px 5px 0 var(--ink);
+    transform: translate(-3px, -3px);
+  }
 }
 
 @media (max-width: 1100px) {
@@ -1164,6 +1210,10 @@ summary:focus-visible {
 }
 
 @media (max-width: 780px) {
+  body {
+    background-size: 32px 32px;
+  }
+
   .site-header {
     grid-template-columns: 1fr auto;
     min-height: 66px;
@@ -1182,27 +1232,52 @@ summary:focus-visible {
 
   .hero {
     min-height: auto;
-    padding-top: 75px;
+    padding: 56px 16px 72px;
   }
 
   .hero h1 {
-    font-size: clamp(52px, 18vw, 78px);
-    line-height: 0.88;
+    font-size: clamp(50px, 15.8vw, 74px);
+    letter-spacing: -0.065em;
+    line-height: 0.9;
   }
 
   .hero-lede {
+    font-size: 18px;
+    line-height: 1.5;
     margin-top: 32px;
   }
 
   .hero-actions {
     align-items: flex-start;
     flex-direction: column;
+    gap: 18px;
+  }
+
+  .text-link {
+    align-items: center;
+    display: flex;
+    min-height: 44px;
   }
 
   .hero-system {
-    box-shadow: 8px 8px 0 var(--signal);
+    box-shadow: 8px 8px 0 var(--electric);
     margin-right: 8px;
-    transform: rotate(0.8deg);
+    margin-top: 56px;
+    padding: 28px 24px;
+    transform: none;
+  }
+
+  .system-topline {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .system-label {
+    margin-top: 38px;
+  }
+
+  .system-progress {
+    margin-top: 40px;
   }
 
   .system-stages span {
@@ -1230,6 +1305,19 @@ summary:focus-visible {
     text-align: left;
   }
 
+  .problem,
+  .capabilities,
+  .pricing,
+  .faq {
+    padding: 72px 16px;
+  }
+
+  .workflow,
+  .operating-model {
+    gap: 56px;
+    padding: 72px 16px;
+  }
+
   .motions,
   .first-ship,
   .faq,
@@ -1242,12 +1330,19 @@ summary:focus-visible {
   }
 
   .problem-card {
-    min-height: 310px;
+    min-height: 0;
+    padding: 28px 22px;
+  }
+
+  .problem-card h3 {
+    margin: 52px 0 18px;
   }
 
   .problem-diagnosis {
     align-items: start;
     grid-template-columns: 1fr;
+    margin-top: 16px;
+    padding: 24px 22px;
   }
 
   .problem-diagnosis i {
@@ -1260,6 +1355,42 @@ summary:focus-visible {
     border-right: 0;
   }
 
+  .section-intro,
+  .motion-list {
+    padding: 64px 16px;
+  }
+
+  .problem-heading {
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .problem-heading h2,
+  .workflow-heading h2,
+  .section-intro h2,
+  .capability-title h2,
+  .operator-copy h2,
+  .pricing-heading h2,
+  .faq-heading h2,
+  .first-ship h2,
+  .closing h2 {
+    font-size: clamp(40px, 12vw, 56px);
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+  }
+
+  .motion-card {
+    gap: 18px;
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 40px 0;
+  }
+
+  .motion-glyph {
+    grid-column: 2;
+    margin-top: 18px;
+    width: 124px;
+  }
+
   .capability-title {
     grid-template-columns: 1fr;
   }
@@ -1269,7 +1400,7 @@ summary:focus-visible {
   }
 
   .capability-item {
-    min-height: 130px;
+    min-height: 118px;
   }
 
   .capability-item p {
@@ -1286,6 +1417,18 @@ summary:focus-visible {
 
   .price-card {
     min-height: 0;
+    padding: 34px 22px;
+  }
+
+  .price-card h3 {
+    font-size: clamp(48px, 15vw, 72px);
+    letter-spacing: -0.055em;
+    margin: 54px 0 22px;
+  }
+
+  .first-ship-copy,
+  .first-ship-options {
+    padding: 64px 16px;
   }
 
   .faq-heading {
@@ -1296,9 +1439,25 @@ summary:focus-visible {
     padding: 0 0 28px;
   }
 
+  .faq-list summary {
+    font-size: 18px;
+    gap: 14px;
+    line-height: 1.35;
+    min-height: 64px;
+    padding: 18px 0;
+  }
+
   .site-footer {
     grid-template-columns: 1fr;
     gap: 50px;
+    padding: 64px 16px 24px;
+  }
+
+  .footer-logic {
+    bottom: -10px;
+    opacity: 0.14;
+    right: -280px;
+    width: 720px;
   }
 
   .footer-links {
@@ -1336,6 +1495,12 @@ summary:focus-visible {
   .motion-card {
     gap: 16px;
     grid-template-columns: 1fr;
+  }
+
+  .motion-glyph {
+    grid-column: 1;
+    margin-top: 10px;
+    width: 136px;
   }
 
   .price-topline {

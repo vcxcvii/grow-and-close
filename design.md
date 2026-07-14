@@ -2,7 +2,7 @@
 
 Status: implementation source of truth  
 Applies to: landing page, future service pages, campaign pages, and social cards  
-Primary file map: `app/page.tsx`, `app/globals.css`, `app/layout.tsx`, `public/og.png`
+Primary file map: `app/page.tsx`, `app/globals.css`, `app/layout.tsx`, `public/brand/`, `public/og.png`
 
 ## 1. Brand thesis
 
@@ -205,45 +205,42 @@ Core tokens:
 
 | Token | Value | Role |
 |---|---:|---|
-| Ink | `#11120f` | Structure, authority, dark fields |
-| Paper | `#f3f0e6` | Main canvas |
-| Paper deep | `#e8e3d5` | Secondary neutral fields |
-| Electric | `#175cff` | Brand action, active state, emphasis |
-| Signal orange | `#ff7a00` | Shipping, progress, small high-energy highlight |
-| Muted | `#6b6c64` | Supporting text on paper |
+| Ink | `#090a0c` | Structure, authority, dark fields |
+| Paper | `#f6f7fb` | Main canvas |
+| Paper deep | `#e7eaf0` | Secondary neutral fields |
+| Electric | `#0b4fe8` | Brand action, active state, shipped node |
+| Electric light | `#8aabff` | Small labels on ink fields |
+| Muted | `#565b66` | Supporting text on paper |
 
 Usage target:
 
 - 55–65% paper.
 - 25–35% ink.
-- 5–10% electric blue.
-- Under 5% signal orange.
+- 8–15% electric blue.
 
 Rules:
 
-- No lime green.
-- Electric blue owns brand/action emphasis; bright orange owns shipping/progress signals.
+- No orange, lime, green, or secondary accent color.
+- Electric blue owns brand, action, progress, shipping, and validated-state emphasis.
 - Do not add gradients.
 - Use white on electric blue for body copy.
-- Use ink on signal orange.
-- Do not place electric blue text on ink at body or label sizes; use signal orange or white.
-- Focus rings use electric blue on light surfaces. On dark surfaces, signal orange is acceptable if blue lacks contrast.
+- Do not place electric blue text on ink at body or label sizes. Use electric light or white.
+- Focus rings use electric blue on light surfaces and white/electric light on blue or ink surfaces.
 
 Verified pairs:
 
-- Ink on signal orange: 7.19:1.
-- Signal orange on ink: 7.19:1.
-- White on electric blue: 5.24:1.
-- Electric blue on paper: 4.59:1.
-- Never use signal orange text on electric blue; contrast is only 2.00:1.
+- White on electric blue: 6.37:1.
+- Electric blue on paper: 5.95:1.
+- Muted on paper: 6.36:1.
+- Electric light on ink: above 8:1.
 
 ## 7. Typography
 
 Families:
 
-- Primary sans: Geist Sans.
-- Operational labels: Geist Mono.
-- Editorial emphasis: Georgia italic, used only for the hero’s second line if retained.
+- Primary sans: IBM Plex Sans.
+- Operational labels: IBM Plex Mono.
+- Editorial emphasis: IBM Plex Sans italic. No unrelated serif family.
 
 Hierarchy:
 
@@ -260,6 +257,8 @@ Rules:
 - Body copy uses 1.5–1.65 line height.
 - Never put paragraphs in all caps.
 - Do not use more than three typographic voices in one viewport.
+- On mobile, body text stays at least 16px with 1.5 line height.
+- Avoid negative letter spacing below 24px. Operational labels may use `0.04–0.09em`; never exceed `0.11em`.
 
 ## 8. Logo construction
 
@@ -289,7 +288,116 @@ Rules:
 - On dark backgrounds, use white G/C letters and wordmark; retain electric slash.
 - `aria-label` must read “Grow and Close home”; decorative glyph content stays hidden from assistive technology.
 
-## 9. Layout system
+Favicon:
+
+- Full-bleed ink square.
+- White G and C in IBM Plex Mono bold.
+- Electric-blue diagonal slash.
+- No border, gradient, shadow, or secondary color.
+
+## 9. GTM logic visual language
+
+The distinctive visual motif is a system of AND/OR logic diagrams translated into GTM motions. It must communicate real dependencies, choices, handoffs, and outcomes—not become arbitrary tech decoration.
+
+### Shape grammar
+
+| Shape | GTM meaning |
+|---|---|
+| Square | Input, asset, constraint, or source signal |
+| Wedge / D gate | AND: multiple conditions must work together |
+| Diamond | OR: decision, route, segment, or test branch |
+| Small square | Checkpoint, handoff, or activation step |
+| Circle | Market-facing outcome or destination |
+| Electric-blue checked circle | Shipped, validated, or ready to learn |
+| Thin orthogonal line | Dependency, sequence, or feedback route |
+
+Composition rules:
+
+- Read left to right. Inputs enter from left; outcomes finish at right.
+- Use 2–4 numbered rows. Preserve visible sequence `01`, `02`, `03`, `04`.
+- Use thin 1–2px lines, square corners, right-angle branches, and generous negative space.
+- One blue node per diagram is preferred. Two is the absolute maximum.
+- Blue always marks the active, shipped, or decisive node. It never fills random shapes.
+- White shapes live on ink. Ink-outlined paper shapes live on paper.
+- Keep diagrams flat. No shadows, glow, gradients, 3D extrusion, glass, or neon effects.
+- Diagram meaning must be explainable in one sentence. If not, simplify it.
+
+Reusable source assets:
+
+- `public/brand/logic-and.svg`: converging prerequisites.
+- `public/brand/logic-or.svg`: branching activation path.
+- `public/brand/logic-ship.svg`: shipped/validated outcome.
+- `public/brand/logic-system.svg`: large multi-row motion map.
+
+Use checked-in SVGs for exact cross-channel consistency. Do not ask an image model to redraw the G/C mark or these icons when an existing asset fits. Prompt-based generation is for new compositions only; final production layouts should overlay the real logo and SVG assets in Figma, Canva, HTML, or another deterministic layout tool.
+
+### Web usage
+
+- Small icon: 120–180px wide, aligned to the content grid, never smaller than 72px.
+- Large section motif: 30–60% of section width at 8–18% opacity.
+- Footer background: anchor bottom-right, crop intentionally, 10–16% opacity, `aria-hidden`.
+- Icons stay decorative with empty alt text unless the diagram conveys information not present in nearby copy.
+- On mobile, place icon below the copy or in its own row. Never squeeze text beside an icon below 360px.
+
+### Model-agnostic master prompt
+
+Copy this block before any channel-specific prompt:
+
+```text
+Create a Grow & Close brand visual for a senior-led GTM execution studio serving B2B SaaS.
+Visual language: Swiss editorial grid meets operational systems diagram. Flat off-white #f6f7fb and near-black #090a0c fields, thin black grid lines, exact electric blue #0b4fe8 as the only accent. IBM Plex Sans for display/body; IBM Plex Mono for labels and step numbers. Use AND/OR logic-gate geometry translated into GTM motions: squares are inputs, a D-shaped or wedge gate means combined prerequisites, a diamond means a decision or branch, small squares are checkpoints, circles are outcomes, and one blue checked circle means shipped or validated. Number motion rows 01–04. Strong negative space, crisp vector-like edges, square corners, restrained asymmetry.
+Do not use orange, lime, green, purple, gradients, soft shadows, glassmorphism, 3D, neon, generic AI imagery, robots, brains, rockets, stock photography, rounded SaaS cards, fake dashboards, or decorative shapes without operational meaning.
+Never redraw or mutate the G/C logo. Leave a clean reserved area for the supplied vector mark. Preserve supplied copy verbatim; if accurate typography cannot be guaranteed, render no text and leave the copy area blank for deterministic overlay.
+```
+
+### LinkedIn portrait prompt — 1080 × 1350
+
+```text
+[PASTE MASTER PROMPT]
+Canvas: 1080 × 1350, LinkedIn portrait.
+Layout: 58% paper editorial message field on the left/top; 42% ink logic-system field on the right/bottom. Keep a 72px safe zone. Use one large short headline, maximum 8 words, with one electric-blue italic emphasis. Place a four-row GTM logic motion diagram opposite the headline. Reserve bottom-left space for the supplied G/C lockup. Make the graphic legible in a mobile feed and at thumbnail size.
+Exact headline: "[INSERT APPROVED HEADLINE]"
+Exact eyebrow: "[INSERT APPROVED EYEBROW]"
+Output without invented supporting copy, badges, logos, or metrics.
+```
+
+### LinkedIn landscape / social card prompt — 1200 × 630
+
+```text
+[PASTE MASTER PROMPT]
+Canvas: 1200 × 630, landscape social card.
+Layout: 60% paper message field left, 40% ink logic field right, joined by thin grid lines. Headline occupies no more than three lines. Place a 01–04 logic sequence on the ink field with one blue checked completion node. Reserve a bottom-left lockup zone. Maintain at least 72px safe margins.
+Exact headline: "[INSERT APPROVED HEADLINE]"
+Exact eyebrow: "GTM EXECUTION STUDIO FOR B2B SAAS"
+Do not invent claims, proof, statistics, or customer logos.
+```
+
+### Campaign motion diagram prompt — no headline
+
+```text
+[PASTE MASTER PROMPT]
+Create only a clean GTM motion diagram on a transparent-feeling paper or ink field; no headline and no logo. Show this logic: [INPUT A] AND [INPUT B] feed [CHECKPOINT]; branch by [DECISION]; finish at [OUTCOME]. Mark only [SHIPPED STEP] in electric blue. Use 2px orthogonal lines, numbered stages, generous padding, and simple geometric nodes. No labels unless supplied verbatim.
+```
+
+### Faded background prompt
+
+```text
+[PASTE MASTER PROMPT]
+Create a large sparse four-row GTM logic network with no text, no logo, no outer frame, and no background texture. White strokes and shapes for placement over #090a0c; exact blue #0b4fe8 only on one completion node. Keep most of the canvas empty. Intended use: cropped footer background at 10–16% opacity.
+```
+
+### Prompt QA
+
+Reject generated work if any answer is “no”:
+
+1. Is blue the only accent?
+2. Can every logic shape be mapped to a GTM meaning?
+3. Are logo and typography either exact assets or intentionally left for overlay?
+4. Does the layout survive a mobile-feed thumbnail?
+5. Is all copy supplied and approved rather than invented?
+6. Are grid, spacing, and line weights visibly disciplined?
+
+## 10. Layout system
 
 Desktop canvas:
 
@@ -315,20 +423,20 @@ Grid rules:
 - Capabilities are four columns wide, two columns tablet, one column mobile.
 - Footer is brand plus three link groups desktop; single-column shell on mobile.
 
-## 10. Borders, shadows, and shape
+## 11. Borders, shadows, and shape
 
 - Default border: 1px ink.
 - Dark border: 1px white at 20–26% opacity.
 - Radius: zero, except circular progress indicators.
-- Hero system shadow: hard signal orange offset, no blur.
+- Hero system shadow: hard electric-blue offset, no blur.
 - Button hover shadow: hard ink offset, no blur.
 - Never use soft card shadows, glass cards, or pill-shaped containers.
 
-## 11. Components
+## 12. Components
 
 ### Buttons
 
-Primary: signal orange background, ink text, ink border.  
+Primary: electric-blue background, white text, ink border.
 Dark: ink background, white text.  
 Light-on-blue: paper background, ink text.  
 Minimum height: 52px desktop, 44px mobile.  
@@ -352,7 +460,7 @@ Keep identical anatomy and comparable feature count. Pipeline Team uses the dark
 
 Use native `details` and `summary`. The first item may open by default. Preserve keyboard interaction and a visible focus ring.
 
-## 12. Responsive behavior
+## 13. Responsive behavior
 
 At 1100px:
 
@@ -371,6 +479,9 @@ At 780px:
 - Pricing cards lose forced minimum height.
 - FAQ headings stop sticking.
 - Footer becomes one shell column; link groups may remain two-up.
+- Major section gutters become 16px.
+- Logic icons move below copy rather than compressing it.
+- Role cards lose forced tall heights.
 
 At 480px:
 
@@ -382,7 +493,7 @@ At 480px:
 
 Mandatory test widths: 320, 375, 390, 430, 768, 1024, and 1440px.
 
-## 13. Accessibility
+## 14. Accessibility
 
 - Maintain WCAG AA contrast for body text.
 - All interactive targets are at least 44px high on touch layouts.
@@ -395,7 +506,7 @@ Mandatory test widths: 320, 375, 390, 430, 768, 1024, and 1440px.
 - Test keyboard order through header, CTAs, pricing, FAQ, and footer.
 - No horizontal scroll at 320px.
 
-## 14. Interaction rules
+## 15. Interaction rules
 
 - Motion should communicate response, not decorate idle states.
 - Navigation underline: 180ms.
@@ -403,7 +514,7 @@ Mandatory test widths: 320, 375, 390, 430, 768, 1024, and 1440px.
 - FAQ indicator rotation: 180ms.
 - No scroll-jacking, marquee, autoplay media, or parallax.
 
-## 15. External destinations and dependencies
+## 16. External destinations and dependencies
 
 Current safe placeholders:
 
@@ -414,7 +525,7 @@ Current safe placeholders:
 - Calendar: intentionally omitted.
 - LinkedIn: intentionally omitted.
 
-Required from owner before public launch:
+Required from owner before enabling each dependency:
 
 1. Add supplied A, CNAME, and ownership-verification TXT records at the DNS provider.
 2. Confirm inbox receiving `hello@growandclose.com`.
@@ -427,28 +538,28 @@ Required from owner before public launch:
 
 Never commit secrets. Use host-managed environment variables.
 
-## 16. Social card
+## 17. Social card
 
 Canvas: 1200 × 630px.  
 Copy: brand name, “Your GTM backlog, shipped.”, and “Senior-led GTM execution for B2B SaaS.”  
-Style: ink/paper field, electric blue emphasis, signal orange shipping accent, G/C mark.  
+Style: ink/paper field, electric-blue completion node, G/C mark, GTM logic system.
 Safe zone: keep critical copy 72px from every edge.  
-Do not use lime green.
+Use no orange, lime, green, gradient, or unapproved accent.
 
-## 17. Implementation guardrails
+## 18. Implementation guardrails
 
 - Prefer server-rendered static content.
 - Avoid client JavaScript unless interaction requires it.
 - Keep content arrays at the top of `app/page.tsx` for easy editing.
 - Keep tokens in `:root`; do not scatter new hex values through components.
 - Reuse existing classes before creating near-duplicates.
-- No model-authored SVG illustrations.
+- Prefer checked-in deterministic SVG diagrams over model-redrawn icons.
 - No stock-person photography.
 - No fake dashboard screenshots.
 - No dependency for a component CSS can express.
 - Keep the page functional if images fail.
 
-## 18. Preflight checklist
+## 19. Preflight checklist
 
 Content:
 
@@ -462,8 +573,10 @@ Content:
 Design:
 
 - [ ] No lime green remains.
+- [ ] No orange remains.
 - [ ] G/C logo is legible at mobile size.
-- [ ] Blue, signal orange, and ink have distinct jobs.
+- [ ] Blue is the only accent and marks action, progress, or completion.
+- [ ] Logic symbols follow the defined GTM meaning map.
 - [ ] No horizontal overflow at 320px.
 - [ ] Footer has Explore, Engage, and Contact.
 - [ ] Social card matches the current palette.
@@ -496,9 +609,10 @@ Release:
 - [ ] CTA destinations checked manually.
 - [ ] Private preview approved before public deployment.
 
-## 19. Never do
+## 20. Never do
 
-- Reintroduce lime green or low-contrast blue/orange text pairings.
+- Reintroduce orange, lime, green, or an unapproved secondary accent.
+- Ask a model to recreate an existing logo or checked-in logic asset.
 - Turn the visual system into generic SaaS gradients and rounded cards.
 - Lead with AI agents instead of buyer outcomes.
 - Present the future team as current headcount.

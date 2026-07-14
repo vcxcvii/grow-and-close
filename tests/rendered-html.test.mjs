@@ -76,8 +76,27 @@ test("server-renders the Grow & Close landing page", async () => {
 test("brand colors preserve accessible text pairings", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
 
-  assert.doesNotMatch(css, /#dfff4f|var\(--acid\)/i);
-  assert.ok(contrastRatio("#11120f", "#ff7a00") >= 7);
-  assert.ok(contrastRatio("#ffffff", "#175cff") >= 4.5);
-  assert.ok(contrastRatio("#175cff", "#f3f0e6") >= 4.5);
+  assert.doesNotMatch(css, /#dfff4f|#ff7a00|var\(--acid\)|var\(--signal\)/i);
+  assert.ok(contrastRatio("#ffffff", "#0b4fe8") >= 4.5);
+  assert.ok(contrastRatio("#0b4fe8", "#f6f7fb") >= 4.5);
+  assert.ok(contrastRatio("#565b66", "#f6f7fb") >= 4.5);
+  assert.ok(contrastRatio("#8aabff", "#090a0c") >= 4.5);
+});
+
+test("brand system ships deterministic reusable assets", async () => {
+  const [andGlyph, orGlyph, shipGlyph, logicSystem, favicon] = await Promise.all([
+    readFile(new URL("../public/brand/logic-and.svg", import.meta.url), "utf8"),
+    readFile(new URL("../public/brand/logic-or.svg", import.meta.url), "utf8"),
+    readFile(new URL("../public/brand/logic-ship.svg", import.meta.url), "utf8"),
+    readFile(new URL("../public/brand/logic-system.svg", import.meta.url), "utf8"),
+    readFile(new URL("../public/favicon.svg", import.meta.url), "utf8"),
+  ]);
+
+  for (const asset of [andGlyph, orGlyph, shipGlyph, logicSystem, favicon]) {
+    assert.match(asset, /#0b4fe8/i);
+    assert.doesNotMatch(asset, /#ff7a00|#dfff4f/i);
+  }
+
+  assert.match(favicon, />G</);
+  assert.match(favicon, />C</);
 });

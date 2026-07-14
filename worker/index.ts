@@ -29,7 +29,11 @@ const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
-    if (url.hostname === "www.growandclose.com") {
+    // Canonicalize production traffic: www → apex, http → https. Scoped to
+    // the real hostnames so localhost and workers.dev previews stay untouched.
+    const isProductionHost =
+      url.hostname === "growandclose.com" || url.hostname === "www.growandclose.com";
+    if (isProductionHost && (url.hostname !== "growandclose.com" || url.protocol !== "https:")) {
       url.hostname = "growandclose.com";
       url.protocol = "https:";
       return Response.redirect(url.toString(), 301);

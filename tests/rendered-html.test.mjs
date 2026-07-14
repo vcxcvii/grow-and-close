@@ -52,6 +52,23 @@ test("redirects www requests to the canonical apex domain", async () => {
   );
 });
 
+test("redirects insecure http requests to https on the apex domain", async () => {
+  const response = await render("http://growandclose.com/pricing?utm=x");
+
+  assert.equal(response.status, 301);
+  assert.equal(
+    response.headers.get("location"),
+    "https://growandclose.com/pricing?utm=x",
+  );
+});
+
+test("redirects insecure www requests straight to the https apex", async () => {
+  const response = await render("http://www.growandclose.com/");
+
+  assert.equal(response.status, 301);
+  assert.equal(response.headers.get("location"), "https://growandclose.com/");
+});
+
 test("server-renders the Grow & Close landing page", async () => {
   const response = await render();
   assert.equal(response.status, 200);

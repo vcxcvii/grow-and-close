@@ -65,8 +65,9 @@ Production uses Cloudflare Workers Builds connected to this repository:
 - Root directory: `/`
 - Node.js version: `22`
 - Production domain: `https://growandclose.com`
+- Custom domains: `growandclose.com` and `www.growandclose.com`
 
-Vinext generates the Wrangler bundle and static-asset manifest. `vite.config.ts` targets the existing production Worker. Merges to `main` trigger production deployment.
+Vinext generates the Wrangler bundle and static-asset manifest. `vite.config.ts` targets the existing production Worker and declares both hostnames as Cloudflare Custom Domains. Cloudflare creates their DNS records and certificates during deployment. Merges to `main` trigger production deployment.
 
 If repository visibility changes, confirm Cloudflare's GitHub app retains access and verify one post-change deployment before treating the integration as healthy.
 

@@ -4,6 +4,8 @@ Senior-led GTM execution studio for B2B SaaS.
 
 Production: [growandclose.com](https://growandclose.com)
 
+Repository visibility: private. Cloudflare's GitHub app must retain access for production builds.
+
 ## Brand source of truth
 
 `design.md` is the complete visual, messaging, responsive, and image-generation specification. Read it before creating any Grow & Close page, LinkedIn visual, proposal, deck, campaign, or AI-generated asset.

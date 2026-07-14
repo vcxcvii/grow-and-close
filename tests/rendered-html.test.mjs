@@ -30,9 +30,15 @@ test("server-renders the Grow & Close landing page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Grow &amp; Close — Your GTM backlog, shipped\.<\/title>/i);
   assert.match(html, /Your GTM backlog/);
+  assert.match(html, /FOR FOUNDERS/);
+  assert.match(html, /FOR CMOs/);
+  assert.match(html, /FOR HEADS OF MARKETING/);
+  assert.match(html, /Queue the priority/);
+  assert.match(html, /Review, learn, repeat/);
   assert.match(html, /Pipeline One/);
   assert.match(html, /Pipeline Team/);
   assert.match(html, /Your first ship is free/);
   assert.match(html, /hello@growandclose\.com/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
+  assert.doesNotMatch(html, /#ff5c35|var\(--orange\)/i);
 });

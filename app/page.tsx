@@ -27,6 +27,45 @@ const capabilities = [
   "GTM dashboards",
 ];
 
+const audienceProblems = [
+  {
+    audience: "FOR FOUNDERS",
+    title: "Marketing still lives in your head.",
+    copy: "Every campaign waits for you to brief it, review it, and connect the pieces. The business needs founder context without making you the production layer.",
+  },
+  {
+    audience: "FOR CMOs",
+    title: "The strategy is clear. Capacity is not.",
+    copy: "Your roadmap keeps losing to launches, sales requests, and quarter-end fire drills. The problem is not another plan—it is senior execution that can absorb a priority end to end.",
+  },
+  {
+    audience: "FOR HEADS OF MARKETING",
+    title: "You own the plan and the assembly line.",
+    copy: "You are too senior to spend the week stitching pages, sequences, and briefs together—and too under-resourced to hand the whole motion to one accountable owner.",
+  },
+];
+
+const workflow = [
+  {
+    number: "01",
+    title: "Queue the priority",
+    copy: "Drop priorities into one shared backlog. We sharpen the outcome, define the finish line, and order the work together.",
+    meta: "UNLIMITED BACKLOG · ONE CLEAR ORDER",
+  },
+  {
+    number: "02",
+    title: "We ship the motion",
+    copy: "One or two priorities stay active. We build the connected strategy, copy, page, campaign, and enablement needed to get them live.",
+    meta: "WEEKLY OUTPUT · ASYNC VISIBILITY",
+  },
+  {
+    number: "03",
+    title: "Review, learn, repeat",
+    copy: "You get a concise walkthrough and ship log. Feedback and real signals shape the next iteration—not a fresh round of agency theatre.",
+    meta: "FAST FEEDBACK · NO RESET",
+  },
+];
+
 const faqs = [
   {
     question: "What counts as one active pipeline motion?",
@@ -60,13 +99,12 @@ export default function Home() {
     <main>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Grow and Close home">
-          <span>GROW</span>
-          <span className="brand-mark">+</span>
-          <span>CLOSE</span>
+          <span className="brand-glyph" aria-hidden="true"><b>G</b><i>/</i><b>C</b></span>
+          <span className="brand-name"><b>GROW</b><b>CLOSE</b></span>
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
           <a href="#motions">What we ship</a>
-          <a href="#process">How it works</a>
+          <a href="#workflow">How it works</a>
           <a href="#pricing">Plans</a>
           <a href="#faq">FAQ</a>
         </nav>
@@ -83,9 +121,9 @@ export default function Home() {
             <span>shipped.</span>
           </h1>
           <p className="hero-lede">
-            Grow &amp; Close turns stalled priorities into live pipeline motions—strategy,
-            pages, campaigns, content, and enablement—without the cost of building a
-            full team.
+            A senior execution pod for founders, CMOs, and Heads of Marketing who know
+            what needs to move—but lack the capacity to turn it into one coherent, live
+            pipeline motion.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#first-ship">
@@ -141,11 +179,28 @@ export default function Home() {
         <p><strong>04</strong> Pause anytime</p>
       </section>
 
-      <section className="problem statement-section">
-        <p className="section-kicker">THE BOTTLENECK</p>
-        <p className="statement">
-          You probably don&apos;t need more ideas. You need someone to turn the right
-          idea into a <em>live, coherent motion</em>—then improve it.
+      <section className="problem" id="problem">
+        <div className="problem-heading">
+          <p className="section-kicker">THE REAL BOTTLENECK</p>
+          <h2>The work between the plan and the pipeline has no clear owner.</h2>
+          <p>
+            More ideas will not fix it. More disconnected freelancers will not fix it.
+            The missing layer is senior, cross-functional execution with one finish line.
+          </p>
+        </div>
+        <div className="problem-grid">
+          {audienceProblems.map((problem) => (
+            <article className="problem-card" key={problem.audience}>
+              <span>{problem.audience}</span>
+              <h3>{problem.title}</h3>
+              <p>{problem.copy}</p>
+            </article>
+          ))}
+        </div>
+        <p className="problem-diagnosis">
+          <span>THE VISIBLE SYMPTOM</span> A growing GTM backlog.
+          <i aria-hidden="true">→</i>
+          <span>THE ACTUAL PROBLEM</span> No owner from strategy through ship.
         </p>
       </section>
 
@@ -171,7 +226,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="capabilities" id="process">
+      <section className="workflow" id="workflow">
+        <div className="workflow-heading">
+          <p className="section-kicker section-kicker-light">HOW WE WORK</p>
+          <h2>Simple enough to run. Serious enough to compound.</h2>
+          <p>
+            One backlog. A fixed amount of active work. Direct feedback. The operating
+            model stays deliberately light so more energy reaches the market.
+          </p>
+        </div>
+        <div className="workflow-list">
+          {workflow.map((step) => (
+            <article className="workflow-step" key={step.number}>
+              <span className="workflow-number">{step.number}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.copy}</p>
+                <small>{step.meta}</small>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="capabilities" id="capabilities">
         <div className="capability-title">
           <p className="section-kicker">THE CAPABILITY LAYER</p>
           <h2>Everything needed to move one priority forward.</h2>
@@ -195,9 +273,10 @@ export default function Home() {
           <p className="section-kicker section-kicker-light">HOW THE STUDIO RUNS</p>
           <h2>Senior judgment upfront. Specialist systems underneath.</h2>
           <p>
-            You work directly with Varun Choraria, former marketing leader at GTM Buddy.
-            Every motion is guided by experienced B2B SaaS judgment and accelerated by
-            specialist AI systems for research, writing, design, analysis, and operations.
+            Founders, CMOs, and Heads of Marketing work directly with Varun Choraria,
+            former marketing leader at GTM Buddy. Every motion is guided by experienced
+            B2B SaaS judgment and accelerated by specialist AI systems for research,
+            writing, design, analysis, and operations.
           </p>
           <p>
             Today, that creates the output of a focused pod. Tomorrow, the same operating
@@ -235,8 +314,8 @@ export default function Home() {
             </div>
             <h3>$3,500<span>/month</span></h3>
             <p className="price-description">
-              For a founder or lean marketer who needs one important GTM priority moving
-              every week.
+              For a founder or lean Head of Marketing who needs one important GTM
+              priority moving every week.
             </p>
             <ul>
               <li>One active pipeline motion</li>
@@ -259,8 +338,8 @@ export default function Home() {
             </div>
             <h3>$7,000<span>/month</span></h3>
             <p className="price-description">
-              For teams that need two workstreams moving without adding another layer of
-              management.
+              For CMOs and small marketing teams that need two workstreams moving
+              without adding another layer of management.
             </p>
             <ul>
               <li>Two parallel pipeline motions</li>
@@ -326,13 +405,41 @@ export default function Home() {
         <a className="button button-accent" href="#first-ship">Ship the first thing free</a>
       </section>
 
-      <footer>
-        <a className="brand footer-brand" href="#top">
-          <span>GROW</span><span className="brand-mark">+</span><span>CLOSE</span>
-        </a>
-        <p>Senior-led GTM execution for B2B SaaS.</p>
-        <a href="mailto:hello@growandclose.com">hello@growandclose.com</a>
-        <p>© {new Date().getFullYear()} Grow &amp; Close</p>
+      <footer className="site-footer">
+        <div className="footer-intro">
+          <a className="brand footer-brand" href="#top" aria-label="Grow and Close home">
+            <span className="brand-glyph" aria-hidden="true"><b>G</b><i>/</i><b>C</b></span>
+            <span className="brand-name"><b>GROW</b><b>CLOSE</b></span>
+          </a>
+          <p>Senior-led GTM execution for founders and lean B2B SaaS marketing teams.</p>
+          <a className="footer-email" href="mailto:hello@growandclose.com">hello@growandclose.com</a>
+        </div>
+        <div className="footer-links">
+          <div>
+            <p>EXPLORE</p>
+            <a href="#problem">The problem</a>
+            <a href="#motions">What we ship</a>
+            <a href="#workflow">How we work</a>
+            <a href="#capabilities">Capabilities</a>
+          </div>
+          <div>
+            <p>ENGAGE</p>
+            <a href="#pricing">Pipeline One</a>
+            <a href="#pricing">Pipeline Team</a>
+            <a href="#first-ship">First ship free</a>
+            <a href="#faq">FAQ</a>
+          </div>
+          <div>
+            <p>CONTACT</p>
+            <a href="mailto:hello@growandclose.com?subject=Grow%20%26%20Close%20fit">Start a conversation</a>
+            <a href="mailto:hello@growandclose.com?subject=Grow%20%26%20Close%20partnership">Partnerships</a>
+            <a href="mailto:hello@growandclose.com?subject=Grow%20%26%20Close%20question">General questions</a>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© {new Date().getFullYear()} Grow &amp; Close</p>
+          <p>BUILT FOR USEFUL MOMENTUM</p>
+        </div>
       </footer>
     </main>
   );

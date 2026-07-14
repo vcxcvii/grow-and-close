@@ -209,7 +209,7 @@ Core tokens:
 | Paper | `#f3f0e6` | Main canvas |
 | Paper deep | `#e8e3d5` | Secondary neutral fields |
 | Electric | `#175cff` | Brand action, active state, emphasis |
-| Acid | `#dfff4f` | Shipping, progress, small high-energy highlight |
+| Signal orange | `#ff7a00` | Shipping, progress, small high-energy highlight |
 | Muted | `#6b6c64` | Supporting text on paper |
 
 Usage target:
@@ -217,17 +217,25 @@ Usage target:
 - 55–65% paper.
 - 25–35% ink.
 - 5–10% electric blue.
-- Under 5% acid.
+- Under 5% signal orange.
 
 Rules:
 
-- No red or orange.
-- Electric blue replaces the old red-orange accent everywhere.
+- No lime green.
+- Electric blue owns brand/action emphasis; bright orange owns shipping/progress signals.
 - Do not add gradients.
 - Use white on electric blue for body copy.
-- Use ink on acid.
-- Do not place electric blue text on ink for long copy; reserve it for labels and numbers.
-- Focus rings use electric blue on light surfaces. On dark surfaces, acid is acceptable if blue lacks contrast.
+- Use ink on signal orange.
+- Do not place electric blue text on ink at body or label sizes; use signal orange or white.
+- Focus rings use electric blue on light surfaces. On dark surfaces, signal orange is acceptable if blue lacks contrast.
+
+Verified pairs:
+
+- Ink on signal orange: 7.19:1.
+- Signal orange on ink: 7.19:1.
+- White on electric blue: 5.24:1.
+- Electric blue on paper: 4.59:1.
+- Never use signal orange text on electric blue; contrast is only 2.00:1.
 
 ## 7. Typography
 
@@ -259,15 +267,15 @@ The logo is a CSS/text lockup. No image request is needed to render it.
 
 Parts:
 
-- 34 × 34px electric-blue G/C glyph.
-- White G and C.
-- Acid slash.
+- Unboxed typographic G/C glyph with a fine divider.
+- G and C inherit the surface text color.
+- Editorial electric-blue slash.
 - Two-line GROW / CLOSE wordmark.
 
 Minimum size:
 
-- Glyph: 30px.
-- Full lockup width: approximately 78px.
+- Glyph cap height: approximately 24px.
+- Full lockup width: approximately 96px.
 
 Clear space:
 
@@ -275,10 +283,10 @@ Clear space:
 
 Rules:
 
-- Do not round the glyph.
+- Do not box, round, or fill the glyph.
 - Do not add shadows.
 - Do not separate G/C into unrelated icons.
-- On dark backgrounds, retain the electric glyph and white wordmark.
+- On dark backgrounds, use white G/C letters and wordmark; retain electric slash.
 - `aria-label` must read “Grow and Close home”; decorative glyph content stays hidden from assistive technology.
 
 ## 9. Layout system
@@ -312,7 +320,7 @@ Grid rules:
 - Default border: 1px ink.
 - Dark border: 1px white at 20–26% opacity.
 - Radius: zero, except circular progress indicators.
-- Hero system shadow: hard acid offset, no blur.
+- Hero system shadow: hard signal orange offset, no blur.
 - Button hover shadow: hard ink offset, no blur.
 - Never use soft card shadows, glass cards, or pill-shaped containers.
 
@@ -320,7 +328,7 @@ Grid rules:
 
 ### Buttons
 
-Primary: acid background, ink text, ink border.  
+Primary: signal orange background, ink text, ink border.  
 Dark: ink background, white text.  
 Light-on-blue: paper background, ink text.  
 Minimum height: 52px desktop, 44px mobile.  
@@ -422,9 +430,9 @@ Never commit secrets. Use host-managed environment variables.
 
 Canvas: 1200 × 630px.  
 Copy: brand name, “Your GTM backlog, shipped.”, and “Senior-led GTM execution for B2B SaaS.”  
-Style: ink/paper field, electric blue emphasis, acid shipping accent, G/C mark.  
+Style: ink/paper field, electric blue emphasis, signal orange shipping accent, G/C mark.  
 Safe zone: keep critical copy 72px from every edge.  
-Do not use the retired red-orange accent.
+Do not use lime green.
 
 ## 17. Implementation guardrails
 
@@ -452,9 +460,9 @@ Content:
 
 Design:
 
-- [ ] No red/orange remains.
+- [ ] No lime green remains.
 - [ ] G/C logo is legible at mobile size.
-- [ ] Blue, acid, and ink have distinct jobs.
+- [ ] Blue, signal orange, and ink have distinct jobs.
 - [ ] No horizontal overflow at 320px.
 - [ ] Footer has Explore, Engage, and Contact.
 - [ ] Social card matches the current palette.
@@ -489,7 +497,7 @@ Release:
 
 ## 19. Never do
 
-- Reintroduce red or orange.
+- Reintroduce lime green or low-contrast blue/orange text pairings.
 - Turn the visual system into generic SaaS gradients and rounded cards.
 - Lead with AI agents instead of buyer outcomes.
 - Present the future team as current headcount.

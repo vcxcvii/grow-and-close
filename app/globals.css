@@ -4,7 +4,7 @@
   --ink: #11120f;
   --paper: #f3f0e6;
   --paper-deep: #e8e3d5;
-  --acid: #dfff4f;
+  --signal: #ff7a00;
   --electric: #175cff;
   --muted: #6b6c64;
   --line: rgba(17, 18, 15, 0.22);
@@ -56,7 +56,7 @@ summary:focus-visible {
 }
 
 ::selection {
-  background: var(--acid);
+  background: var(--signal);
   color: var(--ink);
 }
 
@@ -83,28 +83,29 @@ summary:focus-visible {
 
 .brand-glyph {
   align-items: center;
-  background: var(--electric);
-  border: 1px solid var(--ink);
+  border-right: 1px solid currentColor;
   display: inline-flex;
-  font-family: var(--mono);
-  font-size: 11px;
+  font-family: var(--sans);
+  font-size: 24px;
   height: 34px;
   justify-content: center;
-  letter-spacing: -0.12em;
-  width: 34px;
+  letter-spacing: -0.1em;
+  padding-right: 11px;
 }
 
 .brand-glyph b {
-  color: white;
-  font-weight: 800;
+  color: inherit;
+  font-weight: 760;
 }
 
 .brand-glyph i {
-  color: var(--acid);
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 800;
-  margin: 0 1px;
+  color: var(--electric);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0 2px;
 }
 
 .brand-name {
@@ -163,7 +164,7 @@ summary:focus-visible {
 }
 
 .header-cta:hover {
-  background: var(--acid);
+  background: var(--signal);
   color: var(--ink);
 }
 
@@ -256,7 +257,7 @@ summary:focus-visible {
 
 .button-primary,
 .button-accent {
-  background: var(--acid);
+  background: var(--signal);
 }
 
 .button-dark {
@@ -282,7 +283,7 @@ summary:focus-visible {
 .hero-system {
   align-self: center;
   background: var(--ink);
-  box-shadow: 14px 14px 0 var(--acid);
+  box-shadow: 14px 14px 0 var(--signal);
   color: white;
   margin-right: 14px;
   max-width: 650px;
@@ -310,9 +311,9 @@ summary:focus-visible {
 }
 
 .live-dot::before {
-  background: var(--acid);
+  background: var(--signal);
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(223, 255, 79, 0.12);
+  box-shadow: 0 0 0 4px rgba(255, 122, 0, 0.12);
   content: "";
   display: inline-block;
   height: 6px;
@@ -321,7 +322,7 @@ summary:focus-visible {
 }
 
 .system-label {
-  color: var(--acid);
+  color: var(--signal);
   margin: 54px 0 15px;
 }
 
@@ -353,8 +354,8 @@ summary:focus-visible {
 }
 
 .system-progress span.complete {
-  background: var(--acid);
-  border-color: var(--acid);
+  background: var(--signal);
+  border-color: var(--signal);
   color: var(--ink);
 }
 
@@ -407,7 +408,7 @@ summary:focus-visible {
 }
 
 .signal-strip {
-  background: var(--acid);
+  background: var(--signal);
   border-bottom: 1px solid var(--ink);
   border-top: 1px solid var(--ink);
   display: grid;
@@ -511,7 +512,7 @@ summary:focus-visible {
 }
 
 .problem-diagnosis span {
-  color: var(--acid);
+  color: white;
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.08em;
@@ -625,7 +626,7 @@ summary:focus-visible {
 }
 
 .workflow-number {
-  color: var(--electric);
+  color: var(--signal);
   font-family: var(--mono);
   font-size: 11px;
   padding-top: 7px;
@@ -647,7 +648,7 @@ summary:focus-visible {
 }
 
 .workflow-step small {
-  color: var(--acid);
+  color: var(--signal);
   display: block;
   font-family: var(--mono);
   font-size: 9px;
@@ -690,6 +691,10 @@ summary:focus-visible {
   color: white;
 }
 
+.capability-item:hover span {
+  color: var(--signal);
+}
+
 .capability-item p {
   font-size: clamp(18px, 1.6vw, 25px);
   font-weight: 600;
@@ -716,7 +721,7 @@ summary:focus-visible {
 }
 
 .section-kicker-light {
-  color: var(--acid);
+  color: var(--signal);
 }
 
 .operator-copy > p:not(.section-kicker) {
@@ -737,7 +742,7 @@ summary:focus-visible {
 }
 
 .operator-core {
-  background: var(--acid);
+  background: var(--signal);
   color: var(--ink);
   display: flex;
   flex-direction: column;
@@ -877,6 +882,10 @@ summary:focus-visible {
   content: "+";
   font-family: var(--mono);
   margin-right: 12px;
+}
+
+.price-card-featured li::before {
+  color: var(--signal);
 }
 
 .price-card .button {
@@ -1076,7 +1085,7 @@ summary:focus-visible {
 }
 
 .footer-email {
-  color: var(--acid);
+  color: var(--signal);
   font-family: var(--mono);
   font-size: 12px;
 }
@@ -1093,7 +1102,7 @@ summary:focus-visible {
 }
 
 .footer-links p {
-  color: var(--electric);
+  color: var(--signal);
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.09em;
@@ -1191,7 +1200,7 @@ summary:focus-visible {
   }
 
   .hero-system {
-    box-shadow: 8px 8px 0 var(--acid);
+    box-shadow: 8px 8px 0 var(--signal);
     margin-right: 8px;
     transform: rotate(0.8deg);
   }

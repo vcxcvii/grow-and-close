@@ -407,6 +407,7 @@ Mandatory test widths: 320, 375, 390, 430, 768, 1024, and 1440px.
 
 Current safe placeholders:
 
+- Production domain: `growandclose.com`; attached to Sites, DNS verification pending.
 - Email CTAs: `hello@growandclose.com`.
 - Payment: not connected.
 - Newsletter: not connected.
@@ -415,14 +416,14 @@ Current safe placeholders:
 
 Required from owner before public launch:
 
-1. Purchased production domain.
-2. Confirmed inbox receiving `hello@<domain>`.
-3. Resend API key and verified sending domain, entered privately.
-4. Razorpay subscription/payment links or product IDs.
-5. Exact calendar URL, if calls are offered.
-6. Exact LinkedIn/company URLs, if included.
-7. Approved proof: customer names, logos, testimonials, or quantified outcomes.
-8. Privacy and Terms copy before collecting payment or newsletter data.
+1. Add supplied A, CNAME, and ownership-verification TXT records at the DNS provider.
+2. Confirm inbox receiving `hello@growandclose.com`.
+3. Add Resend API key and verify sending domain privately.
+4. Add Razorpay subscription/payment links or product IDs.
+5. Supply exact calendar URL, if calls are offered.
+6. Supply exact LinkedIn/company URLs, if included.
+7. Approve proof: customer names, logos, testimonials, or quantified outcomes.
+8. Approve Privacy and Terms copy before collecting payment or newsletter data.
 
 Never commit secrets. Use host-managed environment variables.
 

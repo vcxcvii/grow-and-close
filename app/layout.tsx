@@ -18,12 +18,12 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Grow & Close — Your GTM backlog, shipped.",
+  title: "Grow & Close | Your GTM backlog, shipped.",
   description:
-    "Senior-led GTM execution for B2B SaaS. Strategy, campaigns, pages, content, and enablement—shipped one pipeline motion at a time.",
+    "Senior-led GTM execution for B2B SaaS. Strategy, campaigns, pages, content, and enablement, shipped one pipeline motion at a time.",
   metadataBase: new URL("https://growandclose.com"),
   openGraph: {
-    title: "Grow & Close — Your GTM backlog, shipped.",
+    title: "Grow & Close | Your GTM backlog, shipped.",
     description:
       "Senior-led GTM execution for B2B SaaS. One pipeline motion at a time.",
     type: "website",
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Grow & Close — Your GTM backlog, shipped.",
+        alt: "Grow & Close | Your GTM backlog, shipped.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Grow & Close — Your GTM backlog, shipped.",
+    title: "Grow & Close | Your GTM backlog, shipped.",
     description: "Senior-led GTM execution for B2B SaaS.",
     images: ["/og.png"],
   },

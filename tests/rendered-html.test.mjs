@@ -75,9 +75,10 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Grow &amp; Close — Your GTM backlog, shipped\.<\/title>/i);
+  assert.match(html, /<title>Grow &amp; Close \| Your GTM backlog, shipped\.<\/title>/i);
   assert.match(html, /Your GTM backlog/);
   assert.match(html, /data-brand-system="gc-logic-v1"/);
+  assert.match(html, /GROW<\/b><b><i>&amp;<\/i> CLOSE/i);
   assert.match(html, /FOR FOUNDERS/);
   assert.match(html, /FOR CMOs/);
   assert.match(html, /FOR HEADS OF MARKETING/);
@@ -85,8 +86,10 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /Review, learn, repeat/);
   assert.match(html, /Pipeline One/);
   assert.match(html, /Pipeline Team/);
-  assert.match(html, /Your first ship is free/);
+  assert.match(html, /Give us one GTM priority/);
+  assert.match(html, /Get one GTM priority shipped free/);
   assert.match(html, /hello@growandclose\.com/);
+  assert.doesNotMatch(html, /—/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
   assert.doesNotMatch(html, /#ff5c35|var\(--orange\)/i);
 });
@@ -99,6 +102,7 @@ test("brand colors preserve accessible text pairings", async () => {
   assert.ok(contrastRatio("#0b4fe8", "#f6f7fb") >= 4.5);
   assert.ok(contrastRatio("#565b66", "#f6f7fb") >= 4.5);
   assert.ok(contrastRatio("#8aabff", "#090a0c") >= 4.5);
+  assert.match(css, /\.closing \.button\s*\{[^}]*color: white;/s);
 });
 
 test("brand system ships deterministic reusable assets", async () => {
@@ -115,8 +119,39 @@ test("brand system ships deterministic reusable assets", async () => {
     assert.doesNotMatch(asset, /#ff7a00|#dfff4f/i);
   }
 
-  assert.match(favicon, />G</);
-  assert.match(favicon, />C</);
+  assert.match(favicon, /<rect[^>]+fill="#0b4fe8"/i);
+  assert.match(favicon, /id="g"[^>]+fill="#ffffff"/i);
+  assert.match(favicon, /id="slash"[^>]+fill="#090a0c"/i);
+  assert.match(favicon, /id="c"[^>]+fill="#ffffff"/i);
+});
+
+test("interactive motion and first-ship options remain accessible", async () => {
+  const response = await render();
+  const html = await response.text();
+
+  assert.match(html, /aria-label="Explore the motion stages"/);
+  assert.match(html, /aria-pressed="true"/);
+  assert.match(html, /Free%20GTM%20priority%3A%20Homepage%20story/);
+});
+
+test("scroll circuit stays connected, passive, and motion-safe", async () => {
+  const [component, logicNode, page, css] = await Promise.all([
+    readFile(new URL("../app/scroll-circuit.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/logic-node.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(component, /requestAnimationFrame/);
+  assert.match(component, /passive: true/);
+  assert.match(component, /footer-logic/);
+  assert.match(component, /1090 \/ 1200/);
+  assert.match(component, /data-circuit-target/);
+  assert.match(logicNode, /data-circuit-anchor/);
+  assert.match(page, /audienceGateKinds/);
+  assert.match(page, /capabilityGateKinds/);
+  assert.match(css, /prefers-reduced-motion: reduce/);
+  assert.match(css, /\.scroll-circuit-pulse\s*\{\s*display: none;/);
 });
 
 test("deployment keeps its direct Worker fallback available", async () => {

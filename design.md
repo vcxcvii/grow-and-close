@@ -58,11 +58,11 @@ Differentiator:
 
 Risk reversal:
 
-> An application-gated first ship, free.
+> One application-gated GTM priority, shipped free.
 
 Primary CTA:
 
-> Get your first ship free.
+> Get one GTM priority shipped free.
 
 Secondary CTA:
 
@@ -76,7 +76,7 @@ Secondary CTA:
 - Use “live-ready” unless Grow & Close has direct publishing access and actually launches the work.
 - “Unlimited backlog” means unlimited queued requests, not unlimited concurrent work.
 - Plans differ by active capacity, coordination, and operating cadence—not arbitrary capability gates.
-- “First ship free” remains application-gated and capacity-limited.
+- The free priority remains application-gated and capacity-limited.
 - Replace placeholders only with supplied, verified destinations.
 
 Banned vague phrases unless immediately made concrete:
@@ -102,7 +102,7 @@ Must contain:
 - How it works.
 - Plans.
 - FAQ.
-- First ship free.
+- Ship one free.
 
 Exit criterion: a visitor can navigate or act within five seconds.
 
@@ -183,7 +183,7 @@ Purpose: make the capacity distinction obvious.
 
 Never hide the price behind a call unless the commercial model changes.
 
-### First ship
+### Free GTM priority
 
 Purpose: reduce perceived risk and move qualified readers into a concrete starting point.
 
@@ -268,8 +268,8 @@ Parts:
 
 - Unboxed typographic G/C glyph with a fine divider.
 - G and C inherit the surface text color.
-- Editorial electric-blue slash.
-- Two-line GROW / CLOSE wordmark.
+- Electric-blue slash, rendered as a 3px bar matching the G/C cap height.
+- Two-line GROW / & CLOSE wordmark.
 
 Minimum size:
 
@@ -286,13 +286,14 @@ Rules:
 - Do not add shadows.
 - Do not separate G/C into unrelated icons.
 - On dark backgrounds, use white G/C letters and wordmark; retain electric slash.
+- Keep the ampersand visible in every full lockup; the compact favicon remains G/C only.
 - `aria-label` must read “Grow and Close home”; decorative glyph content stays hidden from assistive technology.
 
 Favicon:
 
-- Full-bleed ink square.
-- White G and C in IBM Plex Mono bold.
-- Electric-blue diagonal slash.
+- Full-bleed electric-blue square.
+- White geometric G and C, converted to deterministic SVG paths for reliable small-size rendering.
+- Ink diagonal slash, thick and equal to the letter cap height.
 - No border, gradient, shadow, or secondary color.
 
 ## 9. GTM logic visual language
@@ -336,6 +337,7 @@ Use checked-in SVGs for exact cross-channel consistency. Do not ask an image mod
 - Small icon: 120–180px wide, aligned to the content grid, never smaller than 72px.
 - Large section motif: 30–60% of section width at 8–18% opacity.
 - Footer background: anchor bottom-right, crop intentionally, 10–16% opacity, `aria-hidden`.
+- Footer system uses outlined nodes and sparse routes. Keep solid neutral blocks out of the text field.
 - Icons stay decorative with empty alt text unless the diagram conveys information not present in nearby copy.
 - On mobile, place icon below the copy or in its own row. Never squeeze text beside an icon below 360px.
 
@@ -512,6 +514,15 @@ Mandatory test widths: 320, 375, 390, 430, 768, 1024, and 1440px.
 - Navigation underline: 180ms.
 - Button lift: 150ms, hover-capable devices only.
 - FAQ indicator rotation: 180ms.
+- Hero motion stages are buttons. Selection updates status, explanation, and output ticket with an `aria-live` announcement.
+- A continuous logic circuit draws from the hero system through measured section anchors and connects to the shipped check in the footer.
+- On desktop, the route travels across the page and connects to real problem, motion, and capability nodes. Problem cards use an input, AND gate, and outcome sequence. Capability cards use a repeated square, AND, decision, and outcome grammar.
+- Each grid reserves a signal band between its meta label and headline. Circuit lines may only occupy this band or a section perimeter.
+- Copy sits on an opaque content layer above the circuit, so responsive reflow can never leave a line visible through text.
+- Reached cards receive only a quiet surface tint. The current card receives a short electric status edge; structural card borders stay ink.
+- On mobile, the route collapses to a narrow edge rail while the same in-card nodes activate in sequence.
+- The circuit uses a passive scroll listener, cached SVG path length, and one `requestAnimationFrame` loop. Reduced-motion mode renders the completed route without a traveling pulse.
+- First-ship starting points are direct, pre-addressed email links with hover, press, and keyboard focus states.
 - No scroll-jacking, marquee, autoplay media, or parallax.
 
 ## 16. External destinations and dependencies
@@ -620,5 +631,5 @@ Release:
 - Hide pricing behind “book a demo.”
 - Add social/calendar links with guessed URLs.
 - Add mobile carousels for core information.
-- Create a second primary CTA competing with First Ship.
+- Create a second primary CTA competing with the free-priority offer.
 - Publish a credential, API key, or payment secret.

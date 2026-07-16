@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+
+import { useScrollDrivenStage } from "../use-scroll-driven-stage";
 
 const circuitStages = [
   {
@@ -42,11 +43,16 @@ const circuitStages = [
 ] as const;
 
 export function FounderCircuit() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const { activeIndex, announceChanges, sectionRef, selectStage } =
+    useScrollDrivenStage(circuitStages.length);
   const activeStage = circuitStages[activeIndex];
 
   return (
-    <section className="founder-circuit" aria-labelledby="founder-circuit-title">
+    <section
+      className="founder-circuit"
+      aria-labelledby="founder-circuit-title"
+      ref={sectionRef}
+    >
       <div className="founder-circuit-intro">
         <p className="section-kicker section-kicker-light">INTERACTIVE SIGNAL CIRCUIT</p>
         <h2 id="founder-circuit-title">Touch any node. See what it feeds next.</h2>
@@ -72,7 +78,7 @@ export function FounderCircuit() {
               aria-pressed={activeIndex === index}
               className={activeIndex === index ? "is-active" : undefined}
               key={stage.label}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => selectStage(index)}
               type="button"
             >
               <span className="circuit-node-marker">{String(index + 1).padStart(2, "0")}</span>
@@ -81,16 +87,22 @@ export function FounderCircuit() {
           ))}
         </div>
 
-        <div className="circuit-output" id="circuit-stage-output" aria-live="polite">
-          <div className="circuit-output-meta">
-            <span>ACTIVE NODE / {String(activeIndex + 1).padStart(2, "0")}</span>
-            <b>{activeStage.label}</b>
-          </div>
-          <h3>{activeStage.title}</h3>
-          <p>{activeStage.copy}</p>
-          <div className="circuit-io">
-            <div><span>INPUT</span><b>{activeStage.inputs}</b></div>
-            <div><span>OUTPUT</span><b>{activeStage.outputs}</b></div>
+        <div
+          className="circuit-output"
+          id="circuit-stage-output"
+          aria-live={announceChanges ? "polite" : "off"}
+        >
+          <div className="circuit-output-body" key={activeStage.label}>
+            <div className="circuit-output-meta">
+              <span>ACTIVE NODE / {String(activeIndex + 1).padStart(2, "0")}</span>
+              <b>{activeStage.label}</b>
+            </div>
+            <h3>{activeStage.title}</h3>
+            <p>{activeStage.copy}</p>
+            <div className="circuit-io">
+              <div><span>INPUT</span><b>{activeStage.inputs}</b></div>
+              <div><span>OUTPUT</span><b>{activeStage.outputs}</b></div>
+            </div>
           </div>
         </div>
 

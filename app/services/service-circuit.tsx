@@ -1,20 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 
 import type { ServicePageContent } from "./service-page-types";
+import { useScrollDrivenStage } from "./use-scroll-driven-stage";
 
 interface ServiceCircuitProps {
   service: ServicePageContent;
 }
 
 export function ServiceCircuit({ service }: ServiceCircuitProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const { activeIndex, announceChanges, sectionRef, selectStage } =
+    useScrollDrivenStage(service.stages.length);
   const activeStage = service.stages[activeIndex];
 
   return (
-    <section className="service-circuit" aria-labelledby={`${service.slug}-circuit-title`}>
+    <section
+      className="service-circuit"
+      aria-labelledby={`${service.slug}-circuit-title`}
+      ref={sectionRef}
+    >
       <div className="service-circuit-intro">
         <p className="section-kicker section-kicker-light">INTERACTIVE {service.systemName}</p>
         <h2 id={`${service.slug}-circuit-title`}>{service.circuitHeading}</h2>
@@ -44,7 +49,7 @@ export function ServiceCircuit({ service }: ServiceCircuitProps) {
               aria-pressed={activeIndex === index}
               className={activeIndex === index ? "is-active" : undefined}
               key={stage.label}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => selectStage(index)}
               type="button"
             >
               <span className="service-circuit-marker">
@@ -58,21 +63,23 @@ export function ServiceCircuit({ service }: ServiceCircuitProps) {
         <div
           className="service-circuit-output"
           id={`${service.slug}-circuit-output`}
-          aria-live="polite"
+          aria-live={announceChanges ? "polite" : "off"}
         >
-          <div className="service-circuit-output-meta">
-            <span>ACTIVE NODE / {String(activeIndex + 1).padStart(2, "0")}</span>
-            <b>{activeStage.label}</b>
-          </div>
-          <h3>{activeStage.title}</h3>
-          <p>{activeStage.copy}</p>
-          <div className="service-circuit-io">
-            <div><span>INPUT</span><b>{activeStage.input}</b></div>
-            <div><span>OUTPUT</span><b>{activeStage.output}</b></div>
-          </div>
-          <div className="service-circuit-check">
-            <span>HUMAN CHECKPOINT</span>
-            <b>{activeStage.checkpoint}</b>
+          <div className="service-circuit-output-body" key={activeStage.label}>
+            <div className="service-circuit-output-meta">
+              <span>ACTIVE NODE / {String(activeIndex + 1).padStart(2, "0")}</span>
+              <b>{activeStage.label}</b>
+            </div>
+            <h3>{activeStage.title}</h3>
+            <p>{activeStage.copy}</p>
+            <div className="service-circuit-io">
+              <div><span>INPUT</span><b>{activeStage.input}</b></div>
+              <div><span>OUTPUT</span><b>{activeStage.output}</b></div>
+            </div>
+            <div className="service-circuit-check">
+              <span>HUMAN CHECKPOINT</span>
+              <b>{activeStage.checkpoint}</b>
+            </div>
           </div>
         </div>
 

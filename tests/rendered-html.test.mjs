@@ -229,6 +229,49 @@ test("service heroes cap wide-screen typography against viewport height", async 
   assert.doesNotMatch(css, /\.hero\.system-service-hero[^}]*overflow:\s*hidden/s);
 });
 
+test("service circuits advance with scroll while preserving manual controls", async () => {
+  const [hook, serviceCircuit, founderCircuit, servicesCss, founderCss] =
+    await Promise.all([
+      readFile(
+        new URL("../app/services/use-scroll-driven-stage.ts", import.meta.url),
+        "utf8",
+      ),
+      readFile(new URL("../app/services/service-circuit.tsx", import.meta.url), "utf8"),
+      readFile(
+        new URL(
+          "../app/services/founder-led-content/founder-circuit.tsx",
+          import.meta.url,
+        ),
+        "utf8",
+      ),
+      readFile(new URL("../app/services/service-pages.css", import.meta.url), "utf8"),
+      readFile(
+        new URL(
+          "../app/services/founder-led-content/founder-led-content.css",
+          import.meta.url,
+        ),
+        "utf8",
+      ),
+    ]);
+
+  assert.match(hook, /requestAnimationFrame/);
+  assert.match(hook, /addEventListener\("scroll", requestUpdate, \{ passive: true \}\)/);
+  assert.match(hook, /cancelAnimationFrame/);
+  assert.match(hook, /Math\.floor\(progress \* stageCount\)/);
+  assert.match(serviceCircuit, /useScrollDrivenStage\(service\.stages\.length\)/);
+  assert.match(founderCircuit, /useScrollDrivenStage\(circuitStages\.length\)/);
+  assert.match(serviceCircuit, /onClick=\{\(\) => selectStage\(index\)\}/);
+  assert.match(founderCircuit, /onClick=\{\(\) => selectStage\(index\)\}/);
+  assert.match(servicesCss, /min-height:\s*230svh/);
+  assert.match(servicesCss, /position:\s*sticky/);
+  assert.match(servicesCss, /circuit-card-enter/);
+  assert.match(founderCss, /min-height:\s*230svh/);
+  assert.doesNotMatch(
+    servicesCss,
+    /data-variant="(?:argument|decision)"[^}]*translateY/s,
+  );
+});
+
 test("brand system ships deterministic reusable assets", async () => {
   const [andGlyph, orGlyph, shipGlyph, logicSystem, favicon] = await Promise.all([
     readFile(new URL("../public/brand/logic-and.svg", import.meta.url), "utf8"),

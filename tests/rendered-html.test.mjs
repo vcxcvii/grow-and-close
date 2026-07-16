@@ -86,6 +86,10 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /Review, learn, repeat/);
   assert.match(html, /Pipeline One/);
   assert.match(html, /Pipeline Team/);
+  assert.match(html, /Customer advocacy/);
+  assert.match(html, /services\/founder-led-content/);
+  assert.match(html, /Make buyers understand why you, now/);
+  assert.match(html, /Turn customer outcomes into proof that travels/);
   assert.match(html, /Give us one GTM priority/);
   assert.match(html, /Get one GTM priority shipped free/);
   assert.match(html, /hello@growandclose\.com/);
@@ -94,10 +98,63 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.doesNotMatch(html, /#ff5c35|var\(--orange\)/i);
 });
 
-test("brand colors preserve accessible text pairings", async () => {
-  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+test("server-renders the founder-led content service page", async () => {
+  const response = await render(
+    "http://localhost/services/founder-led-content",
+  );
+  assert.equal(response.status, 200);
 
-  assert.doesNotMatch(css, /#dfff4f|#ff7a00|var\(--acid\)|var\(--signal\)/i);
+  const html = await response.text();
+  assert.match(html, /Turn founder insight into an audience/);
+  assert.match(html, /Founder Signal System/);
+  assert.match(html, /Most founder content/);
+  assert.match(html, /governed source/);
+  assert.match(html, /Customers become the proof layer/i);
+  assert.match(html, /A typical first 90 days/i);
+  assert.match(html, /Founder Signal Map/);
+  assert.match(html, /INTERACTIVE SIGNAL CIRCUIT/);
+  assert.match(html, /Pull founder truth/);
+  assert.match(html, /See the full Grow &amp; Close operating system/);
+  assert.doesNotMatch(html, /fully autonomous/i);
+  assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
+});
+
+test("brand colors preserve accessible text pairings", async () => {
+  const [globals, header, founder, layout] = await Promise.all([
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+    readFile(
+      new URL("../app/components/site-header.css", import.meta.url),
+      "utf8",
+    ),
+    readFile(
+      new URL(
+        "../app/services/founder-led-content/founder-led-content.css",
+        import.meta.url,
+      ),
+      "utf8",
+    ),
+    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+  ]);
+  const css = `${globals}\n${header}\n${founder}`;
+
+  assert.match(globals, /--ink:\s*#090a0c/);
+  assert.match(globals, /--paper:\s*#f6f7fb/);
+  assert.match(globals, /--electric:\s*#0b4fe8/);
+  assert.match(layout, /IBM_Plex_Sans/);
+  assert.match(layout, /IBM_Plex_Mono/);
+  assert.match(globals, /@import "\.\/components\/site-header\.css"/);
+  assert.match(
+    globals,
+    /@import "\.\/services\/founder-led-content\/founder-led-content\.css"/,
+  );
+  assert.ok(
+    globals.split("\n").length < 2000,
+    "globals.css should stay a compact authority stylesheet, not absorb legacy service CSS",
+  );
+  assert.doesNotMatch(
+    `${css}\n${layout}`,
+    /#dfff4f|#ff7a00|var\(--acid\)|var\(--signal\)|--signal|Geist|Georgia|Times New Roman/i,
+  );
   assert.ok(contrastRatio("#ffffff", "#0b4fe8") >= 4.5);
   assert.ok(contrastRatio("#0b4fe8", "#f6f7fb") >= 4.5);
   assert.ok(contrastRatio("#565b66", "#f6f7fb") >= 4.5);

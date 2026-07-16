@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { serviceOfferings } from "./components/service-offerings";
+import { SiteHeader } from "./components/site-header";
 import LogicNode, { type LogicNodeKind } from "./logic-node";
 import MotionDemo from "./motion-demo";
 import ScrollCircuit from "./scroll-circuit";
@@ -24,17 +26,6 @@ const motionExamples = [
   },
 ];
 
-const capabilities = [
-  "Positioning & messaging",
-  "Landing pages",
-  "Outbound activation",
-  "Founder-led content",
-  "AEO & data stories",
-  "Sales enablement",
-  "Campaign strategy",
-  "GTM dashboards",
-];
-
 const audienceGateKinds: LogicNodeKind[] = ["square", "and", "circle"];
 const capabilityGateKinds: LogicNodeKind[] = [
   "square",
@@ -45,6 +36,7 @@ const capabilityGateKinds: LogicNodeKind[] = [
   "and",
   "diamond",
   "circle",
+  "square",
 ];
 
 const audienceProblems = [
@@ -118,21 +110,7 @@ export default function Home() {
   return (
     <main data-brand-system="gc-logic-v1">
       <ScrollCircuit />
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Grow and Close home">
-          <span className="brand-glyph" aria-hidden="true"><b>G</b><i /><b>C</b></span>
-          <span className="brand-name"><b>GROW</b><b><i>&amp;</i> CLOSE</b></span>
-        </a>
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#motions">What we ship</a>
-          <a href="#workflow">How it works</a>
-          <a href="#pricing">Plans</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <a className="header-cta" href="#first-ship">
-          Ship one free
-        </a>
-      </header>
+      <SiteHeader ctaHref="/#first-ship" ctaLabel="Ship one free" homeHref="/#top" />
 
       <section className="hero" id="top">
         <div className="hero-copy">
@@ -261,15 +239,21 @@ export default function Home() {
           <h2>Everything needed to move one priority forward.</h2>
         </div>
         <div className="capability-grid" id="capability-logic">
-          {capabilities.map((capability, index) => (
-            <div className="capability-item" data-circuit-target key={capability}>
-              <span className="capability-number">{String(index + 1).padStart(2, "0")}</span>
+          {serviceOfferings.map((capability, index) => (
+            <a
+              className="capability-item"
+              data-circuit-target
+              href={capability.href}
+              id={`capability-${capability.slug}`}
+              key={capability.slug}
+            >
+              <span className="capability-number">{capability.number}</span>
               <LogicNode
                 kind={capabilityGateKinds[index]}
-                order={index < 4 ? index + 1 : 12 - index}
+                order={index < 5 ? index + 1 : 13 - index}
               />
-              <p>{capability}</p>
-            </div>
+              <p>{capability.title}</p>
+            </a>
           ))}
         </div>
         <p className="capability-note">

@@ -1,0 +1,61 @@
+import Link from "next/link";
+
+import { serviceOfferings } from "./service-offerings";
+
+interface SiteHeaderProps {
+  activeService?: string;
+  ctaHref: string;
+  ctaLabel: string;
+  homeHref?: string;
+}
+
+export function SiteHeader({
+  activeService,
+  ctaHref,
+  ctaLabel,
+  homeHref = "/",
+}: SiteHeaderProps) {
+  return (
+    <header className="site-header site-header-services">
+      <Link className="brand" href={homeHref} aria-label="Grow and Close home">
+        <span className="brand-glyph" aria-hidden="true"><b>G</b><i /><b>C</b></span>
+        <span className="brand-name"><b>GROW</b><b><i>&amp;</i> CLOSE</b></span>
+      </Link>
+
+      <nav className="desktop-nav primary-nav" aria-label="Primary navigation">
+        <details className="services-menu">
+          <summary>Services <span aria-hidden="true">+</span></summary>
+          <div className="services-mega">
+            <div className="services-mega-heading">
+              <p>THE CAPABILITY LAYER</p>
+              <strong>Pick the outcome. We connect the motion.</strong>
+            </div>
+            <div className="services-mega-grid">
+              {serviceOfferings.map((service) => (
+                <Link
+                  className={activeService === service.slug ? "is-current" : undefined}
+                  href={service.href}
+                  key={service.slug}
+                >
+                  <span>{service.number}</span>
+                  <div>
+                    <b>{service.title}</b>
+                    <small>{service.description}</small>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <Link className="services-home-link" href="/#capabilities">
+              See how every capability fits one GTM motion <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
+        </details>
+        <Link href="/#workflow">How it works</Link>
+        <Link href="/#pricing">Plans</Link>
+        <Link href="/#faq">FAQ</Link>
+      </nav>
+
+      <Link className="header-cta" href={ctaHref}>{ctaLabel}</Link>
+    </header>
+  );
+}

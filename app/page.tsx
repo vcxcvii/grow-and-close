@@ -241,11 +241,14 @@ export default function Home() {
         <div className="capability-grid" id="capability-logic">
           {serviceOfferings.map((capability, index) => (
             <a
+              aria-label={`${capability.title} service page (opens in a new tab)`}
               className="capability-item"
               data-circuit-target
               href={capability.href}
               id={`capability-${capability.slug}`}
               key={capability.slug}
+              rel="noopener noreferrer"
+              target="_blank"
             >
               <span className="capability-number">{capability.number}</span>
               <LogicNode
@@ -429,7 +432,7 @@ export default function Home() {
             <a href="#problem">The problem</a>
             <a href="#motions">What we ship</a>
             <a href="#workflow">How we work</a>
-            <a href="#capabilities">Capabilities</a>
+            <a href="/services">All GTM services</a>
           </div>
           <div>
             <p>ENGAGE</p>

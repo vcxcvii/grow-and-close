@@ -125,7 +125,34 @@ test("server-renders the founder-led content service page", async () => {
   assert.match(html, /See the full Grow &amp; Close operating system/);
   assert.match(html, /data-service-circuit-start/);
   assert.match(html, /data-service-circuit-target/);
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
+  assert.match(html, /opens in a new tab/);
   assert.doesNotMatch(html, /fully autonomous/i);
+  assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
+});
+
+test("server-renders the services SEO pillar with nine new-tab spokes", async () => {
+  const response = await render("http://localhost/services");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>B2B SaaS GTM Services \| Grow &amp; Close<\/title>/i);
+  assert.match(html, /rel="canonical" href="https:\/\/growandclose\.com\/services"/i);
+  assert.match(html, /Choose the bottleneck/);
+  assert.match(html, /GTM problems do not respect departmental boundaries/);
+  assert.match(html, /Not nine retainers/);
+  assert.match(html, /Positioning &amp; messaging/);
+  assert.match(html, /Founder-led content/);
+  assert.match(html, /Customer advocacy/);
+  assert.match(html, /data-service-circuit-start/);
+  assert.match(html, /data-service-circuit-target/);
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
+  assert.match(html, /opens in a new tab/);
+
+  const serviceLinks = html.match(/href="\/services\/[^"]+"/g) ?? [];
+  const newTabLinks = html.match(/target="_blank"/g) ?? [];
+  assert.ok(serviceLinks.length >= 9);
+  assert.ok(newTabLinks.length >= 9);
   assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
 });
 
@@ -155,6 +182,7 @@ test("server-renders every service system with a unique diagnostic", async () =>
     assert.match(html, /GROW &amp; CLOSE OWNS/, slug);
     assert.match(html, /data-service-circuit-start/, slug);
     assert.match(html, /data-service-circuit-target/, slug);
+    assert.match(html, /href="\/services"/, slug);
     assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i, slug);
   }
 });
@@ -304,6 +332,7 @@ test("every service page owns a unique page-long scroll circuit", async () => {
     "argument",
     "conversation",
     "founder",
+    "pillar",
     "citation",
     "deal",
     "campaign",
@@ -323,6 +352,22 @@ test("every service page owns a unique page-long scroll circuit", async () => {
   assert.match(founderPage, /<ServiceScrollCircuit variant="founder"/);
   assert.match(serviceCss, /\.service-page-scroll-circuit/);
   assert.match(serviceCss, /data-page-circuit-current="true"/);
+});
+
+test("service discovery links default to a new tab", async () => {
+  const [header, homepage, services] = await Promise.all([
+    readFile(new URL("../app/components/site-header.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/services/page.tsx", import.meta.url), "utf8"),
+  ]);
+
+  for (const source of [header, homepage, services]) {
+    assert.match(source, /target="_blank"/);
+    assert.match(source, /rel="noopener noreferrer"/);
+  }
+
+  assert.match(header, /href="\/services"/);
+  assert.match(homepage, /href="\/services"/);
 });
 
 test("brand system ships deterministic reusable assets", async () => {

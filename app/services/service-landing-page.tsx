@@ -21,7 +21,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
 
       <section className="hero system-service-hero" id="top">
         <div className="hero-copy">
-          <Link className="service-back" href="/#capabilities">
+          <Link className="service-back" href="/services">
             Service {service.number} / {service.name}
           </Link>
           <h1>{service.heroLead}<span>{service.heroAccent}</span></h1>
@@ -219,7 +219,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
         </div>
         <div className="footer-links">
           <div><p>THIS SYSTEM</p><a href="#problem">The problem</a><a href="#system-loop">The loop</a><a href="#package">First 30 days</a><a href="#diagnostic">Diagnostic</a></div>
-          <div><p>GROW &amp; CLOSE</p><Link href="/">Home</Link><Link href="/#capabilities">All capabilities</Link><Link href="/#pricing">Monthly plans</Link><Link href="/#faq">Studio FAQ</Link></div>
+          <div><p>GROW &amp; CLOSE</p><Link href="/">Home</Link><Link href="/services">All GTM services</Link><Link href="/#pricing">Monthly plans</Link><Link href="/#faq">Studio FAQ</Link></div>
           <div><p>CONTACT</p><a href={service.diagnosticHref}>{service.diagnosticName}</a><a href="mailto:hello@growandclose.com?subject=Grow%20%26%20Close%20fit">Start a conversation</a><a href="mailto:hello@growandclose.com?subject=Grow%20%26%20Close%20question">General questions</a></div>
         </div>
         <div className="footer-bottom"><p>© {new Date().getFullYear()} Grow &amp; Close</p><p>BUILT FOR USEFUL MOMENTUM</p></div>

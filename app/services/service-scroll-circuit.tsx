@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import type { CircuitVariant } from "./service-page-types";
 
-type PageCircuitVariant = CircuitVariant | "founder";
+type PageCircuitVariant = CircuitVariant | "founder" | "pillar";
 type CircuitKind = "square" | "diamond" | "circle";
 type PathMode = "horizontal" | "stair" | "vertical";
 
@@ -66,6 +66,12 @@ const patterns: Record<PageCircuitVariant, CircuitPattern> = {
     kinds: ["diamond", "square", "circle", "square"],
     mode: "horizontal",
     rails: [0.5, 0.92, 0.1, 0.82, 0.18],
+  },
+  pillar: {
+    bends: [0.2, 0.5, 0.8],
+    kinds: ["square", "diamond", "circle", "diamond"],
+    mode: "stair",
+    rails: [0.5, 0.08, 0.92, 0.3, 0.7],
   },
   citation: {
     bends: [0.18, 0.5, 0.82],

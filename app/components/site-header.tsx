@@ -33,9 +33,12 @@ export function SiteHeader({
             <div className="services-mega-grid">
               {serviceOfferings.map((service) => (
                 <Link
+                  aria-label={`${service.title} service page (opens in a new tab)`}
                   className={activeService === service.slug ? "is-current" : undefined}
                   href={service.href}
                   key={service.slug}
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   <span>{service.number}</span>
                   <div>
@@ -45,8 +48,8 @@ export function SiteHeader({
                 </Link>
               ))}
             </div>
-            <Link className="services-home-link" href="/#capabilities">
-              See how every capability fits one GTM motion <span aria-hidden="true">↗</span>
+            <Link className="services-home-link" href="/services">
+              Explore all B2B SaaS GTM services <span aria-hidden="true">→</span>
             </Link>
           </div>
         </details>

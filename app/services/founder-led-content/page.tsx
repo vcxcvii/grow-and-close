@@ -190,7 +190,7 @@ export default function FounderLedContentPage() {
 
       <section className="hero founder-hero" id="top">
         <div className="hero-copy">
-          <Link className="service-back" href="/#capabilities">Service 04 / Founder-led content</Link>
+          <Link className="service-back" href="/services">Service 04 / Founder-led content</Link>
           <h1>Turn founder insight into an audience<span>you own.</span></h1>
           <p className="hero-lede">
             We capture your voice, build a source-grounded content system around it,
@@ -404,7 +404,7 @@ export default function FounderLedContentPage() {
         </div>
         <div className="footer-links">
           <div><p>THIS SYSTEM</p><a href="#problem">The problem</a><a href="#loop">The loop</a><a href="#package">First 90 days</a><a href="#diagnostic">Signal map</a></div>
-          <div><p>GROW &amp; CLOSE</p><Link href="/">Home</Link><Link href="/#capabilities">All capabilities</Link><Link href="/#pricing">Monthly plans</Link><Link href="/#faq">Studio FAQ</Link></div>
+          <div><p>GROW &amp; CLOSE</p><Link href="/">Home</Link><Link href="/services">All GTM services</Link><Link href="/#pricing">Monthly plans</Link><Link href="/#faq">Studio FAQ</Link></div>
           <div><p>CONTACT</p><a href={diagnosticHref}>Founder Signal Map</a><a href="mailto:hello@growandclose.com?subject=Grow%20%26%20Close%20fit">Start a conversation</a><a href="mailto:hello@growandclose.com?subject=Grow%20%26%20Close%20question">General questions</a></div>
         </div>
         <div className="footer-bottom"><p>© {new Date().getFullYear()} Grow &amp; Close</p><p>BUILT FOR USEFUL MOMENTUM</p></div>

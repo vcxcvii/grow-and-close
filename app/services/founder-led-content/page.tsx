@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { SiteHeader } from "../../components/site-header";
+import { ServiceScrollCircuit } from "../service-scroll-circuit";
 import { FounderCircuit } from "./founder-circuit";
 
 export const metadata: Metadata = {
@@ -179,7 +180,8 @@ const diagnosticHref =
 
 export default function FounderLedContentPage() {
   return (
-    <main className="founder-page">
+    <main className="founder-page" data-service="founder-led-content">
+      <ServiceScrollCircuit variant="founder" />
       <SiteHeader
         activeService="founder-led-content"
         ctaHref={diagnosticHref}
@@ -202,7 +204,11 @@ export default function FounderLedContentPage() {
           <p className="hero-note">SOURCE-GROUNDED · HUMAN-APPROVED · BUILT TO COMPOUND</p>
         </div>
 
-        <div className="hero-system" aria-label="Founder Signal System operating loop">
+        <div
+          className="hero-system"
+          data-service-circuit-start
+          aria-label="Founder Signal System operating loop"
+        >
           <div className="system-topline">
             <span>FOUNDER SIGNAL SYSTEM / 01</span>
             <span className="live-dot">ACTIVE LOOP</span>
@@ -240,7 +246,7 @@ export default function FounderLedContentPage() {
         </div>
         <div className="founder-problem-grid">
           {problems.map((problem) => (
-            <article className="problem-card" key={problem.number}>
+            <article className="problem-card" data-service-circuit-target key={problem.number}>
               <span>{problem.number}</span><h3>{problem.title}</h3><p>{problem.copy}</p>
             </article>
           ))}
@@ -260,7 +266,7 @@ export default function FounderLedContentPage() {
         </div>
         <div className="workflow-list">
           {loopSteps.map((step) => (
-            <article className="workflow-step" key={step.number}>
+            <article className="workflow-step" data-service-circuit-target key={step.number}>
               <span className="workflow-number">{step.number}</span>
               <div><h3>{step.title}</h3><p>{step.copy}</p><small>{step.verb} · {step.output}</small></div>
             </article>
@@ -276,7 +282,7 @@ export default function FounderLedContentPage() {
         <p className="founder-section-lede">Voice is not adjectives. We model the founder&apos;s recurring moves: how they open, reason, concede, reframe, use proof, name limits, and land the argument.</p>
         <div className="founder-layer-grid">
           {voiceLayers.map((layer, index) => (
-            <article key={layer.label}>
+            <article data-service-circuit-target key={layer.label}>
               <div><span>{String(index + 1).padStart(2, "0")}</span><b>{layer.label}</b></div>
               <h3>{layer.title}</h3>
               <ul>{layer.items.map((item) => <li key={item}>{item}</li>)}</ul>
@@ -294,7 +300,7 @@ export default function FounderLedContentPage() {
         </div>
         <div className="motion-list">
           {ugcSteps.map(([number, title, copy]) => (
-            <article className="motion-card" key={number}>
+            <article className="motion-card" data-service-circuit-target key={number}>
               <span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div>
             </article>
           ))}
@@ -309,7 +315,11 @@ export default function FounderLedContentPage() {
         </div>
         <div className="founder-rollout-grid">
           {rollout.map((phase, index) => (
-            <article className="founder-phase-card" key={phase.phase}>
+            <article
+              className="founder-phase-card"
+              data-service-circuit-target
+              key={phase.phase}
+            >
               <div><span>{String(index + 1).padStart(2, "0")}</span><b>{phase.phase}</b></div>
               <h3>{phase.title}</h3><p>{phase.copy}</p><small>{phase.deliverables}</small>
             </article>
@@ -325,7 +335,7 @@ export default function FounderLedContentPage() {
         </div>
         <div className="founder-cadence-list" role="table" aria-label="Founder Signal System cadence">
           {cadence.map(([frequency, action, detail]) => (
-            <div role="row" key={`${frequency}-${action}`}>
+            <div data-service-circuit-target role="row" key={`${frequency}-${action}`}>
               <span role="cell">{frequency}</span><b role="cell">{action}</b><p role="cell">{detail}</p>
             </div>
           ))}
@@ -333,13 +343,13 @@ export default function FounderLedContentPage() {
       </section>
 
       <section className="service-boundaries founder-boundaries">
-        <div className="boundary-card boundary-card-dark">
+        <div className="boundary-card boundary-card-dark" data-service-circuit-target>
           <p>GROW &amp; CLOSE OWNS</p>
           <ul>
             <li>Voice extraction and source governance</li><li>Editorial thesis, formats, and production</li><li>Newsletter system and distribution design</li><li>ICP audience curation and staged engagement</li><li>UGC, proof, paid amplification, and learning loops</li>
           </ul>
         </div>
-        <div className="boundary-card">
+        <div className="boundary-card" data-service-circuit-target>
           <p>THE FOUNDER OWNS</p>
           <ul>
             <li>One focused source session each week</li><li>Beliefs, claims, caveats, and final approval</li><li>Access to product, customer, and commercial context</li><li>Authentic engagement where a human relationship matters</li><li>Media spend and platform permissions</li>
@@ -347,7 +357,11 @@ export default function FounderLedContentPage() {
         </div>
       </section>
 
-      <section className="first-ship founder-diagnostic" id="diagnostic">
+      <section
+        className="first-ship founder-diagnostic"
+        data-service-circuit-target
+        id="diagnostic"
+      >
         <div className="first-ship-copy">
           <p className="section-kicker">START WITH THE MAP</p>
           <h2>Find where your founder signal stops compounding.</h2>
@@ -369,7 +383,7 @@ export default function FounderLedContentPage() {
         <div className="faq-heading"><p className="section-kicker">QUESTIONS, ANSWERED</p><h2>The useful boundaries.</h2></div>
         <div className="faq-list">
           {faqs.map((faq, index) => (
-            <details key={faq.question} open={index === 0}>
+            <details data-service-circuit-target key={faq.question} open={index === 0}>
               <summary><span>{String(index + 1).padStart(2, "0")}</span>{faq.question}<b aria-hidden="true">+</b></summary>
               <p>{faq.answer}</p>
             </details>
@@ -377,7 +391,7 @@ export default function FounderLedContentPage() {
         </div>
       </section>
 
-      <section className="closing">
+      <section className="closing" data-service-circuit-target>
         <p className="section-kicker section-kicker-light">YOUR THINKING SHOULD OUTLIVE THE FEED</p>
         <h2>Build an audience that remembers where the idea came from.</h2>
         <a className="button button-accent" href={diagnosticHref}>Get the Founder Signal Map</a>

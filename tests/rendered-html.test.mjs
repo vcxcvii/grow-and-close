@@ -123,6 +123,8 @@ test("server-renders the founder-led content service page", async () => {
   assert.match(html, /INTERACTIVE SIGNAL CIRCUIT/);
   assert.match(html, /Pull founder truth/);
   assert.match(html, /See the full Grow &amp; Close operating system/);
+  assert.match(html, /data-service-circuit-start/);
+  assert.match(html, /data-service-circuit-target/);
   assert.doesNotMatch(html, /fully autonomous/i);
   assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
 });
@@ -151,6 +153,8 @@ test("server-renders every service system with a unique diagnostic", async () =>
     assert.match(html, /WHAT COMPOUNDS/, slug);
     assert.match(html, /A TYPICAL FIRST 30 DAYS/, slug);
     assert.match(html, /GROW &amp; CLOSE OWNS/, slug);
+    assert.match(html, /data-service-circuit-start/, slug);
+    assert.match(html, /data-service-circuit-target/, slug);
     assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i, slug);
   }
 });
@@ -270,6 +274,55 @@ test("service circuits advance with scroll while preserving manual controls", as
     servicesCss,
     /data-variant="(?:argument|decision)"[^}]*translateY/s,
   );
+});
+
+test("every service page owns a unique page-long scroll circuit", async () => {
+  const [component, servicePage, founderPage, serviceCss] = await Promise.all([
+    readFile(
+      new URL("../app/services/service-scroll-circuit.tsx", import.meta.url),
+      "utf8",
+    ),
+    readFile(
+      new URL("../app/services/service-landing-page.tsx", import.meta.url),
+      "utf8",
+    ),
+    readFile(
+      new URL(
+        "../app/services/founder-led-content/page.tsx",
+        import.meta.url,
+      ),
+      "utf8",
+    ),
+    readFile(
+      new URL("../app/services/service-pages.css", import.meta.url),
+      "utf8",
+    ),
+  ]);
+
+  for (const variant of [
+    "market",
+    "argument",
+    "conversation",
+    "founder",
+    "citation",
+    "deal",
+    "campaign",
+    "decision",
+    "evidence",
+  ]) {
+    assert.match(component, new RegExp(`\\b${variant}: \\{`), variant);
+  }
+
+  assert.match(component, /ResizeObserver/);
+  assert.match(component, /requestAnimationFrame/);
+  assert.match(component, /addEventListener\("scroll", update, \{ passive: true \}\)/);
+  assert.match(component, /prefers-reduced-motion: reduce/);
+  assert.match(component, /pageCircuitActive/);
+  assert.match(component, /pageCircuitCurrent/);
+  assert.match(servicePage, /<ServiceScrollCircuit variant=\{service\.circuitVariant\}/);
+  assert.match(founderPage, /<ServiceScrollCircuit variant="founder"/);
+  assert.match(serviceCss, /\.service-page-scroll-circuit/);
+  assert.match(serviceCss, /data-page-circuit-current="true"/);
 });
 
 test("brand system ships deterministic reusable assets", async () => {

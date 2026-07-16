@@ -18,6 +18,7 @@ export function ServiceCircuit({ service }: ServiceCircuitProps) {
     <section
       className="service-circuit"
       aria-labelledby={`${service.slug}-circuit-title`}
+      data-service-circuit-target
       ref={sectionRef}
     >
       <div className="service-circuit-intro">

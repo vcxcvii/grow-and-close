@@ -51,6 +51,7 @@ export function FounderCircuit() {
     <section
       className="founder-circuit"
       aria-labelledby="founder-circuit-title"
+      data-service-circuit-target
       ref={sectionRef}
     >
       <div className="founder-circuit-intro">

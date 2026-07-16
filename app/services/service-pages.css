@@ -2,6 +2,50 @@
   background: var(--paper);
 }
 
+.service-page-scroll-circuit {
+  z-index: 10;
+}
+
+.service-page-scroll-circuit .scroll-circuit-base {
+  opacity: 0.2;
+}
+
+.service-page-scroll-circuit .scroll-circuit-progress {
+  stroke-width: 1.75px;
+}
+
+[data-service-circuit-target] {
+  transition: box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.service-circuit[data-page-circuit-current="true"] .service-circuit-board,
+.founder-circuit[data-page-circuit-current="true"] .founder-circuit-board {
+  border-color: var(--electric-light);
+  box-shadow: 0 0 0 1px rgba(138, 171, 255, 0.26);
+}
+
+.system-problem-grid [data-page-circuit-current="true"],
+.system-service-workflow [data-page-circuit-current="true"],
+.system-asset-grid [data-page-circuit-current="true"],
+.system-phase-grid [data-page-circuit-current="true"],
+.system-service-boundaries [data-page-circuit-current="true"],
+.founder-problem-grid [data-page-circuit-current="true"],
+.founder-page .workflow-list [data-page-circuit-current="true"],
+.founder-layer-grid [data-page-circuit-current="true"],
+.founder-ugc [data-page-circuit-current="true"],
+.founder-rollout-grid [data-page-circuit-current="true"],
+.founder-cadence-list [data-page-circuit-current="true"],
+.founder-boundaries [data-page-circuit-current="true"],
+.faq-list [data-page-circuit-current="true"] {
+  box-shadow: inset 4px 0 0 var(--electric);
+}
+
+.system-service-diagnostic[data-page-circuit-current="true"],
+.founder-diagnostic[data-page-circuit-current="true"],
+.closing[data-page-circuit-current="true"] {
+  box-shadow: inset 0 4px 0 var(--electric);
+}
+
 @media (min-width: 1101px) {
   .hero.system-service-hero,
   .hero.founder-hero {
@@ -838,6 +882,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  [data-service-circuit-target] {
+    transition: none;
+  }
+
   .service-circuit-output-body,
   .circuit-output-body,
   .service-circuit-line i,

@@ -88,6 +88,14 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /Pipeline Team/);
   assert.match(html, /Customer advocacy/);
   assert.match(html, /services\/founder-led-content/);
+  assert.match(html, /services\/positioning-and-messaging/);
+  assert.match(html, /services\/landing-pages/);
+  assert.match(html, /services\/outbound-activation/);
+  assert.match(html, /services\/aeo-and-data-stories/);
+  assert.match(html, /services\/sales-enablement/);
+  assert.match(html, /services\/campaign-strategy/);
+  assert.match(html, /services\/gtm-dashboards/);
+  assert.match(html, /services\/customer-advocacy/);
   assert.match(html, /Make buyers understand why you, now/);
   assert.match(html, /Turn customer outcomes into proof that travels/);
   assert.match(html, /Give us one GTM priority/);
@@ -119,8 +127,36 @@ test("server-renders the founder-led content service page", async () => {
   assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
 });
 
+test("server-renders every service system with a unique diagnostic", async () => {
+  const services = [
+    ["positioning-and-messaging", "Market Signal System", "Make your market understand", "Message Gap Map"],
+    ["landing-pages", "Page Learning System", "Turn one sharp argument", "Page Argument Map"],
+    ["outbound-activation", "Signal-to-Conversation System", "Turn account signals into", "Outbound Signal Map"],
+    ["aeo-and-data-stories", "Citation Engine", "Own the answer buyers", "Answer-Ownership Map"],
+    ["sales-enablement", "Deal Momentum System", "Help every live deal move", "Deal Friction Map"],
+    ["campaign-strategy", "Campaign Operating System", "Turn one commercial bet into", "Campaign Architecture Map"],
+    ["gtm-dashboards", "Decision Dashboard System", "Turn scattered metrics into", "Measurement Gap Map"],
+    ["customer-advocacy", "Customer Evidence System", "Turn customer outcomes into", "Customer Evidence Map"],
+  ];
+
+  for (const [slug, system, headline, diagnostic] of services) {
+    const response = await render(`http://localhost/services/${slug}`);
+    assert.equal(response.status, 200, slug);
+
+    const html = await response.text();
+    assert.match(html, new RegExp(system, "i"), slug);
+    assert.match(html, new RegExp(headline, "i"), slug);
+    assert.match(html, new RegExp(diagnostic, "i"), slug);
+    assert.match(html, /HUMAN CHECKPOINT/, slug);
+    assert.match(html, /WHAT COMPOUNDS/, slug);
+    assert.match(html, /A TYPICAL FIRST 30 DAYS/, slug);
+    assert.match(html, /GROW &amp; CLOSE OWNS/, slug);
+    assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i, slug);
+  }
+});
+
 test("brand colors preserve accessible text pairings", async () => {
-  const [globals, header, founder, layout] = await Promise.all([
+  const [globals, header, founder, services, layout] = await Promise.all([
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(
       new URL("../app/components/site-header.css", import.meta.url),
@@ -133,9 +169,10 @@ test("brand colors preserve accessible text pairings", async () => {
       ),
       "utf8",
     ),
+    readFile(new URL("../app/services/service-pages.css", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
   ]);
-  const css = `${globals}\n${header}\n${founder}`;
+  const css = `${globals}\n${header}\n${founder}\n${services}`;
 
   assert.match(globals, /--ink:\s*#090a0c/);
   assert.match(globals, /--paper:\s*#f6f7fb/);
@@ -147,6 +184,7 @@ test("brand colors preserve accessible text pairings", async () => {
     globals,
     /@import "\.\/services\/founder-led-content\/founder-led-content\.css"/,
   );
+  assert.match(globals, /@import "\.\/services\/service-pages\.css"/);
   assert.ok(
     globals.split("\n").length < 2000,
     "globals.css should stay a compact authority stylesheet, not absorb legacy service CSS",
@@ -160,6 +198,20 @@ test("brand colors preserve accessible text pairings", async () => {
   assert.ok(contrastRatio("#565b66", "#f6f7fb") >= 4.5);
   assert.ok(contrastRatio("#8aabff", "#090a0c") >= 4.5);
   assert.match(css, /\.closing \.button\s*\{[^}]*color: white;/s);
+});
+
+test("service copy stays specific, governed, and free of stale brand rules", async () => {
+  const content = await readFile(
+    new URL("../app/services/service-page-content.ts", import.meta.url),
+    "utf8",
+  );
+
+  assert.doesNotMatch(content, /—/);
+  assert.doesNotMatch(content, /#ff7a00|Geist|Georgia|Times New Roman|--signal/i);
+  assert.doesNotMatch(content, /10x output|growth hacking machine|unlimited requests/i);
+  assert.match(content, /human approval/i);
+  assert.match(content, /consent/i);
+  assert.match(content, /stop condition/i);
 });
 
 test("brand system ships deterministic reusable assets", async () => {

@@ -209,3 +209,14 @@
     border-top: 1px solid var(--ink);
   }
 }
+
+@media (max-width: 520px) {
+  .site-header-services {
+    grid-template-columns: 1fr auto;
+    min-height: 66px;
+  }
+
+  .site-header-services .header-cta {
+    display: none;
+  }
+}

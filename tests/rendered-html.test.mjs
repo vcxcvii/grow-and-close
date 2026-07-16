@@ -214,6 +214,21 @@ test("service copy stays specific, governed, and free of stale brand rules", asy
   assert.match(content, /stop condition/i);
 });
 
+test("service heroes cap wide-screen typography against viewport height", async () => {
+  const css = await readFile(
+    new URL("../app/services/service-pages.css", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(css, /\.hero\.system-service-hero,\s*\.hero\.founder-hero/);
+  assert.match(css, /min-height:\s*calc\(100svh - 78px\)/);
+  assert.match(
+    css,
+    /font-size:\s*clamp\(52px, min\(5\.4vw, 9vh\), 100px\)/,
+  );
+  assert.doesNotMatch(css, /\.hero\.system-service-hero[^}]*overflow:\s*hidden/s);
+});
+
 test("brand system ships deterministic reusable assets", async () => {
   const [andGlyph, orGlyph, shipGlyph, logicSystem, favicon] = await Promise.all([
     readFile(new URL("../public/brand/logic-and.svg", import.meta.url), "utf8"),

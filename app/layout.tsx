@@ -5,7 +5,8 @@ import "./globals.css";
 
 import { JsonLd } from "./components/json-ld";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+// Measurement IDs are public; the env var only exists to disable GA in forks.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-1873J5508N";
 
 const organizationJsonLd = {
   "@context": "https://schema.org",

@@ -1,8 +1,11 @@
 @import "tailwindcss";
 @import "./components/site-header.css";
+@import "./components/site-footer.css";
 @import "./services/founder-led-content/founder-led-content.css";
 @import "./services/service-pages.css";
 @import "./skills/skills.css";
+@import "./about/about.css";
+@import "./disclaimer/disclaimer.css";
 
 :root {
   --ink: #090a0c;

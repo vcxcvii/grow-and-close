@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import type { CircuitVariant } from "./service-page-types";
 
-type PageCircuitVariant = CircuitVariant | "founder" | "pillar";
+type PageCircuitVariant = CircuitVariant | "founder" | "pillar" | "about";
 type CircuitKind = "square" | "diamond" | "circle";
 type PathMode = "horizontal" | "stair" | "vertical";
 
@@ -72,6 +72,12 @@ const patterns: Record<PageCircuitVariant, CircuitPattern> = {
     kinds: ["square", "diamond", "circle", "diamond"],
     mode: "stair",
     rails: [0.5, 0.08, 0.92, 0.3, 0.7],
+  },
+  about: {
+    bends: [0.16, 0.48, 0.84, 0.32],
+    kinds: ["diamond", "circle", "square", "diamond", "circle"],
+    mode: "stair",
+    rails: [0.84, 0.16, 0.5, 0.92, 0.08, 0.68, 0.32],
   },
   citation: {
     bends: [0.18, 0.5, 0.82],
@@ -161,6 +167,7 @@ export function ServiceScrollCircuit({ variant }: ServiceScrollCircuitProps) {
 
     const measure = () => {
       const mainRect = main.getBoundingClientRect();
+      const contentHeight = main.offsetHeight;
       const width = mainRect.width;
       const mobile = width <= 780;
       const outerRail = width - (mobile ? 5 : 30);
@@ -211,7 +218,7 @@ export function ServiceScrollCircuit({ variant }: ServiceScrollCircuitProps) {
             ? innerRail
             : outerRail
           : clamp(width * lastRail, innerRail, outerRail),
-        y: main.scrollHeight - 56,
+        y: contentHeight - 56,
       };
       points.push(completePoint);
       pointTargets.push(null);
@@ -248,7 +255,7 @@ export function ServiceScrollCircuit({ variant }: ServiceScrollCircuitProps) {
 
       const nextGeometry: CircuitGeometry = {
         complete: measuredPoints[measuredPoints.length - 1],
-        height: main.scrollHeight,
+        height: contentHeight,
         nodes: measuredPoints.slice(1, -1),
         path: buildPath(measuredPoints, pattern),
         stops,

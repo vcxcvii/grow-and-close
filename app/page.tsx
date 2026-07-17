@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { serviceOfferings } from "./components/service-offerings";
+import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import LogicNode, { type LogicNodeKind } from "./logic-node";
 import MotionDemo from "./motion-demo";
@@ -416,51 +417,7 @@ export default function Home() {
         <a className="button button-accent" href="#first-ship">Get one GTM priority shipped free</a>
       </section>
 
-      <footer className="site-footer" id="contact">
-        <Image
-          className="footer-logic"
-          src="/brand/logic-system.svg"
-          alt=""
-          aria-hidden="true"
-          width="1200"
-          height="630"
-          unoptimized
-        />
-        <div className="footer-intro">
-          <a className="brand footer-brand" href="#top" aria-label="Grow and Close home">
-            <span className="brand-glyph" aria-hidden="true"><b>G</b><i /><b>C</b></span>
-            <span className="brand-name"><b>GROW</b><b><i>&amp;</i> CLOSE</b></span>
-          </a>
-          <p>Senior-led GTM execution for founders and lean B2B SaaS marketing teams.</p>
-          <a className="footer-email" href="mailto:hello@growandclose.com">hello@growandclose.com</a>
-        </div>
-        <div className="footer-links">
-          <div>
-            <p>EXPLORE</p>
-            <a href="#problem">The problem</a>
-            <a href="#motions">What we ship</a>
-            <a href="#workflow">How we work</a>
-            <a href="/services">All GTM services</a>
-          </div>
-          <div>
-            <p>ENGAGE</p>
-            <a href="#pricing">Pipeline One</a>
-            <a href="#pricing">Pipeline Team</a>
-            <a href="#first-ship">Ship one free</a>
-            <a href="#faq">FAQ</a>
-          </div>
-          <div>
-            <p>CONTACT</p>
-            <a href="mailto:hello@growandclose.com?subject=Grow%20%26%20Close%20fit">Start a conversation</a>
-            <a href="mailto:hello@growandclose.com?subject=Grow%20%26%20Close%20partnership">Partnerships</a>
-            <a href="mailto:hello@growandclose.com?subject=Grow%20%26%20Close%20question">General questions</a>
-          </div>
-        </div>
-        <div className="footer-bottom" id="page-end">
-          <p>© {new Date().getFullYear()} Grow &amp; Close</p>
-          <p>BUILT FOR USEFUL MOMENTUM</p>
-        </div>
-      </footer>
+      <SiteFooter id="contact" pageEndId="page-end" />
     </main>
   );
 }

@@ -75,7 +75,7 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Grow &amp; Close \| Your GTM backlog, shipped\.<\/title>/i);
+  assert.match(html, /<title>GTM Execution Studio for B2B SaaS \| Grow &amp; Close<\/title>/i);
   assert.match(html, /Your GTM backlog/);
   assert.match(html, /data-brand-system="gc-logic-v1"/);
   assert.match(html, /GROW<\/b><b><i>&amp;<\/i> CLOSE/i);
@@ -100,6 +100,9 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /Turn customer outcomes into proof that travels/);
   assert.match(html, /Give us one GTM priority/);
   assert.match(html, /Get one GTM priority shipped free/);
+  assert.match(html, /The self-driving GTM company for the AI era/);
+  assert.match(html, /href="\/about"/);
+  assert.match(html, /href="\/disclaimer"/);
   assert.match(html, /hello@growandclose\.com/);
   assert.doesNotMatch(html, /—/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
@@ -153,6 +156,41 @@ test("server-renders the services SEO pillar with nine new-tab spokes", async ()
   const newTabLinks = html.match(/target="_blank"/g) ?? [];
   assert.ok(serviceLinks.length >= 9);
   assert.ok(newTabLinks.length >= 9);
+  assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
+});
+
+test("server-renders the self-driving company manifesto with an honest autonomy ledger", async () => {
+  const response = await render("http://localhost/about");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>About Grow &amp; Close \| The Self-Driving GTM Company<\/title>/i);
+  assert.match(html, /A GTM company that learns to/);
+  assert.match(html, /drive itself/);
+  assert.match(html, /Self-driving does not mean human-free/);
+  assert.match(html, /Minimum intervention is not zero responsibility/);
+  assert.match(html, /AI-MANAGED SITE \/ HUMAN-GOVERNED RELEASE/);
+  assert.match(html, /THE AUTONOMY LEDGER/);
+  assert.match(html, /AGENT-RUN NOW/);
+  assert.match(html, /HUMAN AUTHORITY/);
+  assert.match(html, /NEXT AUTONOMY LAYER/);
+  assert.match(html, /data-service-circuit-start/);
+  assert.match(html, /data-service-circuit-target/);
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
+  assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
+});
+
+test("server-renders a linked operational disclaimer", async () => {
+  const response = await render("http://localhost/disclaimer");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>Disclaimer \| Grow &amp; Close<\/title>/i);
+  assert.match(html, /AI-assisted work/);
+  assert.match(html, /does not guarantee/i);
+  assert.match(html, /Client responsibility/);
+  assert.match(html, /href="\/about"/);
+  assert.match(html, /href="\/services"/);
   assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
 });
 
@@ -305,7 +343,7 @@ test("service circuits advance with scroll while preserving manual controls", as
 });
 
 test("every service page owns a unique page-long scroll circuit", async () => {
-  const [component, servicePage, founderPage, serviceCss] = await Promise.all([
+  const [component, servicePage, founderPage, aboutPage, serviceCss] = await Promise.all([
     readFile(
       new URL("../app/services/service-scroll-circuit.tsx", import.meta.url),
       "utf8",
@@ -321,6 +359,7 @@ test("every service page owns a unique page-long scroll circuit", async () => {
       ),
       "utf8",
     ),
+    readFile(new URL("../app/about/page.tsx", import.meta.url), "utf8"),
     readFile(
       new URL("../app/services/service-pages.css", import.meta.url),
       "utf8",
@@ -333,6 +372,7 @@ test("every service page owns a unique page-long scroll circuit", async () => {
     "conversation",
     "founder",
     "pillar",
+    "about",
     "citation",
     "deal",
     "campaign",
@@ -343,6 +383,8 @@ test("every service page owns a unique page-long scroll circuit", async () => {
   }
 
   assert.match(component, /ResizeObserver/);
+  assert.match(component, /const contentHeight = main\.offsetHeight/);
+  assert.doesNotMatch(component, /height: main\.scrollHeight/);
   assert.match(component, /requestAnimationFrame/);
   assert.match(component, /addEventListener\("scroll", update, \{ passive: true \}\)/);
   assert.match(component, /prefers-reduced-motion: reduce/);
@@ -350,24 +392,26 @@ test("every service page owns a unique page-long scroll circuit", async () => {
   assert.match(component, /pageCircuitCurrent/);
   assert.match(servicePage, /<ServiceScrollCircuit variant=\{service\.circuitVariant\}/);
   assert.match(founderPage, /<ServiceScrollCircuit variant="founder"/);
+  assert.match(aboutPage, /<ServiceScrollCircuit variant="about"/);
   assert.match(serviceCss, /\.service-page-scroll-circuit/);
   assert.match(serviceCss, /data-page-circuit-current="true"/);
 });
 
 test("service discovery links default to a new tab", async () => {
-  const [header, homepage, services] = await Promise.all([
+  const [header, homepage, services, footer] = await Promise.all([
     readFile(new URL("../app/components/site-header.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/services/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/site-footer.tsx", import.meta.url), "utf8"),
   ]);
 
-  for (const source of [header, homepage, services]) {
+  for (const source of [header, homepage, services, footer]) {
     assert.match(source, /target="_blank"/);
     assert.match(source, /rel="noopener noreferrer"/);
   }
 
   assert.match(header, /href="\/services"/);
-  assert.match(homepage, /href="\/services"/);
+  assert.match(footer, /href="\/services"/);
 });
 
 test("brand system ships deterministic reusable assets", async () => {

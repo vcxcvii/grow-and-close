@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { ServiceScrollCircuit } from "./service-scroll-circuit";
 
@@ -371,22 +372,7 @@ export default function ServicesPage() {
         <a className="button button-accent" href={diagnosticHref}>Map my GTM bottleneck</a>
       </section>
 
-      <footer className="site-footer">
-        <div className="footer-intro">
-          <Link className="brand footer-brand" href="/" aria-label="Grow and Close home">
-            <span className="brand-glyph" aria-hidden="true"><b>G</b><i /><b>C</b></span>
-            <span className="brand-name"><b>GROW</b><b><i>&amp;</i> CLOSE</b></span>
-          </Link>
-          <p>Senior-led GTM execution for founders and lean B2B SaaS marketing teams.</p>
-          <a className="footer-email" href="mailto:hello@growandclose.com">hello@growandclose.com</a>
-        </div>
-        <div className="footer-links">
-          <div><p>SERVICES</p><a href="#service-systems">All service systems</a><a href="#faq">Buying questions</a><Link href="/#pricing">Monthly plans</Link></div>
-          <div><p>GROW &amp; CLOSE</p><Link href="/">Home</Link><Link href="/#workflow">How we work</Link><Link href="/#studio">The studio</Link></div>
-          <div><p>CONTACT</p><a href={diagnosticHref}>Map the bottleneck</a><a href="mailto:hello@growandclose.com?subject=Grow%20%26%20Close%20fit">Start a conversation</a></div>
-        </div>
-        <div className="footer-bottom"><p>© {new Date().getFullYear()} Grow &amp; Close</p><p>BUILT FOR USEFUL MOMENTUM</p></div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

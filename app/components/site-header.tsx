@@ -53,6 +53,7 @@ export function SiteHeader({
             </Link>
           </div>
         </details>
+        <Link href="/about">About</Link>
         <Link href="/#workflow">How it works</Link>
         <Link href="/#pricing">Plans</Link>
         <Link href="/#faq">FAQ</Link>

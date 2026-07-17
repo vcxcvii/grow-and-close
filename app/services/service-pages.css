@@ -369,7 +369,7 @@
 .services-hub-motion li > span {
   color: var(--electric-light);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .services-hub-motion li b {
@@ -409,7 +409,7 @@
 .services-hub-choice-grid article > p {
   color: var(--electric);
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 0.07em;
   margin: 0;
   text-transform: uppercase;
@@ -463,13 +463,13 @@
 }
 
 [data-service-circuit-target] {
-  transition: box-shadow 180ms ease, border-color 180ms ease;
+  transition: box-shadow 280ms ease-out, border-color 280ms ease-out;
 }
 
 .service-circuit[data-page-circuit-current="true"] .service-circuit-board,
 .founder-circuit[data-page-circuit-current="true"] .founder-circuit-board {
   border-color: var(--electric-light);
-  box-shadow: 0 0 0 1px rgba(138, 171, 255, 0.26);
+  box-shadow: inset 4px 0 0 var(--electric);
 }
 
 .system-problem-grid [data-page-circuit-current="true"],
@@ -576,87 +576,171 @@
 
 .service-hero-system h2 {
   font-family: var(--mono);
-  font-size: clamp(22px, 2.5vw, 38px);
+  font-size: clamp(20px, 2.2vw, 34px);
   letter-spacing: -0.035em;
+  line-height: 1.12;
+  margin: 18px 0 0;
   max-width: 520px;
   overflow-wrap: anywhere;
+}
+
+.service-hero-status {
+  align-items: baseline;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  margin-top: clamp(26px, 4vh, 40px);
+}
+
+.service-hero-status .system-label {
+  margin: 0;
+}
+
+.service-hero-status strong {
+  color: var(--electric-light);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .service-hero-path {
   align-items: center;
   display: grid;
-  gap: 10px;
+  gap: 6px;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  margin-top: 56px;
+  margin-top: clamp(28px, 4vh, 42px);
+  min-height: 92px;
   position: relative;
 }
 
-.service-hero-path::before {
-  background: rgba(255, 255, 255, 0.28);
-  content: "";
-  height: 1px;
-  left: 8%;
+.service-hero-path-lines {
+  height: 46px;
+  left: 0;
+  overflow: visible;
   position: absolute;
-  right: 8%;
-  top: 18px;
+  top: 0;
+  width: 100%;
 }
 
-.service-hero-path span {
+.service-hero-path-lines polyline {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-width: 1px;
+}
+
+.service-hero-path-lines .is-progress {
+  stroke: var(--electric);
+  stroke-dasharray: 100;
+  stroke-dashoffset: var(--hero-dash, 100);
+  stroke-width: 3px;
+  transition: stroke-dashoffset 320ms ease-out;
+}
+
+.service-hero-path button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: rgba(255, 255, 255, 0.62);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--mono);
+  gap: 9px;
+  min-height: 68px;
+  min-width: 0;
+  padding: 0 2px;
+  position: relative;
+  transform: translateY(var(--hero-offset, 0));
+  transition: color 240ms ease-out, transform 320ms ease-out;
+  z-index: 1;
+}
+
+.service-hero-path button > span {
   align-items: center;
   background: var(--ink);
   border: 1px solid var(--electric-light);
   display: flex;
   font-family: var(--mono);
-  font-size: 8px;
-  height: 36px;
+  font-size: 12px;
+  height: 46px;
   justify-content: center;
-  justify-self: center;
-  position: relative;
-  width: 36px;
-  z-index: 1;
+  transition: background 240ms ease-out, border-color 240ms ease-out, color 240ms ease-out;
+  width: 46px;
 }
 
-.service-hero-path span:first-child,
-.service-hero-path span:last-child {
+.service-hero-path button > b {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+}
+
+.service-hero-path button:hover,
+.service-hero-path button:focus-visible,
+.service-hero-path button[aria-pressed="true"] {
+  color: white;
+}
+
+.service-hero-path button[aria-pressed="true"] > span {
   background: var(--electric);
   border-color: var(--electric);
 }
 
-.service-hero-path span[data-shape="1"] {
+.service-hero-path button[data-kind="gate"] > span {
+  border-radius: 0 23px 23px 0;
+}
+
+.service-hero-path button[data-kind="decision"] > span {
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.service-hero-path button[data-kind="checkpoint"] > span {
+  height: 34px;
+  width: 34px;
+}
+
+.service-hero-path button[data-kind="outcome"] > span {
   border-radius: 50%;
 }
 
-.service-hero-path span[data-shape="2"] {
-  transform: rotate(45deg);
-}
-
-.service-hero-system[data-variant="citation"] .service-hero-path span,
-.service-hero-system[data-variant="evidence"] .service-hero-path span {
-  border-radius: 50%;
-}
-
-.service-hero-system[data-variant="conversation"] .service-hero-path span:nth-child(3),
-.service-hero-system[data-variant="campaign"] .service-hero-path span:nth-child(3) {
-  border-radius: 4px 18px 4px 18px;
-}
-
-.service-hero-stage-row {
-  align-items: center;
+.service-hero-detail {
+  border-left: 1px solid rgba(255, 255, 255, 0.28);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 24px;
+}
+
+.service-hero-detail > div {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  border-right: 1px solid rgba(255, 255, 255, 0.28);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 12px;
+}
+
+.service-hero-detail span,
+.service-hero-detail b {
   font-family: var(--mono);
-  font-size: 8px;
-  gap: 10px;
-  grid-template-columns: auto 1fr auto;
-  letter-spacing: 0.08em;
-  margin-top: 20px;
+  letter-spacing: 0.05em;
+  overflow-wrap: anywhere;
   text-transform: uppercase;
 }
 
-.service-hero-stage-row i {
-  border-top: 1px dashed rgba(255, 255, 255, 0.35);
+.service-hero-detail span {
+  font-size: 10px;
 }
 
-.service-hero-stage-row b {
+.service-hero-detail b {
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.service-hero-detail span {
   color: var(--electric-light);
 }
 
@@ -673,8 +757,7 @@
 
 .service-circuit-intro {
   align-self: start;
-  position: sticky;
-  top: 118px;
+  position: static;
 }
 
 .service-circuit-intro h2 {
@@ -703,7 +786,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.24);
   display: flex;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 12px;
   gap: 20px;
   justify-content: space-between;
   letter-spacing: 0.08em;
@@ -750,7 +833,7 @@
   display: flex;
   flex-direction: column;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 12px;
   gap: 14px;
   min-height: 78px;
   padding: 0 4px;
@@ -867,6 +950,46 @@
   max-width: 720px;
 }
 
+.service-circuit-controls {
+  align-items: center;
+  display: grid;
+  font-family: var(--mono);
+  gap: 12px;
+  grid-template-columns: 1fr auto 1fr;
+  margin-top: 24px;
+}
+
+.service-circuit-controls > span {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.service-circuit-controls button {
+  align-items: center;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--mono);
+  font-size: 12px;
+  gap: 8px;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 14px;
+  text-transform: uppercase;
+}
+
+.service-circuit-controls button:last-child {
+  justify-self: end;
+}
+
+.service-circuit-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
+}
+
 .service-circuit-io {
   border-left: 1px solid var(--ink);
   border-top: 1px solid var(--ink);
@@ -933,14 +1056,6 @@
 @media (min-width: 1101px) {
   .service-circuit {
     align-items: start;
-    min-height: 230svh;
-  }
-
-  .service-circuit-intro,
-  .service-circuit-board {
-    align-self: start;
-    position: sticky;
-    top: 92px;
   }
 
   .service-circuit-board {
@@ -948,11 +1063,11 @@
   }
 
   .service-circuit-track {
-    margin: clamp(24px, 3.4vh, 36px) 0;
+    margin: clamp(32px, 4.4vh, 48px) 0;
   }
 
   .service-circuit-output {
-    min-height: 300px;
+    min-height: 360px;
     padding: clamp(22px, 3vh, 34px);
   }
 
@@ -1330,37 +1445,45 @@
   }
 
   .service-circuit-track {
-    gap: 12px;
-    grid-template-columns: 1fr;
+    gap: 2px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     margin: 36px 0;
   }
 
   .service-circuit-line {
-    bottom: 32px;
-    height: auto;
-    left: 23px;
-    right: auto;
-    top: 23px;
-    width: 1px;
+    bottom: auto;
+    height: 1px;
+    left: 10%;
+    right: 10%;
+    top: 22px;
+    width: auto;
   }
 
   .service-circuit-line i {
-    display: none;
+    display: block;
   }
 
   .service-circuit-track button,
   .service-circuit-board[data-variant] .service-circuit-track button {
     align-items: center;
-    flex-direction: row;
-    gap: 18px;
+    flex-direction: column;
+    font-size: 11px;
+    gap: 8px;
     justify-content: flex-start;
-    min-height: 48px;
-    padding: 0;
+    line-height: 1.2;
+    min-height: 88px;
+    overflow-wrap: anywhere;
+    padding: 0 1px;
     transform: none;
   }
 
+  .service-circuit-marker {
+    height: 44px;
+    width: 44px;
+  }
+
   .service-circuit-track button.is-active .service-circuit-marker {
-    transform: translateX(5px);
+    transform: none;
   }
 
   .service-circuit-output {
@@ -1376,6 +1499,7 @@
   }
 
   .service-circuit-output h3 {
+    font-size: clamp(32px, 10vw, 48px);
     margin-top: 34px;
   }
 
@@ -1389,6 +1513,24 @@
 
   .service-circuit-return b {
     text-align: left;
+  }
+
+  .service-circuit-controls {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .service-circuit-controls > span {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: center;
+  }
+
+  .service-circuit-controls button {
+    width: 100%;
+  }
+
+  .service-circuit-controls button:last-child {
+    justify-self: stretch;
   }
 
   .system-problem-grid,
@@ -1417,12 +1559,32 @@
   }
 
   .service-hero-path {
-    gap: 4px;
+    gap: 2px;
+    min-height: 104px;
   }
 
-  .service-hero-path span {
+  .service-hero-path button {
+    min-height: 64px;
+  }
+
+  .service-hero-path button > span {
+    height: 42px;
+    width: 42px;
+  }
+
+  .service-hero-path button[data-kind="checkpoint"] > span {
     height: 32px;
     width: 32px;
+  }
+
+  .service-hero-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .service-hero-status {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
   }
 }
 
@@ -1438,7 +1600,9 @@
   .service-circuit-output-body,
   .circuit-output-body,
   .service-circuit-line i,
-  .service-circuit-marker {
+  .service-circuit-marker,
+  .service-hero-path-lines .is-progress,
+  .service-hero-path button {
     animation: none;
     transition: none;
   }

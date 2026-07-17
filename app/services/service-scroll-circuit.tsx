@@ -170,8 +170,9 @@ export function ServiceScrollCircuit({ variant }: ServiceScrollCircuitProps) {
       const contentHeight = main.offsetHeight;
       const width = mainRect.width;
       const mobile = width <= 780;
-      const outerRail = width - (mobile ? 5 : 30);
-      const innerRail = mobile ? 13 : 30;
+      const outerRail = width - (mobile ? 16 : 30);
+      const innerRail = mobile ? 16 : 30;
+      const calmRails = [0.16, 0.16, 0.5, 0.5, 0.84, 0.84] as const;
       const startElement = main.querySelector<HTMLElement>("[data-service-circuit-start]");
       const startRect = startElement?.getBoundingClientRect();
       const firstRail = pattern.rails[0];
@@ -179,9 +180,11 @@ export function ServiceScrollCircuit({ variant }: ServiceScrollCircuitProps) {
         key: "start",
         kind: pattern.kinds[0],
         progress: 0,
-        x: startRect
-          ? clamp(startRect.left - mainRect.left + startRect.width * 0.5, innerRail, outerRail)
-          : clamp(width * firstRail, innerRail, outerRail),
+        x: mobile
+          ? innerRail
+          : startRect
+            ? clamp(startRect.left - mainRect.left + startRect.width * 0.5, innerRail, outerRail)
+            : clamp(width * firstRail, innerRail, outerRail),
         y: startRect ? startRect.bottom - mainRect.top - 18 : 120,
       };
       const points: CircuitPoint[] = [startPoint];
@@ -192,12 +195,8 @@ export function ServiceScrollCircuit({ variant }: ServiceScrollCircuitProps) {
 
       targets.forEach((element, index) => {
         const rect = element.getBoundingClientRect();
-        const fraction = pattern.rails[index % pattern.rails.length];
-        const x = mobile
-          ? fraction < 0.5
-            ? innerRail
-            : outerRail
-          : clamp(width * fraction, innerRail, outerRail);
+        const fraction = calmRails[index % calmRails.length];
+        const x = mobile ? innerRail : clamp(width * fraction, innerRail, outerRail);
         points.push({
           key: `${variant}-${index}`,
           kind: pattern.kinds[index % pattern.kinds.length],
@@ -208,16 +207,12 @@ export function ServiceScrollCircuit({ variant }: ServiceScrollCircuitProps) {
         pointTargets.push(element);
       });
 
-      const lastRail = pattern.rails[(targets.length + 1) % pattern.rails.length];
+      const lastRail = calmRails[(targets.length + 1) % calmRails.length];
       const completePoint: CircuitPoint = {
         key: "complete",
         kind: "circle",
         progress: 1,
-        x: mobile
-          ? lastRail < 0.5
-            ? innerRail
-            : outerRail
-          : clamp(width * lastRail, innerRail, outerRail),
+        x: mobile ? innerRail : clamp(width * lastRail, innerRail, outerRail),
         y: contentHeight - 56,
       };
       points.push(completePoint);
@@ -278,7 +273,7 @@ export function ServiceScrollCircuit({ variant }: ServiceScrollCircuitProps) {
       const point = path.getPointAtLength(pathLengthRef.current * progress);
       pulse.setAttribute("transform", `translate(${point.x} ${point.y})`);
       pulse.style.opacity = String(
-        clamp(progress * 10, 0, 1) * clamp((1 - progress) * 18, 0, 1),
+        0.55 * clamp(progress * 10, 0, 1) * clamp((1 - progress) * 18, 0, 1),
       );
       complete.style.opacity = String(clamp((progress - 0.96) / 0.04, 0, 1));
 
@@ -300,7 +295,7 @@ export function ServiceScrollCircuit({ variant }: ServiceScrollCircuitProps) {
         if (!currentTarget || target.progress > currentTarget.progress) currentTarget = target;
       });
       activationTargetsRef.current.forEach((target) => {
-        const isCurrent = target === currentTarget && progress - target.progress < 0.04;
+        const isCurrent = target === currentTarget;
         if (target.element.dataset.pageCircuitCurrent !== String(isCurrent)) {
           target.element.dataset.pageCircuitCurrent = String(isCurrent);
         }
@@ -335,7 +330,7 @@ export function ServiceScrollCircuit({ variant }: ServiceScrollCircuitProps) {
       const elapsed = lastFrameRef.current ? Math.min(time - lastFrameRef.current, 64) : 16;
       lastFrameRef.current = time;
       const delta = targetRef.current - progressRef.current;
-      const easing = 1 - Math.exp(-elapsed / 82);
+      const easing = 1 - Math.exp(-elapsed / 180);
       progressRef.current += delta * easing;
 
       if (Math.abs(delta) < 0.0004) progressRef.current = targetRef.current;

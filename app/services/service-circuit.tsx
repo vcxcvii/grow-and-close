@@ -1,25 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 import type { ServicePageContent } from "./service-page-types";
-import { useScrollDrivenStage } from "./use-scroll-driven-stage";
 
 interface ServiceCircuitProps {
   service: ServicePageContent;
 }
 
 export function ServiceCircuit({ service }: ServiceCircuitProps) {
-  const { activeIndex, announceChanges, sectionRef, selectStage } =
-    useScrollDrivenStage(service.stages.length);
+  const [activeIndex, setActiveIndex] = useState(0);
   const activeStage = service.stages[activeIndex];
+  const selectStage = (index: number) => {
+    setActiveIndex(Math.min(Math.max(index, 0), service.stages.length - 1));
+  };
 
   return (
     <section
       className="service-circuit"
       aria-labelledby={`${service.slug}-circuit-title`}
       data-service-circuit-target
-      ref={sectionRef}
     >
       <div className="service-circuit-intro">
         <p className="section-kicker section-kicker-light">INTERACTIVE {service.systemName}</p>
@@ -37,7 +38,7 @@ export function ServiceCircuit({ service }: ServiceCircuitProps) {
       >
         <div className="service-circuit-topline">
           <span>{service.systemName.toUpperCase()} / LIVE</span>
-          <span className="live-dot">SELECT A NODE</span>
+          <span className="live-dot">STAGE {activeIndex + 1} OF {service.stages.length}</span>
         </div>
 
         <div className="service-circuit-track" aria-label={`${service.systemName} stages`}>
@@ -64,7 +65,7 @@ export function ServiceCircuit({ service }: ServiceCircuitProps) {
         <div
           className="service-circuit-output"
           id={`${service.slug}-circuit-output`}
-          aria-live={announceChanges ? "polite" : "off"}
+          aria-live="polite"
         >
           <div className="service-circuit-output-body" key={activeStage.label}>
             <div className="service-circuit-output-meta">
@@ -80,6 +81,23 @@ export function ServiceCircuit({ service }: ServiceCircuitProps) {
             <div className="service-circuit-check">
               <span>HUMAN CHECKPOINT</span>
               <b>{activeStage.checkpoint}</b>
+            </div>
+            <div className="service-circuit-controls" aria-label="Circuit stage controls">
+              <button
+                disabled={activeIndex === 0}
+                onClick={() => selectStage(activeIndex - 1)}
+                type="button"
+              >
+                <span aria-hidden="true">←</span> Previous
+              </button>
+              <span>{String(activeIndex + 1).padStart(2, "0")} / {String(service.stages.length).padStart(2, "0")}</span>
+              <button
+                disabled={activeIndex === service.stages.length - 1}
+                onClick={() => selectStage(activeIndex + 1)}
+                type="button"
+              >
+                Next <span aria-hidden="true">→</span>
+              </button>
             </div>
           </div>
         </div>

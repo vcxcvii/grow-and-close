@@ -443,6 +443,7 @@ Dark: ink background, white text.
 Light-on-blue: paper background, ink text.  
 Minimum height: 52px desktop, 44px mobile.  
 Narrow mobile: important CTAs become full width.
+Action labels are never smaller than 12px on desktop or 11px on mobile. Important actions use a bordered or filled 44px-high surface; do not present them as faint 8–10px utility text.
 
 Hover transforms apply only where hover exists. Keyboard focus must remain visible without relying on movement.
 
@@ -473,7 +474,9 @@ At 1100px:
 
 At 780px:
 
-- Desktop navigation hides; primary header CTA remains.
+- Desktop navigation becomes a labelled hamburger disclosure; primary header CTA remains where width permits.
+- Mobile menu order begins with About, then Services, How it works, Plans, and FAQ.
+- Hamburger opens a full-width scrollable menu below the header. Services expand inside that menu rather than opening a second overlay.
 - Header uses 16px side padding and a 44px CTA.
 - Hero system follows hero copy.
 - Signal strip becomes two columns.
@@ -515,13 +518,18 @@ Mandatory test widths: 320, 375, 390, 430, 768, 1024, and 1440px.
 - Button lift: 150ms, hover-capable devices only.
 - FAQ indicator rotation: 180ms.
 - Hero motion stages are buttons. Selection updates status, explanation, and output ticket with an `aria-live` announcement.
+- Stage selection is user-controlled. Scrolling never changes an interactive diagram selection.
+- Service hero diagrams must express the service-specific sequence through meaningful input, gate, decision, checkpoint, and outcome nodes. Their stepped or branched path topology must change with the service; swapping labels on one straight rail is not enough. Changing a node updates its input, human checkpoint, and durable output.
+- Service loop controls include direct node selection plus Previous and Next. Mobile keeps the five-stage rail horizontal and places the explanation immediately below it.
+- The skills hub hero contains an interactive input → guarded workflow → durable output diagram. Empty hero columns are not acceptable.
 - A continuous logic circuit draws from the hero system through measured section anchors and connects to the shipped check in the footer.
-- On desktop, the route travels across the page and connects to real problem, motion, and capability nodes. Problem cards use an input, AND gate, and outcome sequence. Capability cards use a repeated square, AND, decision, and outcome grammar.
+- On desktop, the route uses calm paired lanes and connects to real problem, motion, and capability nodes. Problem cards use an input, AND gate, and outcome sequence. Capability cards use a repeated square, AND, decision, and outcome grammar.
 - Each grid reserves a signal band between its meta label and headline. Circuit lines may only occupy this band or a section perimeter.
 - Copy sits on an opaque content layer above the circuit, so responsive reflow can never leave a line visible through text.
-- Reached cards receive only a quiet surface tint. The current card receives a short electric status edge; structural card borders stay ink.
-- On mobile, the route collapses to a narrow edge rail while the same in-card nodes activate in sequence.
-- The circuit uses a passive scroll listener, cached SVG path length, and one `requestAnimationFrame` loop. Reduced-motion mode renders the completed route without a traveling pulse.
+- Reached cards receive only a quiet surface tint. The current card keeps a short electric status edge until the next card becomes current; never flash states through a narrow scroll threshold.
+- On mobile, the route collapses to one stable left-edge rail while the same in-card nodes activate in sequence. It never zigzags across copy.
+- The circuit uses a passive scroll listener, cached SVG path length, one `requestAnimationFrame` loop, and approximately 180ms damping. No glow. Reduced-motion mode renders the completed route without a traveling pulse.
+- Navigation disclosures are controlled: outside pointer press, Escape, destination selection, and logo selection close them. Escape restores focus to the disclosure trigger. Mobile hamburger and Services expansion use separate state.
 - First-ship starting points are direct, pre-addressed email links with hover, press, and keyboard focus states.
 - No scroll-jacking, marquee, autoplay media, or parallax.
 
@@ -569,6 +577,10 @@ Use no orange, lime, green, gradient, or unapproved accent.
 - No fake dashboard screenshots.
 - No dependency for a component CSS can express.
 - Keep the page functional if images fail.
+- Do not use native `details` for site navigation when outside-click close and separate mobile disclosure state are required.
+- Never use scroll position to force selection inside an interactive diagram.
+- Never set actionable CTA or navigation text below 11px; primary and secondary actions should be 12px or larger.
+- Keep service diagrams content-driven from each service stage model; visual variants must preserve the shared shape grammar while using distinct service-specific path topology, not one generic straight rail.
 
 ## 19. Preflight checklist
 
@@ -600,6 +612,10 @@ Interaction and accessibility:
 - [ ] Reduced motion works.
 - [ ] FAQ works by keyboard.
 - [ ] 200% zoom preserves reading order.
+- [ ] Desktop navigation closes on outside click and Escape.
+- [ ] Mobile hamburger opens a complete menu with About first.
+- [ ] Interactive diagrams work by tap, click, keyboard, Previous, and Next without scroll-forced changes.
+- [ ] Every important CTA uses readable action type and a 44px minimum target.
 
 Commercial wiring:
 

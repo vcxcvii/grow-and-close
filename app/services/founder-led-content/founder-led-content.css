@@ -30,8 +30,7 @@
 
 .founder-circuit-intro {
   align-self: start;
-  position: sticky;
-  top: 120px;
+  position: static;
 }
 
 .founder-circuit-intro h2 {
@@ -54,7 +53,8 @@
   color: var(--electric-light);
   display: inline-flex;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 650;
   gap: 8px;
   letter-spacing: 0.04em;
   margin-top: 32px;
@@ -249,14 +249,6 @@
 @media (min-width: 1101px) {
   .founder-circuit {
     align-items: start;
-    min-height: 230svh;
-  }
-
-  .founder-circuit-intro,
-  .founder-circuit-board {
-    align-self: start;
-    position: sticky;
-    top: 92px;
   }
 
   .founder-circuit-board {
@@ -268,7 +260,7 @@
   }
 
   .circuit-output {
-    min-height: 300px;
+    min-height: 360px;
     padding: clamp(22px, 3vh, 34px);
   }
 
@@ -511,42 +503,42 @@
   }
 
   .circuit-track {
-    gap: 8px;
-    grid-template-columns: 1fr;
+    gap: 2px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     margin-block: 36px;
   }
 
   .circuit-line {
-    bottom: 34px;
-    height: auto;
-    left: 23px;
-    right: auto;
-    top: 23px;
-    width: 1px;
+    bottom: auto;
+    height: 1px;
+    left: 10%;
+    right: 10%;
+    top: 22px;
+    width: auto;
   }
 
   .circuit-line i {
-    height: 0;
-    left: -1px;
-    top: 0;
-    transition: height 240ms ease;
-    width: 3px !important;
+    height: 3px;
+    left: 0;
+    top: -1px;
+    transition: width 320ms ease-out;
   }
 
-  .founder-circuit-board[data-active="1"] .circuit-line i { height: 25%; }
-  .founder-circuit-board[data-active="2"] .circuit-line i { height: 50%; }
-  .founder-circuit-board[data-active="3"] .circuit-line i { height: 75%; }
-  .founder-circuit-board[data-active="4"] .circuit-line i { height: 100%; }
-
   .circuit-track button {
-    flex-direction: row;
+    flex-direction: column;
+    font-size: 11px;
+    gap: 8px;
     justify-content: flex-start;
-    min-height: 56px;
-    padding: 5px 0;
+    line-height: 1.2;
+    min-height: 88px;
+    overflow-wrap: anywhere;
+    padding: 0 1px;
   }
 
   .circuit-node-marker {
-    flex: 0 0 46px;
+    flex: 0 0 44px;
+    height: 44px;
+    width: 44px;
   }
 
   .circuit-output {

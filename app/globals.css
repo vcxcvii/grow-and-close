@@ -77,7 +77,6 @@ main {
 }
 
 .scroll-circuit-progress {
-  filter: drop-shadow(0 0 2px rgba(11, 79, 232, 0.2));
   stroke: var(--electric);
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
@@ -169,8 +168,7 @@ main {
 }
 
 [data-circuit-target][data-circuit-current="true"] .circuit-card-node {
-  filter: drop-shadow(0 0 5px rgba(11, 79, 232, 0.32));
-  transform: scale(1.08);
+  transform: scale(1.04);
 }
 
 [data-circuit-target][data-circuit-current="true"] .logic-node-core {

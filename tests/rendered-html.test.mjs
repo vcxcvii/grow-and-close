@@ -299,7 +299,7 @@ test("service heroes cap wide-screen typography against viewport height", async 
   assert.doesNotMatch(css, /\.hero\.system-service-hero[^}]*overflow:\s*hidden/s);
 });
 
-test("service circuits advance with scroll while preserving manual controls", async () => {
+test("service circuits preserve deliberate selection and compact mobile controls", async () => {
   const [hook, serviceCircuit, founderCircuit, servicesCss, founderCss] =
     await Promise.all([
       readFile(
@@ -324,18 +324,18 @@ test("service circuits advance with scroll while preserving manual controls", as
       ),
     ]);
 
-  assert.match(hook, /requestAnimationFrame/);
-  assert.match(hook, /addEventListener\("scroll", requestUpdate, \{ passive: true \}\)/);
-  assert.match(hook, /cancelAnimationFrame/);
-  assert.match(hook, /Math\.floor\(progress \* stageCount\)/);
-  assert.match(serviceCircuit, /useScrollDrivenStage\(service\.stages\.length\)/);
+  assert.doesNotMatch(hook, /requestAnimationFrame|addEventListener\("scroll"/);
+  assert.match(hook, /setActiveIndex\(Math\.min\(Math\.max\(index, 0\), stageCount - 1\)\)/);
+  assert.match(serviceCircuit, /useState\(0\)/);
   assert.match(founderCircuit, /useScrollDrivenStage\(circuitStages\.length\)/);
   assert.match(serviceCircuit, /onClick=\{\(\) => selectStage\(index\)\}/);
   assert.match(founderCircuit, /onClick=\{\(\) => selectStage\(index\)\}/);
-  assert.match(servicesCss, /min-height:\s*230svh/);
-  assert.match(servicesCss, /position:\s*sticky/);
+  assert.match(serviceCircuit, /Previous/);
+  assert.match(serviceCircuit, /Next/);
+  assert.doesNotMatch(servicesCss, /min-height:\s*230svh/);
+  assert.doesNotMatch(founderCss, /min-height:\s*230svh/);
+  assert.match(servicesCss, /grid-template-columns:\s*repeat\(5, minmax\(0, 1fr\)\)/);
   assert.match(servicesCss, /circuit-card-enter/);
-  assert.match(founderCss, /min-height:\s*230svh/);
   assert.doesNotMatch(
     servicesCss,
     /data-variant="(?:argument|decision)"[^}]*translateY/s,
@@ -412,6 +412,38 @@ test("service discovery links default to a new tab", async () => {
 
   assert.match(header, /href="\/services"/);
   assert.match(footer, /href="\/services"/);
+});
+
+test("navigation disclosures close predictably and keep mobile priorities explicit", async () => {
+  const [header, css] = await Promise.all([
+    readFile(new URL("../app/components/site-header.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/site-header.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(header, /const \[navOpen, setNavOpen\]/);
+  assert.match(header, /const \[servicesOpen, setServicesOpen\]/);
+  assert.match(header, /document\.addEventListener\("pointerdown", closeWhenOutside\)/);
+  assert.match(header, /event\.key === "Escape"/);
+  assert.match(header, /aria-label=\{navOpen \? "Close navigation" : "Open navigation"\}/);
+  assert.ok(header.indexOf('href="/about"') < header.indexOf('className="services-menu"'));
+  assert.match(css, /\.services-home-link\s*\{[^}]*font-size:\s*12px[^}]*min-height:\s*52px/s);
+  assert.match(css, /\.menu-toggle\s*\{[^}]*min-height:\s*44px[^}]*min-width:\s*44px/s);
+});
+
+test("skills hub renders an interactive input-method-output system", async () => {
+  const [page, diagram, css] = await Promise.all([
+    readFile(new URL("../app/skills/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/skills/skills-library-system.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/skills/skills.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(page, /<SkillsLibrarySystem/);
+  assert.match(diagram, /INPUT/);
+  assert.match(diagram, /GUARDED WORKFLOW/);
+  assert.match(diagram, /DURABLE OUTPUT|OUTPUT/);
+  assert.match(diagram, /aria-pressed=\{activeIndex === index\}/);
+  assert.match(css, /\.skills-system-flow/);
+  assert.match(css, /\.skills-system-link\s*\{[^}]*font-size:\s*12px[^}]*min-height:\s*52px/s);
 });
 
 test("brand system ships deterministic reusable assets", async () => {

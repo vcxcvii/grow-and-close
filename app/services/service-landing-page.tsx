@@ -5,6 +5,7 @@ import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { skillForService } from "../skills/skill-page-content";
 import { ServiceCircuit } from "./service-circuit";
+import { ServiceHeroSystem } from "./service-hero-system";
 import type { ServicePageContent } from "./service-page-types";
 import { ServiceScrollCircuit } from "./service-scroll-circuit";
 
@@ -67,34 +68,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
           <p className="hero-note">SENIOR-LED · HUMAN-APPROVED · BUILT TO LEARN</p>
         </div>
 
-        <div
-          className="hero-system service-hero-system"
-          data-variant={service.circuitVariant}
-          data-service-circuit-start
-          aria-label={`${service.systemName} operating card`}
-        >
-          <div className="system-topline">
-            <span>{service.systemName.toUpperCase()} / {service.number}</span>
-            <span className="live-dot">ACTIVE SYSTEM</span>
-          </div>
-          <p className="system-label">OPERATING UNIT</p>
-          <h2>{service.stages[0].input}</h2>
-          <div className="service-hero-path" aria-hidden="true">
-            {service.stages.map((stage, index) => (
-              <span key={stage.label} data-shape={index % 3}>{String(index + 1).padStart(2, "0")}</span>
-            ))}
-          </div>
-          <div className="service-hero-stage-row">
-            <span>{service.stages[0].label}</span>
-            <i aria-hidden="true" />
-            <b>{service.stages.at(-1)?.label}</b>
-          </div>
-          <div className="ship-ticket">
-            <span>DURABLE RETURN</span>
-            <strong>{service.stages.at(-1)?.output}</strong>
-            <span>Loop / active</span>
-          </div>
-        </div>
+        <ServiceHeroSystem service={service} />
       </section>
 
       <section className="signal-strip" aria-label={`${service.name} outcomes`}>

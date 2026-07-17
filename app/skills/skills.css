@@ -1,5 +1,135 @@
 /* Skills library — landing pages + hub. Reuses the site's hero/faq/button system. */
 
+.skills-library-system {
+  max-width: 720px;
+}
+
+.skills-library-system h2 {
+  font-family: var(--mono);
+  font-size: clamp(26px, 3vw, 44px);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0;
+}
+
+.skills-system-flow {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) 18px minmax(0, 0.72fr) 18px minmax(0, 1fr);
+  margin-top: 34px;
+}
+
+.skills-system-flow > i {
+  border-top: 1px solid var(--electric-light);
+  width: 100%;
+}
+
+.skills-system-node {
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 150px;
+  min-width: 0;
+  padding: 16px;
+}
+
+.skills-system-node[data-kind="gate"] {
+  border-radius: 0 44px 44px 0;
+  justify-content: center;
+}
+
+.skills-system-node[data-kind="outcome"] {
+  border-color: var(--electric-light);
+}
+
+.skills-system-node span,
+.skills-system-node b {
+  color: var(--electric-light);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.skills-system-node p {
+  display: -webkit-box;
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+.skills-system-selector {
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 28px;
+}
+
+.skills-system-selector button {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.66);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 72px;
+  min-width: 0;
+  padding: 12px 8px;
+  text-align: left;
+}
+
+.skills-system-selector button > span,
+.skills-system-selector button > b {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.skills-system-selector button > span {
+  color: var(--electric-light);
+}
+
+.skills-system-selector button[aria-pressed="true"] {
+  background: var(--electric);
+  color: white;
+}
+
+.skills-system-selector button[aria-pressed="true"] > span {
+  color: white;
+}
+
+.skills-system-link {
+  align-items: center;
+  background: var(--electric);
+  border: 1px solid var(--electric);
+  color: white;
+  display: flex;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 650;
+  justify-content: space-between;
+  margin-top: 20px;
+  min-height: 52px;
+  padding: 0 18px;
+  text-transform: uppercase;
+}
+
+.skills-system-link:hover,
+.skills-system-link:focus-visible {
+  background: white;
+  color: var(--ink);
+}
+
 .skill-page .skill-hero-sample {
   transform: rotate(-1.2deg);
 }
@@ -239,5 +369,46 @@
 
   .skill-download-row {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 780px) {
+  .skills-system-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-system-flow > i {
+    border-left: 1px solid var(--electric-light);
+    border-top: 0;
+    height: 14px;
+    justify-self: center;
+    width: 1px;
+  }
+
+  .skills-system-node {
+    min-height: 0;
+  }
+
+  .skills-system-node p {
+    font-size: 16px;
+  }
+
+  .skills-system-node[data-kind="gate"] {
+    border-radius: 0 44px 44px 0;
+  }
+
+  .skills-system-selector {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skills-system-selector button:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-system-selector button,
+  .skills-system-link {
+    transition: none;
   }
 }

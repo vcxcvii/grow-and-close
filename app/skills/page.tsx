@@ -4,6 +4,7 @@ import Link from "next/link";
 import { JsonLd } from "../components/json-ld";
 import { SiteHeader } from "../components/site-header";
 import { skillPages } from "./skill-page-content";
+import { SkillsLibrarySystem } from "./skills-library-system";
 
 export const metadata: Metadata = {
   title: "Free Claude Skills for B2B SaaS Marketing & GTM | Grow & Close",
@@ -52,6 +53,14 @@ export default function SkillsHubPage() {
           </p>
           <p className="hero-note">FREE · WORKS IN CLAUDE + CLAUDE CODE · EMAIL-DELIVERED</p>
         </div>
+        <SkillsLibrarySystem
+          skills={Object.values(skillPages).map((skill) => ({
+            input: skill.inputExample,
+            name: skill.name,
+            output: skill.outputExample,
+            slug: skill.slug,
+          }))}
+        />
       </section>
 
       <div className="skills-hub-grid">

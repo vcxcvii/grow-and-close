@@ -3,9 +3,6 @@ import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json";
 import { sites } from "./build/sites-vite-plugin";
 
-const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
-  "00000000-0000-4000-8000-000000000000";
-
 const { d1, r2 } = hostingConfig;
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
@@ -17,15 +14,13 @@ const localBindingConfig = {
   main: "./worker/index.ts",
   compatibility_flags: ["nodejs_compat"],
   workers_dev: true,
-  d1_databases: d1
-    ? [
-        {
-          binding: d1,
-          database_name: "site-creator-d1",
-          database_id: SITE_CREATOR_PLACEHOLDER_DATABASE_ID,
-        },
-      ]
-    : [],
+  d1_databases: [
+    {
+      binding: d1 ?? "DB",
+      database_name: "grow-and-close-db",
+      database_id: "7d2c3398-95d9-4064-a87c-d9d9a3dd2361",
+    },
+  ],
   r2_buckets: r2
     ? [
         {

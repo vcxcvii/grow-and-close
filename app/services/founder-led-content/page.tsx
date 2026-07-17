@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { JsonLd } from "../../components/json-ld";
 import { SiteHeader } from "../../components/site-header";
 import { ServiceScrollCircuit } from "../service-scroll-circuit";
 import { FounderCircuit } from "./founder-circuit";
@@ -179,8 +180,36 @@ const diagnosticHref =
   "mailto:hello@growandclose.com?subject=Founder%20Signal%20Map&body=Company%3A%0AWebsite%3A%0AFounder%20profile%3A%0ACurrent%20content%20channels%3A%0AWhat%20is%20not%20compounding%3F%3A";
 
 export default function FounderLedContentPage() {
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Founder-led Content System",
+    description:
+      "Turn your founder's point of view into an owned audience. Voice capture, LinkedIn, visual content, newsletter growth, UGC, paid amplification, and learning in one connected loop.",
+    url: "https://growandclose.com/services/founder-led-content",
+    provider: {
+      "@type": "Organization",
+      name: "Grow & Close",
+      url: "https://growandclose.com",
+    },
+    serviceType: "Founder-led Content",
+    areaServed: "Worldwide",
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+
   return (
     <main className="founder-page" data-service="founder-led-content">
+      <JsonLd data={serviceJsonLd} />
+      <JsonLd data={faqJsonLd} />
       <ServiceScrollCircuit variant="founder" />
       <SiteHeader
         activeService="founder-led-content"

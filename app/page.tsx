@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { serviceOfferings } from "./components/service-offerings";
 import { SiteHeader } from "./components/site-header";
 import LogicNode, { type LogicNodeKind } from "./logic-node";
 import MotionDemo from "./motion-demo";
 import ScrollCircuit from "./scroll-circuit";
+
+export const metadata: Metadata = {
+  title: "GTM Execution Studio for B2B SaaS | Grow & Close",
+  description:
+    "Senior-led GTM execution for B2B SaaS founders and marketing leaders. Positioning, landing pages, outbound, and campaigns shipped weekly on a monthly subscription.",
+  alternates: { canonical: "/" },
+};
 
 const motionExamples = [
   {

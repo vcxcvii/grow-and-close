@@ -1,0 +1,27 @@
+# Grow & Close
+
+> Senior-led GTM execution studio for B2B SaaS. Positioning, landing pages, outbound, founder content, campaigns, dashboards, and enablement — shipped weekly on a monthly subscription (Pipeline One $3,500/mo, Pipeline Team $7,000/mo). Founded by Varun Choraria. Contact: hello@growandclose.com.
+
+## Services
+
+- [All GTM services](https://growandclose.com/services): the nine execution capabilities and how they connect
+- [Positioning & Messaging](https://growandclose.com/services/positioning-and-messaging)
+- [Landing Pages](https://growandclose.com/services/landing-pages)
+- [Outbound Activation](https://growandclose.com/services/outbound-activation)
+- [AEO & Data Stories](https://growandclose.com/services/aeo-and-data-stories)
+- [Sales Enablement](https://growandclose.com/services/sales-enablement)
+- [Campaign Strategy](https://growandclose.com/services/campaign-strategy)
+- [GTM Dashboards](https://growandclose.com/services/gtm-dashboards)
+- [Customer Advocacy](https://growandclose.com/services/customer-advocacy)
+- [Founder-led Content](https://growandclose.com/services/founder-led-content)
+
+## Free Claude Skills
+
+Installable expert workflows for B2B SaaS GTM, free with email:
+
+- [Skills library](https://growandclose.com/skills)
+- [ICP Sharpener](https://growandclose.com/skills/icp-sharpener-b2b): turn a vague target market into a decision-ready ICP with triggers and disqualifiers
+- [Landing Page Teardown](https://growandclose.com/skills/landing-page-teardown): conversion audit with scores and pasteable rewrites
+- [Outbound Sequence Writer](https://growandclose.com/skills/outbound-sequence-writer): 5-touch trigger-based cold sequences under 90 words per email
+- [GTM Dashboard Spec](https://growandclose.com/skills/gtm-dashboard-spec): questions-first metrics spec with engineer-grade definitions
+- [AEO Page Audit](https://growandclose.com/skills/aeo-page-audit): four-layer audit of AI-search visibility and citability

@@ -1,6 +1,31 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
+
+import { JsonLd } from "./components/json-ld";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Grow & Close",
+  url: "https://growandclose.com",
+  logo: "https://growandclose.com/og.png",
+  description:
+    "Senior-led GTM execution studio for B2B SaaS. Strategy, campaigns, pages, content, and enablement, shipped one pipeline motion at a time.",
+  founder: { "@type": "Person", name: "Varun Choraria" },
+  email: "hello@growandclose.com",
+  sameAs: ["https://github.com/vcxcvii"],
+};
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Grow & Close",
+  url: "https://growandclose.com",
+};
 
 const plexSans = IBM_Plex_Sans({
   variable: "--font-ibm-plex-sans",
@@ -58,7 +83,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <JsonLd data={organizationJsonLd} />
+        <JsonLd data={webSiteJsonLd} />
+        {children}
+        {GA_ID ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`}
+            </Script>
+          </>
+        ) : null}
+      </body>
     </html>
   );
 }

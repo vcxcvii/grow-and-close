@@ -2,6 +2,7 @@
 @import "./components/site-header.css";
 @import "./services/founder-led-content/founder-led-content.css";
 @import "./services/service-pages.css";
+@import "./skills/skills.css";
 
 :root {
   --ink: #090a0c;

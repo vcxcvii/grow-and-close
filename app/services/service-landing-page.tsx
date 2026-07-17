@@ -1,6 +1,8 @@
 import Link from "next/link";
 
+import { JsonLd } from "../components/json-ld";
 import { SiteHeader } from "../components/site-header";
+import { skillForService } from "../skills/skill-page-content";
 import { ServiceCircuit } from "./service-circuit";
 import type { ServicePageContent } from "./service-page-types";
 import { ServiceScrollCircuit } from "./service-scroll-circuit";
@@ -10,8 +12,35 @@ interface ServiceLandingPageProps {
 }
 
 export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    description: service.metaDescription,
+    url: `https://growandclose.com/services/${service.slug}`,
+    provider: {
+      "@type": "Organization",
+      name: "Grow & Close",
+      url: "https://growandclose.com",
+    },
+    serviceType: service.name,
+    areaServed: "Worldwide",
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: service.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+
   return (
     <main className="system-service-page" data-service={service.slug}>
+      <JsonLd data={serviceJsonLd} />
+      <JsonLd data={faqJsonLd} />
       <ServiceScrollCircuit variant={service.circuitVariant} />
       <SiteHeader
         activeService={service.slug}
@@ -184,6 +213,22 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
           ))}
         </div>
       </section>
+
+      {skillForService[service.slug] ? (
+        <section className="skill-related" id="free-skill">
+          <p className="section-kicker">TRY THE METHOD FIRST — FREE</p>
+          <h2>
+            The {skillForService[service.slug].name} Claude skill uses the same methodology.
+            Install it free.
+          </h2>
+          <Link
+            className="button button-dark"
+            href={`/skills/${skillForService[service.slug].slug}`}
+          >
+            Get the free {skillForService[service.slug].name} skill
+          </Link>
+        </section>
+      ) : null}
 
       <section className="faq" id="faq">
         <div className="faq-heading">

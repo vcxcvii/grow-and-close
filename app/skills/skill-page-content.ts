@@ -6,6 +6,8 @@ export const icpSharpener: SkillPageContent = {
   metaTitle: "Free Claude Skill: ICP Sharpener for B2B SaaS | Grow & Close",
   metaDescription:
     "Free Claude skill that turns a vague B2B SaaS target market into a decision-ready ICP: named segments, buying triggers, disqualifiers, and message angles.",
+  cardSummary:
+    "Turns a vague target market into a decision-ready ICP: named segments, buying triggers, hard disqualifiers, and the message angle for each.",
   heroLead: "Turn “we sell to B2B companies” into",
   heroAccent: "an ICP your team can act on.",
   heroLede:
@@ -63,6 +65,8 @@ export const landingPageTeardown: SkillPageContent = {
   metaTitle: "Free Claude Skill: B2B Landing Page Teardown | Grow & Close",
   metaDescription:
     "Free Claude skill that audits a B2B SaaS landing page like a skeptical buyer: scores clarity, offer, proof, and friction, then rewrites the weakest sections.",
+  cardSummary:
+    "Audits your landing page like a skeptical buyer: scores clarity, offer, proof, and friction, then rewrites the weakest sections in your voice.",
   heroLead: "Audit your landing page like a buyer with",
   heroAccent: "five seconds and nine open tabs.",
   heroLede:
@@ -119,6 +123,8 @@ export const outboundSequenceWriter: SkillPageContent = {
   metaTitle: "Free Claude Skill: Cold Outbound Sequence Writer | Grow & Close",
   metaDescription:
     "Free Claude skill that writes a complete 5-touch cold outbound sequence for one B2B SaaS segment — trigger-based, under 90 words per email, with a real point of view.",
+  cardSummary:
+    "Writes a complete 5-touch cold email + LinkedIn sequence for one segment — trigger-based, under 90 words per email, with a real point of view.",
   heroLead: "Outbound that reads like a colleague noticed something,",
   heroAccent: "not like a tool merged fields.",
   heroLede:
@@ -138,14 +144,14 @@ export const outboundSequenceWriter: SkillPageContent = {
     "Touch 1 · Subject: your sdr ramp · “You hired 4 SDRs in March — most teams that size lose month two to CRM setup, not selling. We wrote the ramp checklist we use with Series B teams. Want it?” · Why this works: names the trigger, gives before it asks.",
   steps: [
     { title: "Download and install", copy: "Get the .skill file by email and add it to Claude via Settings → Capabilities → Skills." },
-    { title: "Pass the prerequisites", copy: "The skill walks you through segment, trigger, point of view, and offer — the four things that decide reply rate before a word is written." },
+    { title: "Pass the prerequisites", copy: "The skill walks you through segment, trigger, point of view, and offer — the four inputs that matter most before a word is written." },
     { title: "Get the sequence", copy: "All five touches with subjects and rationale, personalization slots with example values, and the kill criteria for the angle." },
   ],
   faqs: [
     {
       question: "Why does the skill refuse to write without a trigger and POV?",
       answer:
-        "Because sequences without them are spam with good grammar. The trigger makes now the right time; the point of view gives the prospect something to react to. Those two inputs predict reply rate more than any copywriting trick.",
+        "Because sequences without them are spam with good grammar. The trigger makes now the right time; the point of view gives the prospect something to react to. In our experience those two inputs move reply rate more than any copywriting trick.",
     },
     {
       question: "What channels does the sequence cover?",
@@ -176,6 +182,8 @@ export const gtmDashboardSpec: SkillPageContent = {
   metaTitle: "Free Claude Skill: GTM Dashboard & Metrics Spec | Grow & Close",
   metaDescription:
     "Free Claude skill that designs a GTM dashboard spec for B2B SaaS: the questions to answer, exact metric definitions with formulas, sources, layout, and data gaps.",
+  cardSummary:
+    "Specs your GTM reporting before anyone opens Looker: the questions that matter, engineer-grade metric definitions, layout, and the data gaps.",
   heroLead: "A dashboard is a set of questions",
   heroAccent: "with numbers attached.",
   heroLede:
@@ -233,23 +241,25 @@ export const aeoPageAudit: SkillPageContent = {
   metaTitle: "Free Claude Skill: AEO Audit — Get Cited by ChatGPT | Grow & Close",
   metaDescription:
     "Free Claude skill that audits your site for answer-engine optimization: crawlability by AI bots, extractable answer structure, and what to change to earn citations.",
+  cardSummary:
+    "Audits any page across four layers — AI-bot access, extractability, answer quality, off-site signals — against the buyer prompts you want to win.",
   heroLead: "Answer engines don't rank pages.",
   heroAccent: "They extract answers and cite sources.",
   heroLede:
-    "A free Claude skill that audits any page across four layers — bot access, extractability, answer quality, and off-site surround sound — against the 3–5 buyer prompts you actually want to win.",
+    "A free Claude skill that audits any page across four layers — bot access, extractability, answer quality, and off-site mentions — against the 3–5 buyer prompts you want to win.",
   whatItDoes: [
     "Starts from target prompts, not keywords — which questions should this page win in ChatGPT and Perplexity",
     "Checks whether GPTBot, PerplexityBot, and ClaudeBot can read the page at all",
     "Audits extractability: answer-first structure, question-shaped headings, self-contained blocks, citable numbers",
     "Compares your answer against who gets cited today, and why",
-    "Ends with the one change most likely to earn a citation within 90 days",
+    "Ends with the single highest-leverage change to go after first",
   ],
   whoFor:
     "B2B SaaS marketers watching search traffic flatten while buyers ask ChatGPT what to buy — and anyone told to “do AEO” without a concrete definition of what that means.",
   inputExample:
     "A URL plus the 3–5 buyer prompts you want to own (or let the skill derive them). Live prompt-test results from ChatGPT/Perplexity make the audit sharper.",
   outputExample:
-    "Fix now: robots.txt blocks GPTBot — you've opted out of citations · Extractability: “How it works” section builds suspense for 4 paragraphs before the answer; move the answer to sentence one · 90-day play: publish the pricing-comparison table competitors won't",
+    "Fix now: robots.txt blocks GPTBot — you've opted out of citations · Extractability: “How it works” section builds suspense for 4 paragraphs before the answer; move the answer to sentence one · First play: publish the pricing-comparison table competitors won’t",
   steps: [
     { title: "Download and install", copy: "Get the .skill file by email and add it to Claude via Settings → Capabilities → Skills." },
     { title: "Define the prompts to own", copy: "The audit is judged against real buyer prompts — “best X for Y”, “how do I Z” — not abstract SEO scores." },
@@ -264,7 +274,7 @@ export const aeoPageAudit: SkillPageContent = {
     {
       question: "How do I get my company recommended by ChatGPT?",
       answer:
-        "Three things this skill audits: make your site readable to AI crawlers (no bot blocks, content in raw HTML), publish specific extractable answers to the prompts your buyers ask, and build surround sound — consistent entity descriptions and mentions in the comparison pages, directories, and communities models triangulate from.",
+        "Three things this skill audits: make your site readable to AI crawlers (no bot blocks, content in raw HTML), publish specific extractable answers to the prompts your buyers ask, and build consistent off-site mentions — the same company description in the comparison pages, directories, and communities models triangulate from.",
     },
     {
       question: "Does gated content hurt AEO?",
@@ -280,7 +290,7 @@ export const aeoPageAudit: SkillPageContent = {
   relatedService: {
     slug: "aeo-and-data-stories",
     name: "AEO & Data Stories",
-    pitch: "Want the citations engineered for you — original data assets and the off-site surround sound included?",
+    pitch: "Want the citations engineered for you — original data assets and the off-site mentions included?",
   },
 };
 

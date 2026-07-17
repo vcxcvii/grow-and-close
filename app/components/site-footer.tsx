@@ -30,12 +30,12 @@ export function SiteFooter({ id, pageEndId }: SiteFooterProps) {
           <span className="brand-name"><b>GROW</b><b><i>&amp;</i> CLOSE</b></span>
         </Link>
         <p>
-          The self-driving GTM company for the AI era. Agent-run execution.
-          Human-governed judgment.
+          Senior-led GTM execution for B2B SaaS. Your GTM backlog, shipped —
+          one motion at a time.
         </p>
         <div className="footer-status" aria-label="Grow and Close operating status">
           <span><i aria-hidden="true" /> SYSTEM ONLINE</span>
-          <strong>AI-MANAGED / HUMAN-GOVERNED</strong>
+          <strong>BUILT WITH AI / APPROVED BY HUMANS</strong>
         </div>
         <a className="footer-email" href="mailto:hello@growandclose.com">
           hello@growandclose.com
@@ -44,7 +44,7 @@ export function SiteFooter({ id, pageEndId }: SiteFooterProps) {
 
       <nav className="footer-links" aria-label="Footer navigation">
         <div>
-          <p>SERVICE SYSTEMS / 01-05</p>
+          <p>SERVICES / 01-05</p>
           {firstServiceColumn.map((service) => (
             <Link
               aria-label={`${service.title} service page (opens in a new tab)`}
@@ -58,7 +58,7 @@ export function SiteFooter({ id, pageEndId }: SiteFooterProps) {
           ))}
         </div>
         <div>
-          <p>SERVICE SYSTEMS / 06-09</p>
+          <p>SERVICES / 06-09</p>
           {secondServiceColumn.map((service) => (
             <Link
               aria-label={`${service.title} service page (opens in a new tab)`}
@@ -74,6 +74,7 @@ export function SiteFooter({ id, pageEndId }: SiteFooterProps) {
         <div>
           <p>COMPANY</p>
           <Link href="/about">About the company</Link>
+          <Link href="/skills">Free Claude skills</Link>
           <Link href="/services">All GTM services</Link>
           <Link href="/#workflow">How the system works</Link>
           <Link href="/#pricing">Plans</Link>
@@ -96,7 +97,7 @@ export function SiteFooter({ id, pageEndId }: SiteFooterProps) {
 
       <div className="footer-bottom" id={pageEndId}>
         <p>© {new Date().getFullYear()} Grow &amp; Close</p>
-        <p>HUMANS SET THE DESTINATION. AGENTS RUN THE LOOP.</p>
+        <p>SENIOR JUDGMENT. WEEKLY SHIPPING. NO LONG CONTRACT.</p>
       </div>
     </footer>
   );

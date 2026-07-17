@@ -10,7 +10,7 @@ export const serviceOfferings = [
     number: "02",
     slug: "landing-pages",
     title: "Landing pages",
-    description: "Turn one sharp story into qualified action.",
+    description: "Pages that convert because the argument holds.",
     href: "/services/landing-pages",
   },
   {
@@ -24,7 +24,7 @@ export const serviceOfferings = [
     number: "04",
     slug: "founder-led-content",
     title: "Founder-led content",
-    description: "Compound founder insight into owned demand.",
+    description: "Turn founder insight into an audience you own.",
     href: "/services/founder-led-content",
   },
   {
@@ -59,7 +59,7 @@ export const serviceOfferings = [
     number: "09",
     slug: "customer-advocacy",
     title: "Customer advocacy",
-    description: "Turn customer outcomes into proof that travels.",
+    description: "Catch customer wins. Turn them into usable proof.",
     href: "/services/customer-advocacy",
   },
 ] as const;

@@ -59,7 +59,7 @@ export default function SkillsHubPage() {
           <Link className="skills-hub-card" href={`/skills/${skill.slug}`} key={skill.slug}>
             <p className="section-kicker">SKILL {String(index + 1).padStart(2, "0")}</p>
             <h2>{skill.name}</h2>
-            <p>{skill.metaDescription.replace("Free Claude skill that ", "")}</p>
+            <p>{skill.cardSummary}</p>
             <span className="text-link">
               Get the skill <span aria-hidden="true">↗</span>
             </span>

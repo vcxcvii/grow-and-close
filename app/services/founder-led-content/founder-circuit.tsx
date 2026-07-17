@@ -7,7 +7,7 @@ import { useScrollDrivenStage } from "../use-scroll-driven-stage";
 const circuitStages = [
   {
     label: "Capture",
-    title: "Pull founder truth into a governed source.",
+    title: "Pull founder truth into one documented source.",
     copy: "Interviews, calls, product decisions, old writing, customer language, and proof become reusable context, not another disappearing brief.",
     inputs: "FOUNDER SOURCE",
     outputs: "VOICE SPEC · CLAIM LIBRARY",

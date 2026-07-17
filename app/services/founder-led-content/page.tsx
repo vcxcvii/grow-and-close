@@ -8,12 +8,12 @@ import { ServiceScrollCircuit } from "../service-scroll-circuit";
 import { FounderCircuit } from "./founder-circuit";
 
 export const metadata: Metadata = {
-  title: "Founder-led Content System | Grow & Close",
+  title: "Founder-led Content for B2B SaaS | Grow & Close",
   description:
     "Turn your founder's point of view into an owned audience. Voice capture, LinkedIn, visual content, newsletter growth, UGC, paid amplification, and learning in one connected loop.",
   alternates: { canonical: "/services/founder-led-content" },
   openGraph: {
-    title: "Turn founder insight into an audience you own.",
+    title: "Turn founder insight into an audience you own | Grow & Close",
     description:
       "A senior-led content, newsletter, UGC, distribution, and learning system for B2B SaaS founders.",
     url: "https://growandclose.com/services/founder-led-content",
@@ -30,7 +30,7 @@ const problems = [
   {
     number: "02",
     title: "Reach disappears after 48 hours.",
-    copy: "Good ideas get impressions, then vanish. No newsletter captures the audience. No archive compounds the thinking. The next post starts from zero.",
+    copy: "Good ideas get impressions, then vanish. No newsletter captures the audience. No archive builds on the thinking. The next post starts from zero.",
   },
   {
     number: "03",
@@ -84,7 +84,7 @@ const loopSteps = [
     number: "06",
     verb: "LEARN",
     title: "Let signals shape the next cycle",
-    copy: "Performance, replies, subscriber health, search demand, and pipeline context update the story map. Weak angles stop. Strong ones compound.",
+    copy: "Performance, replies, subscriber health, search demand, and pipeline context update the story map. Weak angles stop. Strong ones get another cycle.",
     output: "WEEKLY SIGNAL DIGEST · MONTHLY RETRO",
   },
 ];
@@ -184,7 +184,7 @@ export default function FounderLedContentPage() {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Founder-led Content System",
+    name: "Founder-led Content",
     description:
       "Turn your founder's point of view into an owned audience. Voice capture, LinkedIn, visual content, newsletter growth, UGC, paid amplification, and learning in one connected loop.",
     url: "https://growandclose.com/services/founder-led-content",
@@ -240,7 +240,7 @@ export default function FounderLedContentPage() {
           aria-label="Founder Signal System operating loop"
         >
           <div className="system-topline">
-            <span>FOUNDER SIGNAL SYSTEM / 01</span>
+            <span>FOUNDER-LED CONTENT / 04</span>
             <span className="live-dot">ACTIVE LOOP</span>
           </div>
           <p className="system-label">POINT OF VIEW</p>
@@ -290,9 +290,9 @@ export default function FounderLedContentPage() {
 
       <section className="workflow" id="loop">
         <div className="workflow-heading">
-          <p className="section-kicker section-kicker-light">THE FOUNDER SIGNAL SYSTEM</p>
+          <p className="section-kicker section-kicker-light">HOW THE PIECES CONNECT</p>
           <h2>One idea enters. A stronger system comes back.</h2>
-          <p>Each stage creates usable state for the next one. Content stops being a weekly production task and becomes a media, audience, and proof asset.</p>
+          <p>Each stage feeds the next. Content stops being a weekly production task and becomes an audience, a library of proof, and a channel you own.</p>
         </div>
         <div className="workflow-list">
           {loopSteps.map((step) => (
@@ -307,7 +307,7 @@ export default function FounderLedContentPage() {
       <section className="capabilities founder-voice">
         <div className="capability-title">
           <p className="section-kicker">NOT A GENERIC BRAND-VOICE PROMPT</p>
-          <h2>Your voice becomes a governed source system.</h2>
+          <h2>Your voice becomes a documented, reusable source.</h2>
         </div>
         <p className="founder-section-lede">Voice is not adjectives. We model the founder&apos;s recurring moves: how they open, reason, concede, reframe, use proof, name limits, and land the argument.</p>
         <div className="founder-layer-grid">

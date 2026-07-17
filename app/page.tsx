@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { serviceOfferings } from "./components/service-offerings";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
@@ -25,13 +26,13 @@ const motionExamples = [
     number: "02",
     glyph: "or",
     title: "Launch the motion",
-    copy: "Landing pages, outbound sequences, campaign assets, founder content, and enablement built as one connected system.",
+    copy: "Landing pages, outbound sequences, campaign assets, founder content, and enablement — built together, so they tell one story.",
   },
   {
     number: "03",
     glyph: "ship",
     title: "Learn and improve",
-    copy: "A clear ship log, useful signals, and the next best iteration, so execution compounds instead of resetting every month.",
+    copy: "A clear ship log, useful signals, and the next best iteration — so month two starts where month one finished, not from zero.",
   },
 ];
 
@@ -52,12 +53,12 @@ const audienceProblems = [
   {
     audience: "FOR FOUNDERS",
     title: "Marketing still lives in your head.",
-    copy: "Every campaign waits for you to brief it, review it, and connect the pieces. The business needs founder context without making you the production layer.",
+    copy: "Every campaign waits for you to brief it, review it, and connect the pieces. The business needs your context without needing your hands on every asset.",
   },
   {
     audience: "FOR CMOs",
     title: "The strategy is clear. Capacity is not.",
-    copy: "Your roadmap keeps losing to launches, sales requests, and quarter-end fire drills. The problem is not another plan. It is senior execution that can absorb a priority end to end.",
+    copy: "Your roadmap keeps losing to launches, sales requests, and quarter-end fire drills. You don’t need another plan. You need someone senior to take a priority and finish it.",
   },
   {
     audience: "FOR HEADS OF MARKETING",
@@ -82,7 +83,7 @@ const workflow = [
   {
     number: "03",
     title: "Review, learn, repeat",
-    copy: "You get a concise walkthrough and ship log. Feedback and real signals shape the next iteration, not a fresh round of agency theatre.",
+    copy: "You get a concise walkthrough and ship log. Feedback and real signals shape the next iteration, not a fresh round of agency theater.",
     meta: "FAST FEEDBACK · NO RESET",
   },
 ];
@@ -96,7 +97,7 @@ const faqs = [
   {
     question: "Is this an agency, consultancy, or AI service?",
     answer:
-      "A senior-led GTM execution studio. You get strategic judgment and direct collaboration, backed by specialist AI systems for research, drafting, design, analysis, and operations. The systems increase velocity; accountability stays human.",
+      "A senior-led GTM execution studio. You get strategic judgment and direct collaboration, backed by AI workflows we build ourselves for research, drafting, design, analysis, and operations. The tools make us faster; accountability stays human.",
   },
   {
     question: "What does unlimited backlog mean?",
@@ -130,8 +131,9 @@ export default function Home() {
           </h1>
           <p className="hero-lede">
             A senior execution pod for founders, CMOs, and Heads of Marketing who know
-            what needs to move, but lack the capacity to turn it into one coherent, live
-            pipeline motion.
+            what needs to move but lack the hands to ship it. We run one motion at a
+            time: a single GTM priority — page, outbound, content, reporting — built
+            end to end to an agreed finish line.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#first-ship">
@@ -141,7 +143,7 @@ export default function Home() {
               See monthly plans <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <p className="hero-note">Senior-led. AI-accelerated. No long contract.</p>
+          <p className="hero-note">Senior-led. Shipped weekly. No long contract.</p>
         </div>
 
         <MotionDemo />
@@ -216,7 +218,7 @@ export default function Home() {
       <section className="workflow" id="workflow">
         <div className="workflow-heading">
           <p className="section-kicker section-kicker-light">HOW WE WORK</p>
-          <h2>Simple enough to run. Serious enough to compound.</h2>
+          <h2>Simple enough to run. Serious enough to keep what it learns.</h2>
           <p>
             One backlog. A fixed amount of active work. Direct feedback. The operating
             model stays deliberately light so more energy reaches the market.
@@ -244,7 +246,7 @@ export default function Home() {
 
       <section className="capabilities" id="capabilities">
         <div className="capability-title">
-          <p className="section-kicker">THE CAPABILITY LAYER</p>
+          <p className="section-kicker">WHAT WE COVER</p>
           <h2>Everything needed to move one priority forward.</h2>
         </div>
         <div className="capability-grid" id="capability-logic">
@@ -277,16 +279,17 @@ export default function Home() {
       <section className="operating-model" id="studio">
         <div className="operator-copy">
           <p className="section-kicker section-kicker-light">HOW THE STUDIO RUNS</p>
-          <h2>Senior judgment upfront. Specialist systems underneath.</h2>
+          <h2>One senior owner. A decade of B2B SaaS behind every call.</h2>
           <p>
             Founders, CMOs, and Heads of Marketing work directly with Varun Choraria,
             former marketing leader at GTM Buddy. Every motion is guided by experienced
-            B2B SaaS judgment and accelerated by specialist AI systems for research,
-            writing, design, analysis, and operations.
+            B2B SaaS judgment and sped up by AI workflows we build and run ourselves —
+            for research, writing, design, analysis, and operations.
           </p>
           <p>
-            Today, that creates the output of a focused pod. Tomorrow, the same operating
-            model expands into a studio of GTM engineers and marketers.
+            Judge the bar before you pay for it: the{" "}
+            <Link href="/skills">free Claude skills</Link> we publish and this site are
+            the work. Both were built the way we&apos;d build yours.
           </p>
         </div>
         <div className="operator-diagram" aria-label="Senior operator coordinating specialist systems">
@@ -310,7 +313,7 @@ export default function Home() {
         <div className="pricing-heading">
           <p className="section-kicker">SIMPLE MONTHLY CAPACITY</p>
           <h2>Pick your shipping speed.</h2>
-          <p>Same senior ownership. Same capability layer. Different parallel capacity.</p>
+          <p>Same senior owner. Same nine services. Different parallel capacity.</p>
         </div>
         <div className="pricing-grid">
           <article className="price-card">

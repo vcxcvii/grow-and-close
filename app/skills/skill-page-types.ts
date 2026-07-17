@@ -3,6 +3,7 @@ export interface SkillPageContent {
   name: string;
   metaTitle: string;
   metaDescription: string;
+  cardSummary: string;
   heroLead: string;
   heroAccent: string;
   heroLede: string;

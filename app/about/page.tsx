@@ -8,7 +8,7 @@ import { ServiceScrollCircuit } from "../services/service-scroll-circuit";
 export const metadata: Metadata = {
   title: "About Grow & Close | The Self-Driving GTM Company",
   description:
-    "Grow & Close is building the self-driving agentic GTM company for the AI era: agent-run execution with human-governed judgment.",
+    "How Grow & Close runs: agents execute the GTM work, humans set direction, approve claims, and own the consequences.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Grow & Close | The Self-Driving GTM Company",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "About Grow & Close | The Self-Driving GTM Company",
-    description: "Agent-run execution. Human-governed judgment.",
+    description: "Agents execute. Humans decide, approve, and own the outcome.",
     images: ["/og.png"],
   },
 };
@@ -39,7 +39,7 @@ const mailtoHref =
 const agentLoop = [
   { number: "01", title: "Goal", copy: "A human names the commercial destination and constraints." },
   { number: "02", title: "Context", copy: "The system gathers customer, market, product, and performance state." },
-  { number: "03", title: "Plan", copy: "A manager agent decomposes the motion and routes specialist work." },
+  { number: "03", title: "Plan", copy: "A manager agent breaks the goal into tasks and routes specialist work." },
   { number: "04", title: "Build", copy: "Agents research, write, design, implement, and operate in parallel." },
   { number: "05", title: "Verify", copy: "Checks test the claim, artifact, route, behavior, and finish line." },
   { number: "06", title: "Ship", copy: "Reversible work moves. Material actions pass the right human gate." },
@@ -77,7 +77,7 @@ const autonomyLedger = [
       "Always-on ingestion of market, customer, sales, and performance signals",
       "Event-triggered GTM work against explicit goals and permissions",
       "Benchmarked workflows that improve from verified outcomes",
-      "Governed autonomy that expands only when the evidence earns it",
+      "Autonomy that expands only when the evidence earns it",
     ],
   },
 ] as const;
@@ -106,7 +106,7 @@ export default function AboutPage() {
           <p className="hero-lede">
             Grow &amp; Close is building the self-driving agentic GTM company for the AI
             era. Give the system a commercial destination. Agents gather context, plan
-            the motion, make the work, check the result, and return the next decision.
+            the work, build it, check the result, and return the next decision.
             Humans set direction, grant authority, and own the consequences.
           </p>
           <div className="hero-actions">
@@ -231,7 +231,7 @@ export default function AboutPage() {
             with AI agents. A human defines the brief, chooses what should be true,
             reviews material claims, and authorizes production releases.
           </p>
-          <strong>AI-MANAGED SITE / HUMAN-GOVERNED RELEASE</strong>
+          <strong>AI-BUILT SITE / HUMAN-APPROVED RELEASE</strong>
         </div>
         <div className="about-proof-log" role="table" aria-label="Website operating proof">
           <div role="row"><span role="cell">01</span><b role="cell">RESEARCH</b><p role="cell">Brand, references, repository, live behavior</p><strong role="cell">AGENTS</strong></div>
@@ -243,7 +243,7 @@ export default function AboutPage() {
 
       <section className="about-ledger" data-service-circuit-target>
         <header>
-          <p className="section-kicker">THE AUTONOMY LEDGER</p>
+          <p className="section-kicker">WHAT RUNS WHERE</p>
           <h2>A category claim should come with a truth table.</h2>
           <p>
             We will not hide a manual service behind an AI label. This is what runs now,

@@ -27,7 +27,7 @@ export function SiteHeader({
           <summary>Services <span aria-hidden="true">+</span></summary>
           <div className="services-mega">
             <div className="services-mega-heading">
-              <p>THE CAPABILITY LAYER</p>
+              <p>ALL NINE SERVICES</p>
               <strong>Pick the outcome. We connect the motion.</strong>
             </div>
             <div className="services-mega-grid">

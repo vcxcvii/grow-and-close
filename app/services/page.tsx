@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "B2B SaaS GTM Services | Grow & Close",
     description:
-      "Choose the GTM bottleneck. Grow & Close builds the connected strategy, assets, activation, and learning loop needed to move it.",
+      "Nine GTM services, one senior owner: strategy, assets, activation, and measurement built together around one pipeline priority.",
     images: [
       {
         url: "/og.png",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "B2B SaaS GTM Services | Grow & Close",
     description:
-      "Choose the GTM bottleneck. We build the connected motion needed to move it.",
+      "Senior-led B2B SaaS GTM services: positioning, landing pages, outbound, AEO, campaigns, dashboards, and customer advocacy under one owner.",
     images: ["/og.png"],
   },
 };
@@ -48,29 +48,29 @@ const serviceGroups = [
       {
         number: "01",
         title: "Positioning & messaging",
-        system: "Market Signal System",
+        system: "One story everywhere",
         href: "/services/positioning-and-messaging",
         copy:
-          "Turn customer language, product truth, competitor patterns, founder conviction, and sales friction into one governed commercial story.",
+          "Turn customer language, product truth, competitor patterns, founder conviction, and sales friction into one story every page and rep repeats.",
         bestWhen:
           "Your homepage, pitch, campaigns, and sales calls describe different versions of the company.",
-        leaves: "Positioning record · message architecture · evidence ledger",
+        leaves: "Positioning record · message architecture · evidence log",
       },
       {
         number: "07",
         title: "Campaign strategy",
-        system: "Campaign Operating System",
+        system: "One idea, every channel",
         href: "/services/campaign-strategy",
         copy:
-          "Turn one commercial bet into a coordinated campaign with a clear audience, offer, channel role, proof path, and learning contract.",
+          "Turn one commercial bet into a coordinated campaign with a clear audience, offer, a distinct job per channel, and rules for what happens next.",
         bestWhen:
           "A launch has a calendar and asset list, but no shared reason it should change buyer behavior.",
-        leaves: "Campaign architecture · activation plan · learning ledger",
+        leaves: "Campaign architecture · activation plan · learning log",
       },
       {
         number: "08",
         title: "GTM dashboards",
-        system: "Decision Dashboard System",
+        system: "Decisions, not tours",
         href: "/services/gtm-dashboards",
         copy:
           "Connect commercial questions, trustworthy definitions, source data, operating context, and review cadence into decisions teams can act on.",
@@ -83,36 +83,36 @@ const serviceGroups = [
   {
     number: "02",
     label: "ACTIVATE THE BUYER JOURNEY",
-    title: "Move the argument into qualified action.",
+    title: "Move the argument into pipeline.",
     lede:
       "Use this layer when the story is credible but pages, outbound, and live deals fail to carry it through the next buyer decision.",
     services: [
       {
         number: "02",
         title: "Landing pages",
-        system: "Page Learning System",
+        system: "Pages that convert",
         href: "/services/landing-pages",
         copy:
-          "Connect traffic intent, one sharp argument, proof, interaction, responsive build quality, and measurement into a page that learns.",
+          "Connect traffic intent, one sharp argument, proof, interaction, and measurement into a page that converts and tells you what to fix next.",
         bestWhen:
-          "Traffic reaches the page, but qualified action stays weak and nobody can explain which belief broke.",
-        leaves: "Page argument map · live-ready page · experiment ledger",
+          "Traffic reaches the page, but signups and demos stay flat and nobody can explain which belief broke.",
+        leaves: "Page argument map · live-ready page · experiment log",
       },
       {
         number: "03",
         title: "Outbound activation",
-        system: "Signal-to-Conversation System",
+        system: "Replies, not volume",
         href: "/services/outbound-activation",
         copy:
           "Connect ICP choices, timely account signals, focused research, human-approved messaging, and sales feedback into relevant conversations.",
         bestWhen:
           "Sequences create activity, but account fit, timing, relevance, and reply learning remain disconnected.",
-        leaves: "Signal model · message paths · reply learning loop",
+        leaves: "Account rules · message paths · reply learning",
       },
       {
         number: "06",
         title: "Sales enablement",
-        system: "Deal Momentum System",
+        system: "Deals that keep moving",
         href: "/services/sales-enablement",
         copy:
           "Turn the commercial story, buyer context, proof, objections, and deal signals into guidance that helps the next conversation move.",
@@ -124,7 +124,7 @@ const serviceGroups = [
   },
   {
     number: "03",
-    label: "COMPOUND AUTHORITY AND PROOF",
+    label: "BUILD AUTHORITY AND PROOF",
     title: "Build demand assets that keep working after the post or campaign.",
     lede:
       "Use this layer when expertise, search demand, product evidence, and customer outcomes exist but do not accumulate into durable trust.",
@@ -132,10 +132,10 @@ const serviceGroups = [
       {
         number: "04",
         title: "Founder-led content",
-        system: "Founder Signal System",
+        system: "An audience you own",
         href: "/services/founder-led-content",
         copy:
-          "Extract founder thinking into a governed voice system, newsletter, social formats, audience loop, customer proof, and paid amplification.",
+          "Turn founder thinking into a documented voice, newsletter, social formats, customer proof, and paid amplification that grow one audience.",
         bestWhen:
           "The founder has a differentiated point of view, but content still depends on inspiration, ghostwritten imitation, or isolated posts.",
         leaves: "Voice model · owned media engine · audience and UGC loop",
@@ -143,7 +143,7 @@ const serviceGroups = [
       {
         number: "05",
         title: "AEO & data stories",
-        system: "Citation Engine",
+        system: "Cited by AI search",
         href: "/services/aeo-and-data-stories",
         copy:
           "Turn buyer questions, expert knowledge, original evidence, answer structure, and distribution into useful pages worth citing.",
@@ -154,13 +154,13 @@ const serviceGroups = [
       {
         number: "09",
         title: "Customer advocacy",
-        system: "Customer Evidence System",
+        system: "Proof you can use",
         href: "/services/customer-advocacy",
         copy:
-          "Connect happy moments, well-timed asks, explicit consent, verified evidence, recognition, and channel routing into proof that travels.",
+          "Catch customer wins, make the right ask, capture consented proof, and route it to the pages, decks, and campaigns that need it.",
         bestWhen:
           "Customer wins appear in calls and private messages, then disappear before marketing and sales can use them responsibly.",
-        leaves: "Ask model · permissioned evidence ledger · proof deployment",
+        leaves: "Ask model · permissioned evidence log · proof deployment",
       },
     ],
   },
@@ -183,7 +183,7 @@ const selectionSignals = [
     label: "TRUST RESETS EVERY QUARTER",
     title: "Start with the compounding asset.",
     copy:
-      "Choose founder-led content for owned audience, AEO and data stories for discoverable expertise, or customer advocacy when customer outcomes need to become permissioned proof across the GTM motion.",
+      "Choose founder-led content for owned audience, AEO and data stories for discoverable expertise, or customer advocacy when customer outcomes need to become permissioned proof your pages, decks, and campaigns can use.",
   },
 ] as const;
 
@@ -191,7 +191,7 @@ const faqs = [
   {
     question: "Are these separate agency retainers?",
     answer:
-      "No. They are capability systems inside one senior-led GTM execution model. You choose the commercial bottleneck and finish line. We combine the services needed to move that priority instead of forcing the work into one departmental box.",
+      "No. They are nine services inside one senior-led GTM execution model. You choose the commercial bottleneck and finish line. We combine the services needed to move that priority instead of forcing the work into one departmental box.",
   },
   {
     question: "Which B2B SaaS GTM service should we start with?",
@@ -211,7 +211,7 @@ const faqs = [
   {
     question: "How does AI fit into the service?",
     answer:
-      "Specialist AI systems accelerate research, synthesis, drafting, design exploration, analysis, and operations. Senior human judgment governs the commercial choices, source quality, approval, and final work. We do not sell unattended automation as strategy.",
+      "AI workflows we build ourselves speed up research, synthesis, drafting, design exploration, analysis, and operations. A senior human makes the commercial choices, checks the sources, and approves the final work. We do not sell unattended automation as strategy.",
   },
 ] as const;
 
@@ -227,7 +227,7 @@ export default function ServicesPage() {
             <Link href="/">Home</Link><span aria-hidden="true">/</span><span>Services</span>
           </nav>
           <p className="eyebrow">B2B SAAS GTM SERVICES</p>
-          <h1>Choose the bottleneck.<span>We build the connected motion.</span></h1>
+          <h1>Choose the bottleneck.<span>We ship what moves it.</span></h1>
           <p className="hero-lede">
             Grow &amp; Close is a senior-led GTM execution studio for founders, CMOs,
             and lean B2B SaaS marketing teams. We connect strategy, copy, design,
@@ -245,16 +245,16 @@ export default function ServicesPage() {
           data-service-circuit-start
           aria-label="Grow and Close service architecture"
         >
-          <div className="system-topline"><span>GTM MOTION ARCHITECTURE / 09</span><span className="live-dot">CONNECTED</span></div>
+          <div className="system-topline"><span>NINE SERVICES / ONE OWNER</span><span className="live-dot">ACTIVE</span></div>
           <p className="system-label">ONE COMMERCIAL PRIORITY</p>
           <div className="services-hub-system-flow">
             <div><span>01</span><b>DEFINE</b><small>Argument + decision</small></div>
             <i aria-hidden="true" />
             <div><span>02</span><b>ACTIVATE</b><small>Journey + action</small></div>
             <i aria-hidden="true" />
-            <div><span>03</span><b>COMPOUND</b><small>Authority + proof</small></div>
+            <div><span>03</span><b>PROVE</b><small>Authority + proof</small></div>
           </div>
-          <div className="ship-ticket"><span>OPERATING RETURN</span><strong>LIVE SIGNALS + NEXT DECISION</strong><span>Loop / active</span></div>
+          <div className="ship-ticket"><span>EVERY MOTION ENDS WITH</span><strong>SOMETHING LIVE + THE NEXT DECISION</strong><span>Weekly</span></div>
         </div>
       </section>
 
@@ -368,7 +368,7 @@ export default function ServicesPage() {
 
       <section className="closing services-hub-closing" data-service-circuit-target>
         <p className="section-kicker section-kicker-light">START WITH THE CONSTRAINT, NOT THE SERVICE NAME</p>
-        <h2>Bring one GTM priority. Leave with the motion it actually needs.</h2>
+        <h2>Bring one GTM priority. Your GTM backlog, shipped.</h2>
         <a className="button button-accent" href={diagnosticHref}>Map my GTM bottleneck</a>
       </section>
 

@@ -52,7 +52,7 @@ export function RelatedLinks({ currentSlug, skill }: RelatedLinksProps) {
         )}
         <Link href="/pricing">See pricing <span aria-hidden="true">↗</span></Link>
         <Link href="/services">All nine problems we take on <span aria-hidden="true">↗</span></Link>
-        <Link href="/contact">Book a call <span aria-hidden="true">↗</span></Link>
+        <Link href="/book-a-call">Book a call <span aria-hidden="true">↗</span></Link>
       </div>
     </section>
   );

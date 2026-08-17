@@ -6,6 +6,7 @@
 @import "./skills/skills.css";
 @import "./about/about.css";
 @import "./disclaimer/disclaimer.css";
+@import "./book-a-call/book-a-call.css";
 @import "./components/site-additions.css";
 
 :root {
@@ -27,6 +28,7 @@
 html {
   scroll-behavior: smooth;
   background: var(--paper);
+  overflow-x: clip;
 }
 
 body {
@@ -993,6 +995,10 @@ summary:focus-visible {
 }
 
 .capability-item:hover .capability-number {
+  color: var(--electric-light);
+}
+
+.capability-item:hover .circuit-card-node {
   color: var(--electric-light);
 }
 

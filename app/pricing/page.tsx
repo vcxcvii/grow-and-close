@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { JsonLd } from "../components/json-ld";
+import { pricingPlans } from "../components/pricing-plans";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { bookingHref } from "../site";
@@ -10,19 +11,17 @@ import { RelatedLinks } from "../components/related-links";
 export const metadata: Metadata = {
   title: "Pricing | GTM Execution for B2B SaaS | Grow & Close",
   description:
-    "Grow & Close pricing: a fixed-scope GTM Reset sprint at $3,000, and monthly execution from $3,500. One senior owner, weekly shipping, no long contract.",
+    "Grow & Close pricing: a fixed-scope GTM Reset sprint at $3,000, and monthly execution from $3,500. One senior owner, weekly shipping, month-to-month.",
   alternates: { canonical: "/pricing" },
   openGraph: {
     title: "Pricing | Grow & Close",
     description:
-      "A $3,000 fixed-scope GTM sprint, or monthly execution from $3,500. No long contract.",
+      "A $3,000 fixed-scope GTM sprint, or monthly execution from $3,500. Month-to-month, built to renew.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Grow & Close pricing" }],
   },
 };
 
 const sprintHref = bookingHref("GTM Reset sprint: the priority I want shipped in 10 days");
-const oneHref = bookingHref("Pipeline One: one active motion, $3,500 per month");
-const teamHref = bookingHref("Pipeline Team: two active motions, $7,000 per month");
 
 const faqs = [
   {
@@ -94,7 +93,7 @@ export default function PricingPage() {
           needs to move, and a monthly engagement when the queue never empties. Same
           senior owner either way.
         </p>
-        <small>PRICES IN USD · NO LONG CONTRACT · PAUSE ANY MONTH</small>
+        <small>PRICES IN USD · MONTH-TO-MONTH · PAUSE ANY MONTH</small>
       </section>
 
       <section className="pricing" id="plans">
@@ -121,47 +120,25 @@ export default function PricingPage() {
             <a className="button button-accent" href={sprintHref}>Book a call about the sprint</a>
           </article>
 
-          <article className="price-card">
-            <div className="price-topline">
-              <span>PIPELINE ONE</span>
-              <span>1 ACTIVE MOTION</span>
-            </div>
-            <h3>$3,500<span>/month</span></h3>
-            <p className="price-description">
-              For a founder or lean marketing owner who needs one important GTM priority
-              moving every week.
-            </p>
-            <ul>
-              <li>One active motion at a time</li>
-              <li>Unlimited prioritized backlog</li>
-              <li>Weekly shipping and ship log</li>
-              <li>Slack collaboration</li>
-              <li>Monthly priority planning</li>
-              <li>Pause or cancel monthly</li>
-            </ul>
-            <a className="button button-dark" href={oneHref}>Book a call about Pipeline One</a>
-          </article>
-
-          <article className="price-card">
-            <div className="price-topline">
-              <span>PIPELINE TEAM</span>
-              <span>2 ACTIVE MOTIONS</span>
-            </div>
-            <h3>$7,000<span>/month</span></h3>
-            <p className="price-description">
-              For small GTM teams that need two workstreams moving without adding another
-              layer of management.
-            </p>
-            <ul>
-              <li>Two parallel motions</li>
-              <li>Unlimited prioritized backlog</li>
-              <li>Weekly operating review</li>
-              <li>Reporting dashboard</li>
-              <li>Multi-stakeholder coordination</li>
-              <li>Monthly GTM planning</li>
-            </ul>
-            <a className="button button-dark" href={teamHref}>Book a call about Pipeline Team</a>
-          </article>
+          {pricingPlans.map((plan) => (
+            <article className="price-card" key={plan.id}>
+              {plan.badge ? <div className="popular-tag">{plan.badge}</div> : null}
+              <div className="price-topline">
+                <span>{plan.name}</span>
+                <span>{plan.topline}</span>
+              </div>
+              <h3>{`$${plan.price.toLocaleString("en-US")}`}<span>/month</span></h3>
+              <p className="price-description">{plan.description}</p>
+              <ul>
+                {plan.features.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
+              <a className="button button-dark" href={bookingHref(plan.ctaTopic)}>
+                Book a call about {plan.label}
+              </a>
+            </article>
+          ))}
         </div>
         <p className="pricing-footnote">
           Both monthly plans access all nine services. You are choosing capacity, not a

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { pricingPlans } from "./components/pricing-plans";
 import { serviceOfferings } from "./components/service-offerings";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
@@ -111,7 +112,7 @@ const faqs = [
   {
     question: "Can I pause or cancel?",
     answer:
-      "Yes. No long contract. Pause when the backlog is light or cancel before the next billing cycle. The model should earn renewal through useful work, not lock-in.",
+      "Month-to-month, built to earn renewal every cycle. Pause when the backlog is light, or cancel before the next billing cycle if it is not working.",
   },
 ];
 
@@ -144,7 +145,7 @@ export default function Home() {
               See plans and pricing <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <p className="hero-note">One senior owner. Shipped weekly. No long contract.</p>
+          <p className="hero-note">One senior owner. Shipped weekly. Built to renew.</p>
         </div>
 
         <div className="hero-levers" aria-label="The four levers we work on">
@@ -316,52 +317,31 @@ export default function Home() {
           <p>Same senior owner. Same nine services. Different parallel capacity.</p>
         </div>
         <div className="pricing-grid">
-          <article className="price-card">
-            <div className="price-topline">
-              <span>PIPELINE ONE</span>
-              <span>1 ACTIVE MOTION</span>
-            </div>
-            <h3>$3,500<span>/month</span></h3>
-            <p className="price-description">
-              For a founder or lean Head of Marketing who needs one important GTM
-              priority moving every week.
-            </p>
-            <ul>
-              <li>One active pipeline motion</li>
-              <li>Unlimited prioritized backlog</li>
-              <li>Weekly shipping + ship log</li>
-              <li>Slack collaboration</li>
-              <li>Monthly priority planning</li>
-              <li>Pause or cancel monthly</li>
-            </ul>
-            <a className="button button-dark" href={bookingHref("Pipeline One: one active motion, $3,500 per month")}>
-              Book a call about Pipeline One
-            </a>
-          </article>
-
-          <article className="price-card price-card-featured">
-            <div className="popular-tag">FOR SMALL GTM TEAMS</div>
-            <div className="price-topline">
-              <span>PIPELINE TEAM</span>
-              <span>2 ACTIVE MOTIONS</span>
-            </div>
-            <h3>$7,000<span>/month</span></h3>
-            <p className="price-description">
-              For CMOs and small marketing teams that need two workstreams moving
-              without adding another layer of management.
-            </p>
-            <ul>
-              <li>Two parallel pipeline motions</li>
-              <li>Unlimited prioritized backlog</li>
-              <li>Weekly operating review</li>
-              <li>Reporting dashboard</li>
-              <li>Multi-stakeholder coordination</li>
-              <li>Monthly GTM planning</li>
-            </ul>
-            <a className="button button-accent" href={bookingHref("Pipeline Team: two active motions, $7,000 per month")}>
-              Book a call about Pipeline Team
-            </a>
-          </article>
+          {pricingPlans.map((plan) => (
+            <article
+              className={plan.featured ? "price-card price-card-featured" : "price-card"}
+              key={plan.id}
+            >
+              {plan.badge ? <div className="popular-tag">{plan.badge}</div> : null}
+              <div className="price-topline">
+                <span>{plan.name}</span>
+                <span>{plan.topline}</span>
+              </div>
+              <h3>{`$${plan.price.toLocaleString("en-US")}`}<span>/month</span></h3>
+              <p className="price-description">{plan.description}</p>
+              <ul>
+                {plan.features.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
+              <a
+                className={plan.featured ? "button button-accent" : "button button-dark"}
+                href={bookingHref(plan.ctaTopic)}
+              >
+                Book a call about {plan.label}
+              </a>
+            </article>
+          ))}
         </div>
         <p className="pricing-footnote">
           Need a fixed starting point? Ask about the two-week positioning and messaging sprint.
@@ -380,7 +360,7 @@ export default function Home() {
           <a className="button button-primary" href={bookingHref("One GTM priority shipped free: our biggest bottleneck")}>
             Book a call with the founder
           </a>
-          <small>B2B SaaS only · $3,000 fixed-scope sprint · no long contract</small>
+          <small>B2B SaaS only · $3,000 fixed-scope sprint · month-to-month after</small>
         </div>
         <div className="first-ship-options">
           <p>MOST CALLS START HERE</p>

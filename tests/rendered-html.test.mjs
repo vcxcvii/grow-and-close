@@ -105,10 +105,10 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /href="\/about"/);
   assert.match(html, /href="\/disclaimer"/);
   assert.match(html, /hello@growandclose\.com/);
-  assert.match(html, /cal\.com\/varun-choraria\/30min/);
+  assert.match(html, /href="\/book-a-call\?topic=/);
   assert.match(html, /href="\/pricing"/);
-  assert.match(html, /href="\/contact"/);
   assert.match(html, /href="\/privacy"/);
+  assert.doesNotMatch(html, /no long contract/i);
   assert.doesNotMatch(html, /target="_blank"[^>]*>\s*<span>0/);
   assert.equal((html.match(/href="mailto:[^"]*\?subject/g) ?? []).length, 0);
   assert.doesNotMatch(html, /—/);
@@ -207,7 +207,7 @@ test("server-renders every service system with a unique diagnostic", async () =>
     assert.match(html, new RegExp(headline, "i"), slug);
     assert.match(html, /THE OFFER · \$3,000 · 10 WORKING DAYS/, slug);
     assert.match(html, /Book a call with the founder/, slug);
-    assert.match(html, /cal\.com\/varun-choraria\/30min/, slug);
+    assert.match(html, /href="\/book-a-call\?topic=/, slug);
     assert.match(html, /WHAT COMPOUNDS/, slug);
     assert.match(html, /A TYPICAL FIRST 30 DAYS/, slug);
     assert.match(html, /GROW &amp; CLOSE OWNS/, slug);
@@ -238,6 +238,11 @@ test("brand colors preserve accessible text pairings", async () => {
   assert.match(globals, /--ink:\s*#090a0c/);
   assert.match(globals, /--paper:\s*#f6f7fb/);
   assert.match(globals, /--electric:\s*#0b4fe8/);
+  // `body` had overflow-x: clip but `html` didn't, and Chromium measures
+  // document.documentElement.scrollWidth off the html box, not body's, so an
+  // absolutely-positioned decorative bleed (e.g. .footer-logic) still forced
+  // a horizontal scrollbar on narrow viewports despite body's own clip.
+  assert.match(globals, /html\s*\{[^}]*overflow-x:\s*clip;/s);
   assert.match(layout, /IBM_Plex_Sans/);
   assert.match(layout, /IBM_Plex_Mono/);
   assert.match(globals, /@import "\.\/components\/site-header\.css"/);
@@ -259,6 +264,15 @@ test("brand colors preserve accessible text pairings", async () => {
   assert.ok(contrastRatio("#565b66", "#f6f7fb") >= 4.5);
   assert.ok(contrastRatio("#8aabff", "#090a0c") >= 4.5);
   assert.match(css, /\.closing \.button\s*\{[^}]*color: white;/s);
+
+  // The logic-gate glyph sets its own `color` directly, so it never inherits
+  // .capability-item:hover's white text. It needs its own hover override, or
+  // the wire strokes (stroke: currentColor) stay near-black on the new black
+  // background and disappear.
+  assert.match(
+    globals,
+    /\.capability-item:hover \.circuit-card-node\s*\{\s*color: var\(--electric-light\);/,
+  );
 });
 
 test("service copy stays specific, governed, and free of stale brand rules", async () => {
@@ -304,6 +318,21 @@ test("navigation disclosures close predictably and keep mobile priorities explic
   assert.ok(header.indexOf('href="/about"') < header.indexOf('className="services-menu"'));
   assert.match(css, /\.services-home-link\s*\{[^}]*font-size:\s*12px[^}]*min-height:\s*52px/s);
   assert.match(css, /\.menu-toggle\s*\{[^}]*min-height:\s*44px[^}]*min-width:\s*44px/s);
+
+  // Clicking dead space inside an open panel (heading, padding, gaps between
+  // tiles) must close it too, not just clicks fully outside <header>. Both
+  // toggle buttons must stop propagation so opening a menu doesn't
+  // immediately close itself via the new header-level handler.
+  assert.match(header, /<header\b[^>]*onClick=\{/s);
+  const stopPropagationCount = (header.match(/event\.stopPropagation\(\)/g) ?? []).length;
+  assert.equal(stopPropagationCount, 2);
+  assert.match(header, /serviceLeverGroups/);
+  assert.match(
+    css,
+    /\.services-mega-group > a:hover \.services-mega-tile-lever[\s\S]*?color: var\(--electric-light\);/,
+  );
+  assert.match(css, /\.services-mega-group\s*\{/);
+  assert.doesNotMatch(css, /\.site-header-services \.header-cta\s*\{[^}]*display:\s*none/s);
 });
 
 test("brand system ships deterministic reusable assets", async () => {
@@ -365,23 +394,33 @@ test("server-renders the pricing page with plans, schema, and one booking path",
   assert.match(html, /\$7,000/);
   assert.match(html, /FAQPage/);
   assert.match(html, /BreadcrumbList/);
-  assert.match(html, /cal\.com\/varun-choraria\/30min/);
+  assert.match(html, /href="\/book-a-call\?topic=/);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
   assert.doesNotMatch(html, /—/);
+  assert.doesNotMatch(html, /no long contract/i);
+  assert.doesNotMatch(html, /FOR SMALL GTM TEAMS|lean Head of Marketing|CMOs and small marketing teams/);
 });
 
-test("server-renders the contact page with a calendar, an email, and a free option", async () => {
-  const response = await render("http://localhost/contact");
+test("server-renders the book-a-call page with an embedded calendar, an email, and proof", async () => {
+  const response = await render("http://localhost/book-a-call");
   assert.equal(response.status, 200);
 
   const html = await response.text();
-  assert.match(html, /<title>Contact \| Grow &amp; Close<\/title>/i);
+  assert.match(html, /<title>Book a Call \| Grow &amp; Close<\/title>/i);
   assert.match(html, /cal\.com\/varun-choraria\/30min/);
   assert.match(html, /hello@growandclose\.com/);
   assert.match(html, /ContactPage/);
   assert.match(html, /href="\/skills"/);
+  assert.match(html, /Replies within one working day/i);
+  assert.match(html, /AI-assisted delivery, human-approved before release/i);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
   assert.doesNotMatch(html, /—/);
+});
+
+test("/contact redirects to /book-a-call", async () => {
+  const response = await render("http://localhost/contact");
+  assert.equal(response.status, 307);
+  assert.equal(response.headers.get("location"), "http://localhost/book-a-call");
 });
 
 test("server-renders privacy and terms before any email capture runs", async () => {
@@ -406,7 +445,7 @@ test("the sitemap publishes real modification dates and the new routes", async (
 
   assert.doesNotMatch(sitemap, /lastModified:\s*now/);
   assert.doesNotMatch(sitemap, /const now = new Date\(\)/);
-  for (const route of ["/pricing", "/contact", "/privacy", "/terms"]) {
+  for (const route of ["/pricing", "/book-a-call", "/privacy", "/terms"]) {
     assert.ok(sitemap.includes(`${route}\``) || sitemap.includes(route), route);
   }
 });

@@ -1,0 +1,156 @@
+.book-page .legal-hero {
+  background: var(--paper);
+}
+
+.proof-strip {
+  border-bottom: 1px solid var(--ink);
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.proof-item {
+  border-right: 1px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(28px, 4vw, 44px) clamp(20px, 3vw, 40px);
+}
+
+.proof-item:last-child {
+  border-right: 0;
+}
+
+.proof-item b {
+  font-size: clamp(18px, 1.8vw, 22px);
+  letter-spacing: -0.02em;
+}
+
+.proof-item p {
+  color: var(--muted);
+  margin: 0;
+  max-width: 40ch;
+}
+
+.proof-item a {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  margin-top: auto;
+  text-transform: uppercase;
+}
+
+.process-steps {
+  border-bottom: 1px solid var(--ink);
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: clamp(48px, 6vw, 88px) clamp(20px, 4vw, 72px);
+}
+
+.process-steps > div {
+  padding-right: clamp(16px, 2vw, 32px);
+}
+
+.process-number {
+  color: var(--electric);
+  display: block;
+  font-family: var(--mono);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+
+.process-steps h3 {
+  font-size: clamp(19px, 2vw, 24px);
+  letter-spacing: -0.025em;
+  margin: 0 0 10px;
+}
+
+.process-steps p {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.book-embed {
+  padding: clamp(40px, 6vw, 88px) clamp(20px, 4vw, 72px);
+}
+
+.book-embed-heading {
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+
+.book-embed-heading h2 {
+  font-size: clamp(28px, 3vw, 44px);
+  letter-spacing: -0.04em;
+  margin: 12px 0 0;
+}
+
+.book-embed-frame {
+  border: 1px solid var(--ink);
+  height: 780px;
+  overflow: auto;
+  width: 100%;
+}
+
+.book-fallback {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  gap: 6px 18px;
+  margin-top: 20px;
+}
+
+.book-fallback a {
+  font-weight: 650;
+}
+
+.book-notes {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  display: grid;
+  font-size: 12px;
+  gap: 6px;
+  line-height: 1.5;
+  margin-top: 28px;
+  max-width: 60ch;
+  padding-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .proof-strip,
+  .process-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-item {
+    border-bottom: 1px solid var(--ink);
+    border-right: 0;
+  }
+
+  .proof-item:last-child {
+    border-bottom: 0;
+  }
+
+  .process-steps > div {
+    border-top: 1px solid var(--line);
+    padding-right: 0;
+    padding-top: 24px;
+  }
+
+  .process-steps > div:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .book-embed-frame {
+    height: 640px;
+  }
+}

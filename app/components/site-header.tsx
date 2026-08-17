@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { serviceOfferings } from "./service-offerings";
+import { serviceLeverGroups } from "./service-lever-groups";
 
 interface SiteHeaderProps {
   activeService?: string;
@@ -59,7 +59,13 @@ export function SiteHeader({
   };
 
   return (
-    <header className="site-header site-header-services" ref={headerRef}>
+    <header
+      className="site-header site-header-services"
+      onClick={() => {
+        if (navOpen || servicesOpen) closeMenu();
+      }}
+      ref={headerRef}
+    >
       <Link className="brand" href={homeHref} aria-label="Grow and Close home" onClick={closeMenu}>
         <span className="brand-glyph" aria-hidden="true"><b>G</b><i /><b>C</b></span>
         <span className="brand-name"><b>GROW</b><b><i>&amp;</i> CLOSE</b></span>
@@ -78,7 +84,10 @@ export function SiteHeader({
             aria-controls="services-mega-menu"
             aria-expanded={servicesOpen}
             className="services-trigger"
-            onClick={() => setServicesOpen((open) => !open)}
+            onClick={(event) => {
+              event.stopPropagation();
+              setServicesOpen((open) => !open);
+            }}
             ref={servicesTriggerRef}
             type="button"
           >
@@ -90,22 +99,25 @@ export function SiteHeader({
                 <p>START FROM THE PROBLEM</p>
                 <strong>Tell us what is stuck. We ship the fix.</strong>
               </div>
-              <div className="services-mega-grid">
-                {serviceOfferings.map((service) => (
-                  <Link
-                    aria-label={`${service.title} service page`}
-                    aria-current={activeService === service.slug ? "page" : undefined}
-                    className={activeService === service.slug ? "is-current" : undefined}
-                    href={service.href}
-                    key={service.slug}
-                    onClick={closeMenu}
-                  >
-                    <span>{service.lever}</span>
-                    <div>
-                      <b>{service.problem}</b>
-                      <small>{service.title}. {service.description}</small>
-                    </div>
-                  </Link>
+              <div className="services-mega-groups">
+                {serviceLeverGroups.map((group) => (
+                  <div className="services-mega-group" key={group.label}>
+                    <p className="services-mega-group-label">{group.label}</p>
+                    {group.services.map((service) => (
+                      <Link
+                        aria-label={`${service.title} service page`}
+                        aria-current={activeService === service.slug ? "page" : undefined}
+                        className={activeService === service.slug ? "is-current" : undefined}
+                        href={service.href}
+                        key={service.slug}
+                        onClick={closeMenu}
+                      >
+                        <span className="services-mega-tile-lever">{service.lever}</span>
+                        <b>{service.problem}</b>
+                        <small>{service.title}. {service.description}</small>
+                      </Link>
+                    ))}
+                  </div>
                 ))}
               </div>
               <Link className="services-home-link" href="/services" onClick={closeMenu}>
@@ -125,7 +137,8 @@ export function SiteHeader({
         aria-expanded={navOpen}
         aria-label={navOpen ? "Close navigation" : "Open navigation"}
         className="menu-toggle"
-        onClick={() => {
+        onClick={(event) => {
+          event.stopPropagation();
           setNavOpen((open) => !open);
           setServicesOpen(false);
         }}

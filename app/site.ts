@@ -6,9 +6,11 @@ export const LINKEDIN_URL = "https://www.linkedin.com/in/varunchoraria";
 export const PERSONAL_SITE_URL = "https://varunchoraria.com";
 
 /**
- * Booking link with the conversation topic pre-filled as a Cal.com note,
- * so every CTA lands on the same calendar with context attached.
+ * Booking link with the conversation topic carried as a query param, landing
+ * on the internal /book-a-call page (embeds the same calendar in-context
+ * instead of sending the visitor off-site). The topic gets forwarded into
+ * the Cal.com embed as a pre-filled note.
  */
 export function bookingHref(topic: string) {
-  return `${BOOKING_URL}?notes=${encodeURIComponent(topic)}`;
+  return `/book-a-call?topic=${encodeURIComponent(topic)}`;
 }

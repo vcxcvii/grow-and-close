@@ -55,10 +55,10 @@
 }
 
 .services-mega-heading {
-  align-items: baseline;
   border-bottom: 1px solid var(--ink);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 6px;
   padding-bottom: 22px;
 }
 
@@ -80,78 +80,90 @@
   font-size: 12px;
 }
 
-.services-mega-grid {
-  border-left: 1px solid var(--ink);
+.services-mega-groups {
+  border-top: 1px solid var(--ink);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   margin-top: 22px;
 }
 
-.services-mega-grid > a {
-  align-items: flex-start;
-  background: var(--paper);
-  border-bottom: 1px solid var(--ink);
+.services-mega-group {
   border-right: 1px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+}
+
+.services-mega-group:last-child {
+  border-right: 0;
+}
+
+.services-mega-group-label {
+  color: var(--electric);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  margin: 0;
+  padding: 16px 16px 12px;
+  text-transform: uppercase;
+}
+
+.services-mega-group > a {
   border-top: 1px solid var(--ink);
-  display: grid;
-  gap: 16px;
-  grid-template-columns: auto 1fr;
-  min-height: 120px;
-  padding: 18px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 9px;
+  padding: 16px;
+  position: relative;
   transition: background 220ms ease-out, color 220ms ease-out;
 }
 
-.services-mega-grid > a:nth-child(n + 4) {
-  border-top: 0;
-}
-
-.services-mega-grid > a:hover,
-.services-mega-grid > a:focus-visible,
-.services-mega-grid > a.is-current {
+.services-mega-group > a:hover,
+.services-mega-group > a:focus-visible,
+.services-mega-group > a.is-current {
   background: var(--ink);
   color: white;
 }
 
-.services-mega-grid > a::after,
-.services-home-link::after {
+.services-mega-group > a::after {
   display: none;
 }
 
-.services-mega-grid > a > span {
+.services-mega-tile-lever {
   color: var(--electric);
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
 }
 
-.services-mega-grid > a div {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-
-.services-mega-grid b {
+.services-mega-group b {
   font-family: var(--sans);
-  font-size: 18px;
-  letter-spacing: -0.035em;
+  font-size: 16px;
+  letter-spacing: -0.03em;
+  max-width: calc(100% - 54px);
   text-transform: none;
 }
 
-.services-mega-grid small {
+.services-mega-group small {
   color: var(--muted);
   font-family: var(--sans);
-  font-size: 13px;
+  font-size: 12.5px;
   letter-spacing: 0;
   line-height: 1.35;
   text-transform: none;
 }
 
-.services-mega-grid > a:hover small,
-.services-mega-grid > a:focus-visible small,
-.services-mega-grid > a.is-current small {
+.services-mega-group > a:hover small,
+.services-mega-group > a:focus-visible small,
+.services-mega-group > a.is-current small {
   color: rgba(255, 255, 255, 0.72);
 }
 
-.services-mega-grid > a.is-current > span {
+.services-mega-group > a:hover .services-mega-tile-lever,
+.services-mega-group > a:focus-visible .services-mega-tile-lever,
+.services-mega-group > a.is-current .services-mega-tile-lever {
   color: var(--electric-light);
 }
 
@@ -284,36 +296,44 @@
     gap: 8px;
   }
 
-  .services-mega-grid {
-    grid-template-columns: 1fr;
+  .services-mega-groups {
+    display: block;
   }
 
-  .services-mega-grid > a,
-  .services-mega-grid > a:nth-child(n + 4) {
-    border-top: 0;
-    min-height: 86px;
+  .services-mega-group {
+    border-right: 0;
   }
 
-  .services-mega-grid > a:first-child {
-    border-top: 1px solid var(--ink);
+  .services-mega-group-label {
+    padding: 18px 0 10px;
+  }
+
+  .services-mega-group > a {
+    min-height: 74px;
+    padding: 14px 0;
+  }
+
+  .services-mega-tile-lever {
+    right: 0;
   }
 }
 
 @media (max-width: 520px) {
   .site-header-services {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
     min-height: 66px;
   }
 
   .site-header-services .header-cta {
-    display: none;
+    font-size: 9px;
+    padding: 0 10px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .services-trigger > span,
   .menu-toggle i b,
-  .services-mega-grid > a {
+  .services-mega-group > a {
     transition: none;
   }
 }

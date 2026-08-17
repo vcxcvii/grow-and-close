@@ -72,6 +72,7 @@ export function SiteHeader({
         id="site-navigation"
       >
         <Link href="/about" onClick={closeMenu}>About</Link>
+        <Link href="/skills" onClick={closeMenu}>Free skills</Link>
         <div className="services-menu">
           <button
             aria-controls="services-mega-menu"
@@ -86,25 +87,23 @@ export function SiteHeader({
           {servicesOpen ? (
             <div className="services-mega" id="services-mega-menu">
               <div className="services-mega-heading">
-                <p>ALL NINE SERVICES</p>
-                <strong>Pick the outcome. We connect the motion.</strong>
+                <p>START FROM THE PROBLEM</p>
+                <strong>Tell us what is stuck. We ship the fix.</strong>
               </div>
               <div className="services-mega-grid">
                 {serviceOfferings.map((service) => (
                   <Link
-                    aria-label={`${service.title} service page (opens in a new tab)`}
+                    aria-label={`${service.title} service page`}
                     aria-current={activeService === service.slug ? "page" : undefined}
                     className={activeService === service.slug ? "is-current" : undefined}
                     href={service.href}
                     key={service.slug}
                     onClick={closeMenu}
-                    rel="noopener noreferrer"
-                    target="_blank"
                   >
-                    <span>{service.number}</span>
+                    <span>{service.lever}</span>
                     <div>
-                      <b>{service.title}</b>
-                      <small>{service.description}</small>
+                      <b>{service.problem}</b>
+                      <small>{service.title}. {service.description}</small>
                     </div>
                   </Link>
                 ))}
@@ -116,7 +115,7 @@ export function SiteHeader({
           ) : null}
         </div>
         <Link href="/#workflow" onClick={closeMenu}>How it works</Link>
-        <Link href="/#pricing" onClick={closeMenu}>Plans</Link>
+        <Link href="/pricing" onClick={closeMenu}>Plans</Link>
         <Link href="/#faq" onClick={closeMenu}>FAQ</Link>
       </nav>
 

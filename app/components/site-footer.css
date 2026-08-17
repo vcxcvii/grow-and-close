@@ -80,3 +80,62 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Phase 0: lever-grouped columns, booking CTA, social row */
+
+.site-footer .footer-links {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.site-footer .footer-lever-question {
+  color: rgba(255, 255, 255, 0.55);
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0;
+  margin: -6px 0 10px;
+  text-transform: none;
+}
+
+.site-footer .footer-note {
+  color: rgba(255, 255, 255, 0.55);
+  display: block;
+  font-size: 11px;
+  line-height: 1.45;
+  margin-top: 10px;
+  max-width: 30ch;
+}
+
+.site-footer .footer-book {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  margin-bottom: 18px;
+  min-height: 44px;
+}
+
+.site-footer .footer-social {
+  display: flex;
+  gap: 18px;
+  margin-top: 14px;
+}
+
+.site-footer .footer-social a {
+  align-items: center;
+  color: rgba(255, 255, 255, 0.76);
+  display: inline-flex;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  min-height: 44px;
+}
+
+@media (max-width: 780px) {
+  .site-footer .footer-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .site-footer .footer-book {
+    width: 100%;
+  }
+}

@@ -3,7 +3,8 @@ import Link from "next/link";
 
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
-import { ServiceScrollCircuit } from "./service-scroll-circuit";
+import { bookingHref } from "../site";
+import { RelatedLinks } from "../components/related-links";
 
 export const metadata: Metadata = {
   title: "B2B SaaS GTM Services | Grow & Close",
@@ -34,8 +35,7 @@ export const metadata: Metadata = {
   },
 };
 
-const diagnosticHref =
-  "mailto:hello@growandclose.com?subject=GTM%20service%20map&body=Company%3A%0AWebsite%3A%0AYour%20role%3A%0AThe%20GTM%20priority%20that%20needs%20to%20move%3A";
+const diagnosticHref = bookingHref("GTM service map: the priority that keeps slipping");
 
 const serviceGroups = [
   {
@@ -218,7 +218,6 @@ const faqs = [
 export default function ServicesPage() {
   return (
     <main className="services-hub-page" data-service="services">
-      <ServiceScrollCircuit variant="pillar" />
       <SiteHeader ctaHref={diagnosticHref} ctaLabel="Map the bottleneck" />
 
       <section className="services-hub-hero" id="top">
@@ -242,7 +241,6 @@ export default function ServicesPage() {
 
         <div
           className="services-hub-system"
-          data-service-circuit-start
           aria-label="Grow and Close service architecture"
         >
           <div className="system-topline"><span>NINE SERVICES / ONE OWNER</span><span className="live-dot">ACTIVE</span></div>
@@ -265,7 +263,7 @@ export default function ServicesPage() {
         <p><strong>04</strong> Learning built in</p>
       </section>
 
-      <section className="services-hub-thesis" data-service-circuit-target>
+      <section className="services-hub-thesis">
         <p className="section-kicker">THE SERVICE MODEL</p>
         <h2>GTM problems do not respect departmental boundaries.</h2>
         <div>
@@ -286,7 +284,7 @@ export default function ServicesPage() {
 
       <section className="services-hub-groups" id="service-systems">
         {serviceGroups.map((group) => (
-          <article className="services-hub-group" data-service-circuit-target key={group.number}>
+          <article className="services-hub-group" key={group.number}>
             <header>
               <p className="section-kicker">{group.number} / {group.label}</p>
               <h2>{group.title}</h2>
@@ -295,13 +293,10 @@ export default function ServicesPage() {
             <div className="services-hub-grid">
               {group.services.map((service) => (
                 <Link
-                  aria-label={`${service.title} service page (opens in a new tab)`}
+                  aria-label={`${service.title} service page `}
                   className="services-hub-card"
-                  data-service-circuit-target
                   href={service.href}
                   key={service.href}
-                  rel="noopener noreferrer"
-                  target="_blank"
                 >
                   <div className="services-hub-card-topline"><span>{service.number}</span><b>{service.system}</b></div>
                   <h3>{service.title}</h3>
@@ -316,7 +311,7 @@ export default function ServicesPage() {
         ))}
       </section>
 
-      <section className="services-hub-motion" data-service-circuit-target>
+      <section className="services-hub-motion">
         <div>
           <p className="section-kicker section-kicker-light">HOW SERVICES BECOME ONE MOTION</p>
           <h2>Not nine retainers. One accountable path from problem to signal.</h2>
@@ -334,14 +329,14 @@ export default function ServicesPage() {
         </ol>
       </section>
 
-      <section className="services-hub-chooser" data-service-circuit-target>
+      <section className="services-hub-chooser">
         <div className="capability-title">
           <p className="section-kicker">WHERE SHOULD YOU START?</p>
           <h2>Follow the first broken handoff.</h2>
         </div>
         <div className="services-hub-choice-grid">
           {selectionSignals.map((signal, index) => (
-            <article data-service-circuit-target key={signal.label}>
+            <article key={signal.label}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <p>{signal.label}</p>
               <h3>{signal.title}</h3>
@@ -351,14 +346,14 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="faq services-hub-faq" id="faq" data-service-circuit-target>
+      <section className="faq services-hub-faq" id="faq">
         <div className="faq-heading">
           <p className="section-kicker">B2B SAAS GTM SERVICES, CLARIFIED</p>
           <h2>The useful buying questions.</h2>
         </div>
         <div className="faq-list">
           {faqs.map((faq, index) => (
-            <details data-service-circuit-target key={faq.question} open={index === 0}>
+            <details key={faq.question} open={index === 0}>
               <summary><span>{String(index + 1).padStart(2, "0")}</span>{faq.question}<b aria-hidden="true">+</b></summary>
               <p>{faq.answer}</p>
             </details>
@@ -366,11 +361,13 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="closing services-hub-closing" data-service-circuit-target>
+      <section className="closing services-hub-closing">
         <p className="section-kicker section-kicker-light">START WITH THE CONSTRAINT, NOT THE SERVICE NAME</p>
         <h2>Bring one GTM priority. Your GTM backlog, shipped.</h2>
         <a className="button button-accent" href={diagnosticHref}>Map my GTM bottleneck</a>
       </section>
+
+      <RelatedLinks />
 
       <SiteFooter />
     </main>

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
-import { ServiceScrollCircuit } from "../services/service-scroll-circuit";
+import { bookingHref } from "../site";
 
 export const metadata: Metadata = {
   title: "About Grow & Close | The Self-Driving GTM Company",
@@ -33,8 +33,7 @@ export const metadata: Metadata = {
   },
 };
 
-const mailtoHref =
-  "mailto:hello@growandclose.com?subject=Give%20the%20GTM%20system%20a%20destination&body=Company%3A%0AWebsite%3A%0AThe%20commercial%20destination%3A";
+const mailtoHref = bookingHref("Grow & Close: the commercial destination I want the system pointed at");
 
 const agentLoop = [
   { number: "01", title: "Goal", copy: "A human names the commercial destination and constraints." },
@@ -93,7 +92,6 @@ const principles = [
 export default function AboutPage() {
   return (
     <main className="about-page" data-brand-system="gc-logic-v1" data-service="about">
-      <ServiceScrollCircuit variant="about" />
       <SiteHeader ctaHref={mailtoHref} ctaLabel="Set a destination" />
 
       <section className="about-hero" id="top">
@@ -119,7 +117,6 @@ export default function AboutPage() {
         <div
           aria-label="Grow and Close autonomy control"
           className="about-control"
-          data-service-circuit-start
         >
           <div className="about-control-topline">
             <span>AUTONOMY CONTROL / LIVE</span>
@@ -149,7 +146,7 @@ export default function AboutPage() {
         <p><strong>04</strong> Learning back into memory</p>
       </section>
 
-      <section className="about-old-model" data-service-circuit-target>
+      <section className="about-old-model">
         <div>
           <p className="section-kicker">THE COMPANY BEFORE AGENTS</p>
           <h2>Every task still asks a person to become the routing layer.</h2>
@@ -167,7 +164,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-control-transfer" data-service-circuit-target>
+      <section className="about-control-transfer">
         <header>
           <p className="section-kicker section-kicker-light">THE CONTROL TRANSFER</p>
           <h2>Self-driving does not mean human-free.</h2>
@@ -201,7 +198,7 @@ export default function AboutPage() {
         <p className="about-manifesto-line">Minimum intervention is not zero responsibility.</p>
       </section>
 
-      <section className="about-operating-system" data-service-circuit-target id="operating-system">
+      <section className="about-operating-system" id="operating-system">
         <header>
           <p className="section-kicker">THE AGENTIC GTM OPERATING SYSTEM</p>
           <h2>One destination. A coordinated fleet. A verifiable return.</h2>
@@ -213,7 +210,7 @@ export default function AboutPage() {
         </header>
         <ol className="about-loop">
           {agentLoop.map((stage) => (
-            <li key={stage.number} data-service-circuit-target>
+            <li key={stage.number}>
               <span>{stage.number}</span>
               <h3>{stage.title}</h3>
               <p>{stage.copy}</p>
@@ -222,7 +219,7 @@ export default function AboutPage() {
         </ol>
       </section>
 
-      <section className="about-proof" data-service-circuit-target>
+      <section className="about-proof">
         <div className="about-proof-copy">
           <p className="section-kicker section-kicker-light">THIS PAGE IS INSIDE THE THESIS</p>
           <h2>You are not reading a pitch deck about agentic work. You are standing inside it.</h2>
@@ -241,7 +238,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-ledger" data-service-circuit-target>
+      <section className="about-ledger">
         <header>
           <p className="section-kicker">WHAT RUNS WHERE</p>
           <h2>A category claim should come with a truth table.</h2>
@@ -252,7 +249,7 @@ export default function AboutPage() {
         </header>
         <div className="about-ledger-grid">
           {autonomyLedger.map((column) => (
-            <article data-service-circuit-target key={column.label}>
+            <article key={column.label}>
               <div><span>{column.status}</span><b>{column.label}</b></div>
               <h3>{column.title}</h3>
               <ul>{column.items.map((item) => <li key={item}>{item}</li>)}</ul>
@@ -261,7 +258,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-origin" data-service-circuit-target>
+      <section className="about-origin">
         <div>
           <p className="section-kicker section-kicker-light">WHY GROW &amp; CLOSE EXISTS</p>
           <h2>The bottleneck was never ideas. It was carrying context all the way to a result.</h2>
@@ -281,7 +278,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-principles" data-service-circuit-target>
+      <section className="about-principles">
         <header>
           <p className="section-kicker">THE RULES OF THE ROAD</p>
           <h2>Autonomy without operating principles is just faster chaos.</h2>
@@ -295,7 +292,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="closing about-closing" data-service-circuit-target>
+      <section className="closing about-closing">
         <p className="section-kicker section-kicker-light">GIVE THE SYSTEM A DESTINATION</p>
         <h2>Bring one commercial priority. We will show you the first loop.</h2>
         <a className="button button-accent" href={mailtoHref}>Set a GTM destination</a>

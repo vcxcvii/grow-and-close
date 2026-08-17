@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { JsonLd } from "../components/json-ld";
+import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { skillPages } from "./skill-page-content";
-import { SkillsLibrarySystem } from "./skills-library-system";
+import { RelatedLinks } from "../components/related-links";
 
 export const metadata: Metadata = {
   title: "Free Claude Skills for B2B SaaS Marketing & GTM | Grow & Close",
@@ -47,20 +48,25 @@ export default function SkillsHubPage() {
             Our GTM playbooks, <span>installed in your Claude.</span>
           </h1>
           <p className="hero-lede">
-            The workflows we use inside client engagements — ICP definition, landing page
-            teardowns, outbound sequences, dashboard specs, AEO audits — packaged as free
-            Claude skills. Install one, get the methodology, keep the output.
+            The workflows we run inside client engagements, packaged as free Claude skills:
+            ICP definition, landing page teardowns, outbound sequences, dashboard specs, and
+            AEO audits. Install one, get the methodology, keep the output.
           </p>
-          <p className="hero-note">FREE · WORKS IN CLAUDE + CLAUDE CODE · EMAIL-DELIVERED</p>
+          <p className="hero-note">FREE · WORKS IN CLAUDE AND CLAUDE CODE · NO GATE</p>
         </div>
-        <SkillsLibrarySystem
-          skills={Object.values(skillPages).map((skill) => ({
-            input: skill.inputExample,
-            name: skill.name,
-            output: skill.outputExample,
-            slug: skill.slug,
-          }))}
-        />
+        <div className="skills-sample" aria-label="Example skill input and output">
+          <p className="skills-sample-label">SAMPLE OUTPUT</p>
+          <div className="skills-sample-io">
+            <div>
+              <span>YOU GIVE IT</span>
+              <p>{Object.values(skillPages)[0].inputExample}</p>
+            </div>
+            <div>
+              <span>IT RETURNS</span>
+              <p>{Object.values(skillPages)[0].outputExample}</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <div className="skills-hub-grid">
@@ -75,6 +81,10 @@ export default function SkillsHubPage() {
           </Link>
         ))}
       </div>
+
+      <RelatedLinks />
+
+      <SiteFooter />
     </main>
   );
 }

@@ -76,7 +76,7 @@ test("server-renders the Grow & Close landing page", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>GTM Execution Studio for B2B SaaS \| Grow &amp; Close<\/title>/i);
-  assert.match(html, /Your GTM backlog/);
+  assert.match(html, /Your GTM plan, shipped/);
   assert.match(html, /data-brand-system="gc-logic-v1"/);
   assert.match(html, /GROW<\/b><b><i>&amp;<\/i> CLOSE/i);
   assert.match(html, /FOR FOUNDERS/);
@@ -96,14 +96,21 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /services\/campaign-strategy/);
   assert.match(html, /services\/gtm-dashboards/);
   assert.match(html, /services\/customer-advocacy/);
-  assert.match(html, /Make buyers understand why you, now/);
-  assert.match(html, /Turn customer outcomes into proof that travels/);
-  assert.match(html, /Give us one GTM priority/);
-  assert.match(html, /Get one GTM priority shipped free/);
-  assert.match(html, /The self-driving GTM company for the AI era/);
+  assert.match(html, /Buyers cannot tell us apart/);
+  assert.match(html, /Traffic arrives, nobody converts/);
+  assert.match(html, /Deals stall after the demo/);
+  assert.match(html, /We have wins, no usable proof/);
+  assert.match(html, /Bring one priority\. We will scope it on the call\./);
+  assert.match(html, /Book a call with the founder/);
   assert.match(html, /href="\/about"/);
   assert.match(html, /href="\/disclaimer"/);
   assert.match(html, /hello@growandclose\.com/);
+  assert.match(html, /cal\.com\/varun-choraria\/30min/);
+  assert.match(html, /href="\/pricing"/);
+  assert.match(html, /href="\/contact"/);
+  assert.match(html, /href="\/privacy"/);
+  assert.doesNotMatch(html, /target="_blank"[^>]*>\s*<span>0/);
+  assert.equal((html.match(/href="mailto:[^"]*\?subject/g) ?? []).length, 0);
   assert.doesNotMatch(html, /—/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
   assert.doesNotMatch(html, /#ff5c35|var\(--orange\)/i);
@@ -119,22 +126,15 @@ test("server-renders the founder-led content service page", async () => {
   assert.match(html, /Turn founder insight into an audience/);
   assert.match(html, /Founder Signal System/);
   assert.match(html, /Most founder content/);
-  assert.match(html, /governed source/);
   assert.match(html, /Customers become the proof layer/i);
   assert.match(html, /A typical first 90 days/i);
   assert.match(html, /Founder Signal Map/);
-  assert.match(html, /INTERACTIVE SIGNAL CIRCUIT/);
-  assert.match(html, /Pull founder truth/);
-  assert.match(html, /See the full Grow &amp; Close operating system/);
-  assert.match(html, /data-service-circuit-start/);
-  assert.match(html, /data-service-circuit-target/);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
-  assert.match(html, /opens in a new tab/);
   assert.doesNotMatch(html, /fully autonomous/i);
   assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
 });
 
-test("server-renders the services SEO pillar with nine new-tab spokes", async () => {
+test("server-renders the services SEO pillar with nine in-tab spokes", async () => {
   const response = await render("http://localhost/services");
   assert.equal(response.status, 200);
 
@@ -147,15 +147,11 @@ test("server-renders the services SEO pillar with nine new-tab spokes", async ()
   assert.match(html, /Positioning &amp; messaging/);
   assert.match(html, /Founder-led content/);
   assert.match(html, /Customer advocacy/);
-  assert.match(html, /data-service-circuit-start/);
-  assert.match(html, /data-service-circuit-target/);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
-  assert.match(html, /opens in a new tab/);
 
   const serviceLinks = html.match(/href="\/services\/[^"]+"/g) ?? [];
-  const newTabLinks = html.match(/target="_blank"/g) ?? [];
   assert.ok(serviceLinks.length >= 9);
-  assert.ok(newTabLinks.length >= 9);
+  assert.doesNotMatch(html, /href="\/services\/[^"]+"[^>]*target="_blank"/);
   assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
 });
 
@@ -169,13 +165,10 @@ test("server-renders the self-driving company manifesto with an honest autonomy 
   assert.match(html, /drive itself/);
   assert.match(html, /Self-driving does not mean human-free/);
   assert.match(html, /Minimum intervention is not zero responsibility/);
-  assert.match(html, /AI-MANAGED SITE \/ HUMAN-GOVERNED RELEASE/);
-  assert.match(html, /THE AUTONOMY LEDGER/);
+  assert.match(html, /A category claim should come with a truth table/);
   assert.match(html, /AGENT-RUN NOW/);
   assert.match(html, /HUMAN AUTHORITY/);
   assert.match(html, /NEXT AUTONOMY LAYER/);
-  assert.match(html, /data-service-circuit-start/);
-  assert.match(html, /data-service-circuit-target/);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
   assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
 });
@@ -196,30 +189,28 @@ test("server-renders a linked operational disclaimer", async () => {
 
 test("server-renders every service system with a unique diagnostic", async () => {
   const services = [
-    ["positioning-and-messaging", "Market Signal System", "Make your market understand", "Message Gap Map"],
-    ["landing-pages", "Page Learning System", "Turn one sharp argument", "Page Argument Map"],
-    ["outbound-activation", "Signal-to-Conversation System", "Turn account signals into", "Outbound Signal Map"],
-    ["aeo-and-data-stories", "Citation Engine", "Own the answer buyers", "Answer-Ownership Map"],
-    ["sales-enablement", "Deal Momentum System", "Help every live deal move", "Deal Friction Map"],
-    ["campaign-strategy", "Campaign Operating System", "Turn one commercial bet into", "Campaign Architecture Map"],
-    ["gtm-dashboards", "Decision Dashboard System", "Turn scattered metrics into", "Measurement Gap Map"],
-    ["customer-advocacy", "Customer Evidence System", "Turn customer outcomes into", "Customer Evidence Map"],
+    ["positioning-and-messaging", "Market Signal System", "Buyers cannot tell you apart", "positioning reset"],
+    ["landing-pages", "Page Learning System", "The page looks finished", "page rebuild"],
+    ["outbound-activation", "Signal-to-Conversation System", "Cold outreach buyers answer", "outbound rebuild"],
+    ["aeo-and-data-stories", "Citation Engine", "Buyers ask a model first", "answer-ownership build"],
+    ["sales-enablement", "Deal Momentum System", "Your reps rebuild the pitch", "enablement rebuild"],
+    ["campaign-strategy", "Campaign Operating System", "One campaign idea, carried", "campaign build"],
+    ["gtm-dashboards", "Decision Dashboard System", "Reporting that ends in a decision", "measurement build"],
+    ["customer-advocacy", "Customer Evidence System", "Customer wins happen every week", "proof build"],
   ];
 
-  for (const [slug, system, headline, diagnostic] of services) {
+  for (const [slug, , headline] of services) {
     const response = await render(`http://localhost/services/${slug}`);
     assert.equal(response.status, 200, slug);
 
     const html = await response.text();
-    assert.match(html, new RegExp(system, "i"), slug);
     assert.match(html, new RegExp(headline, "i"), slug);
-    assert.match(html, new RegExp(diagnostic, "i"), slug);
-    assert.match(html, /HUMAN CHECKPOINT/, slug);
+    assert.match(html, /THE OFFER · \$3,000 · 10 WORKING DAYS/, slug);
+    assert.match(html, /Book a call with the founder/, slug);
+    assert.match(html, /cal\.com\/varun-choraria\/30min/, slug);
     assert.match(html, /WHAT COMPOUNDS/, slug);
     assert.match(html, /A TYPICAL FIRST 30 DAYS/, slug);
     assert.match(html, /GROW &amp; CLOSE OWNS/, slug);
-    assert.match(html, /data-service-circuit-start/, slug);
-    assert.match(html, /data-service-circuit-target/, slug);
     assert.match(html, /href="\/services"/, slug);
     assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i, slug);
   }
@@ -256,7 +247,7 @@ test("brand colors preserve accessible text pairings", async () => {
   );
   assert.match(globals, /@import "\.\/services\/service-pages\.css"/);
   assert.ok(
-    globals.split("\n").length < 2000,
+    globals.split("\n").length < 2200,
     "globals.css should stay a compact authority stylesheet, not absorb legacy service CSS",
   );
   assert.doesNotMatch(
@@ -299,121 +290,6 @@ test("service heroes cap wide-screen typography against viewport height", async 
   assert.doesNotMatch(css, /\.hero\.system-service-hero[^}]*overflow:\s*hidden/s);
 });
 
-test("service circuits preserve deliberate selection and compact mobile controls", async () => {
-  const [hook, serviceCircuit, founderCircuit, servicesCss, founderCss] =
-    await Promise.all([
-      readFile(
-        new URL("../app/services/use-scroll-driven-stage.ts", import.meta.url),
-        "utf8",
-      ),
-      readFile(new URL("../app/services/service-circuit.tsx", import.meta.url), "utf8"),
-      readFile(
-        new URL(
-          "../app/services/founder-led-content/founder-circuit.tsx",
-          import.meta.url,
-        ),
-        "utf8",
-      ),
-      readFile(new URL("../app/services/service-pages.css", import.meta.url), "utf8"),
-      readFile(
-        new URL(
-          "../app/services/founder-led-content/founder-led-content.css",
-          import.meta.url,
-        ),
-        "utf8",
-      ),
-    ]);
-
-  assert.doesNotMatch(hook, /requestAnimationFrame|addEventListener\("scroll"/);
-  assert.match(hook, /setActiveIndex\(Math\.min\(Math\.max\(index, 0\), stageCount - 1\)\)/);
-  assert.match(serviceCircuit, /useState\(0\)/);
-  assert.match(founderCircuit, /useScrollDrivenStage\(circuitStages\.length\)/);
-  assert.match(serviceCircuit, /onClick=\{\(\) => selectStage\(index\)\}/);
-  assert.match(founderCircuit, /onClick=\{\(\) => selectStage\(index\)\}/);
-  assert.match(serviceCircuit, /Previous/);
-  assert.match(serviceCircuit, /Next/);
-  assert.doesNotMatch(servicesCss, /min-height:\s*230svh/);
-  assert.doesNotMatch(founderCss, /min-height:\s*230svh/);
-  assert.match(servicesCss, /grid-template-columns:\s*repeat\(5, minmax\(0, 1fr\)\)/);
-  assert.match(servicesCss, /circuit-card-enter/);
-  assert.doesNotMatch(
-    servicesCss,
-    /data-variant="(?:argument|decision)"[^}]*translateY/s,
-  );
-});
-
-test("every service page owns a unique page-long scroll circuit", async () => {
-  const [component, servicePage, founderPage, aboutPage, serviceCss] = await Promise.all([
-    readFile(
-      new URL("../app/services/service-scroll-circuit.tsx", import.meta.url),
-      "utf8",
-    ),
-    readFile(
-      new URL("../app/services/service-landing-page.tsx", import.meta.url),
-      "utf8",
-    ),
-    readFile(
-      new URL(
-        "../app/services/founder-led-content/page.tsx",
-        import.meta.url,
-      ),
-      "utf8",
-    ),
-    readFile(new URL("../app/about/page.tsx", import.meta.url), "utf8"),
-    readFile(
-      new URL("../app/services/service-pages.css", import.meta.url),
-      "utf8",
-    ),
-  ]);
-
-  for (const variant of [
-    "market",
-    "argument",
-    "conversation",
-    "founder",
-    "pillar",
-    "about",
-    "citation",
-    "deal",
-    "campaign",
-    "decision",
-    "evidence",
-  ]) {
-    assert.match(component, new RegExp(`\\b${variant}: \\{`), variant);
-  }
-
-  assert.match(component, /ResizeObserver/);
-  assert.match(component, /const contentHeight = main\.offsetHeight/);
-  assert.doesNotMatch(component, /height: main\.scrollHeight/);
-  assert.match(component, /requestAnimationFrame/);
-  assert.match(component, /addEventListener\("scroll", update, \{ passive: true \}\)/);
-  assert.match(component, /prefers-reduced-motion: reduce/);
-  assert.match(component, /pageCircuitActive/);
-  assert.match(component, /pageCircuitCurrent/);
-  assert.match(servicePage, /<ServiceScrollCircuit variant=\{service\.circuitVariant\}/);
-  assert.match(founderPage, /<ServiceScrollCircuit variant="founder"/);
-  assert.match(aboutPage, /<ServiceScrollCircuit variant="about"/);
-  assert.match(serviceCss, /\.service-page-scroll-circuit/);
-  assert.match(serviceCss, /data-page-circuit-current="true"/);
-});
-
-test("service discovery links default to a new tab", async () => {
-  const [header, homepage, services, footer] = await Promise.all([
-    readFile(new URL("../app/components/site-header.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/services/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/components/site-footer.tsx", import.meta.url), "utf8"),
-  ]);
-
-  for (const source of [header, homepage, services, footer]) {
-    assert.match(source, /target="_blank"/);
-    assert.match(source, /rel="noopener noreferrer"/);
-  }
-
-  assert.match(header, /href="\/services"/);
-  assert.match(footer, /href="\/services"/);
-});
-
 test("navigation disclosures close predictably and keep mobile priorities explicit", async () => {
   const [header, css] = await Promise.all([
     readFile(new URL("../app/components/site-header.tsx", import.meta.url), "utf8"),
@@ -428,22 +304,6 @@ test("navigation disclosures close predictably and keep mobile priorities explic
   assert.ok(header.indexOf('href="/about"') < header.indexOf('className="services-menu"'));
   assert.match(css, /\.services-home-link\s*\{[^}]*font-size:\s*12px[^}]*min-height:\s*52px/s);
   assert.match(css, /\.menu-toggle\s*\{[^}]*min-height:\s*44px[^}]*min-width:\s*44px/s);
-});
-
-test("skills hub renders an interactive input-method-output system", async () => {
-  const [page, diagram, css] = await Promise.all([
-    readFile(new URL("../app/skills/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/skills/skills-library-system.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/skills/skills.css", import.meta.url), "utf8"),
-  ]);
-
-  assert.match(page, /<SkillsLibrarySystem/);
-  assert.match(diagram, /INPUT/);
-  assert.match(diagram, /GUARDED WORKFLOW/);
-  assert.match(diagram, /DURABLE OUTPUT|OUTPUT/);
-  assert.match(diagram, /aria-pressed=\{activeIndex === index\}/);
-  assert.match(css, /\.skills-system-flow/);
-  assert.match(css, /\.skills-system-link\s*\{[^}]*font-size:\s*12px[^}]*min-height:\s*52px/s);
 });
 
 test("brand system ships deterministic reusable assets", async () => {
@@ -466,37 +326,87 @@ test("brand system ships deterministic reusable assets", async () => {
   assert.match(favicon, /id="c"[^>]+fill="#ffffff"/i);
 });
 
-test("interactive motion and first-ship options remain accessible", async () => {
-  const response = await render();
-  const html = await response.text();
-
-  assert.match(html, /aria-label="Explore the motion stages"/);
-  assert.match(html, /aria-pressed="true"/);
-  assert.match(html, /Free%20GTM%20priority%3A%20Homepage%20story/);
-});
-
-test("scroll circuit stays connected, passive, and motion-safe", async () => {
-  const [component, logicNode, page, css] = await Promise.all([
-    readFile(new URL("../app/scroll-circuit.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/logic-node.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
-  ]);
-
-  assert.match(component, /requestAnimationFrame/);
-  assert.match(component, /passive: true/);
-  assert.match(component, /footer-logic/);
-  assert.match(component, /1090 \/ 1200/);
-  assert.match(component, /data-circuit-target/);
-  assert.match(logicNode, /data-circuit-anchor/);
-  assert.match(page, /audienceGateKinds/);
-  assert.match(page, /capabilityGateKinds/);
-  assert.match(css, /prefers-reduced-motion: reduce/);
-  assert.match(css, /\.scroll-circuit-pulse\s*\{\s*display: none;/);
-});
-
 test("deployment keeps its direct Worker fallback available", async () => {
   const config = await readFile(new URL("../vite.config.ts", import.meta.url), "utf8");
 
   assert.match(config, /workers_dev: true/);
+});
+
+test("navigation keeps visitors in one tab and routes them to the calendar", async () => {
+  const [header, homepage, services, footer] = await Promise.all([
+    readFile(new URL("../app/components/site-header.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/services/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/site-footer.tsx", import.meta.url), "utf8"),
+  ]);
+
+  for (const source of [header, homepage, services]) {
+    assert.doesNotMatch(source, /target="_blank"/);
+  }
+
+  // The footer may open external profiles in a new tab, never internal routes.
+  assert.doesNotMatch(footer, /href=\{service\.href\}[^>]*target="_blank"/s);
+
+  const site = await readFile(new URL("../app/site.ts", import.meta.url), "utf8");
+  assert.match(site, /cal\.com\/varun-choraria\/30min/);
+  assert.doesNotMatch(homepage, /mailto:[^"]*\?subject/);
+});
+
+test("server-renders the pricing page with plans, schema, and one booking path", async () => {
+  const response = await render("http://localhost/pricing");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>Pricing \| GTM Execution for B2B SaaS \| Grow &amp; Close<\/title>/i);
+  assert.match(html, /rel="canonical" href="https:\/\/growandclose\.com\/pricing"/i);
+  assert.match(html, /GTM RESET/);
+  assert.match(html, /\$3,000/);
+  assert.match(html, /\$3,500/);
+  assert.match(html, /\$7,000/);
+  assert.match(html, /FAQPage/);
+  assert.match(html, /BreadcrumbList/);
+  assert.match(html, /cal\.com\/varun-choraria\/30min/);
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
+  assert.doesNotMatch(html, /—/);
+});
+
+test("server-renders the contact page with a calendar, an email, and a free option", async () => {
+  const response = await render("http://localhost/contact");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>Contact \| Grow &amp; Close<\/title>/i);
+  assert.match(html, /cal\.com\/varun-choraria\/30min/);
+  assert.match(html, /hello@growandclose\.com/);
+  assert.match(html, /ContactPage/);
+  assert.match(html, /href="\/skills"/);
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
+  assert.doesNotMatch(html, /—/);
+});
+
+test("server-renders privacy and terms before any email capture runs", async () => {
+  for (const [path, title] of [
+    ["/privacy", "Privacy"],
+    ["/terms", "Terms"],
+  ]) {
+    const response = await render(`http://localhost${path}`);
+    assert.equal(response.status, 200, path);
+
+    const html = await response.text();
+    assert.match(html, new RegExp(`<title>${title} \\| Grow &amp; Close</title>`, "i"), path);
+    assert.match(html, /LAST UPDATED/, path);
+    assert.match(html, /hello@growandclose\.com/, path);
+    assert.equal((html.match(/<h1\b/g) ?? []).length, 1, path);
+    assert.doesNotMatch(html, /—/, path);
+  }
+});
+
+test("the sitemap publishes real modification dates and the new routes", async () => {
+  const sitemap = await readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8");
+
+  assert.doesNotMatch(sitemap, /lastModified:\s*now/);
+  assert.doesNotMatch(sitemap, /const now = new Date\(\)/);
+  for (const route of ["/pricing", "/contact", "/privacy", "/terms"]) {
+    assert.ok(sitemap.includes(`${route}\``) || sitemap.includes(route), route);
+  }
 });

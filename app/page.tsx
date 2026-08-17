@@ -5,8 +5,7 @@ import { serviceOfferings } from "./components/service-offerings";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import LogicNode, { type LogicNodeKind } from "./logic-node";
-import MotionDemo from "./motion-demo";
-import ScrollCircuit from "./scroll-circuit";
+import { bookingHref } from "./site";
 
 export const metadata: Metadata = {
   title: "GTM Execution Studio for B2B SaaS | Grow & Close",
@@ -26,13 +25,13 @@ const motionExamples = [
     number: "02",
     glyph: "or",
     title: "Launch the motion",
-    copy: "Landing pages, outbound sequences, campaign assets, founder content, and enablement — built together, so they tell one story.",
+    copy: "Landing pages, outbound sequences, campaign assets, founder content, and enablement, built together so they tell one story.",
   },
   {
     number: "03",
     glyph: "ship",
     title: "Learn and improve",
-    copy: "A clear ship log, useful signals, and the next best iteration — so month two starts where month one finished, not from zero.",
+    copy: "A clear ship log, useful signals, and the next best iteration, so month two starts where month one finished rather than from zero.",
   },
 ];
 
@@ -52,18 +51,18 @@ const capabilityGateKinds: LogicNodeKind[] = [
 const audienceProblems = [
   {
     audience: "FOR FOUNDERS",
-    title: "Marketing still lives in your head.",
-    copy: "Every campaign waits for you to brief it, review it, and connect the pieces. The business needs your context without needing your hands on every asset.",
+    title: "The story lives in your head, so everything waits on you.",
+    copy: "You can pitch it perfectly on a call and nobody can write it down. Every page, sequence, and deck queues behind your calendar, and you cannot tell whether the problem is positioning or execution.",
   },
   {
     audience: "FOR CMOs",
-    title: "The strategy is clear. Capacity is not.",
-    copy: "Your roadmap keeps losing to launches, sales requests, and quarter-end fire drills. You don’t need another plan. You need someone senior to take a priority and finish it.",
+    title: "The strategy is signed off. The quarter keeps eating it.",
+    copy: "Launches, sales requests, and board reporting consume the team, and the agency you hired sells senior then staffs junior. You do not need another plan. You need one priority finished to the standard you would sign your name to.",
   },
   {
     audience: "FOR HEADS OF MARKETING",
-    title: "You own the plan and the assembly line.",
-    copy: "You are too senior to spend the week stitching pages, sequences, and briefs together, but too under-resourced to hand the whole motion to one accountable owner.",
+    title: "You own the plan and you are also the assembly line.",
+    copy: "One marketer, a founder with opinions, and a sales team filing requests. You spend the week stitching pages, briefs, and sequences together instead of deciding what actually moves pipeline.",
   },
 ];
 
@@ -116,37 +115,47 @@ const faqs = [
   },
 ];
 
+const heroBookingHref = bookingHref(
+  "GTM priority I need shipped, and the number it should move",
+);
+
 export default function Home() {
   return (
     <main data-brand-system="gc-logic-v1">
-      <ScrollCircuit />
-      <SiteHeader ctaHref="/#first-ship" ctaLabel="Ship one free" homeHref="/#top" />
+      <SiteHeader ctaHref={heroBookingHref} ctaLabel="Book a call" homeHref="/#top" />
 
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="eyebrow">GTM execution studio for B2B SaaS</p>
           <h1>
-            Your GTM backlog,
-            <span>shipped.</span>
+            Your GTM plan, shipped.
+            <span>One priority at a time.</span>
           </h1>
           <p className="hero-lede">
-            A senior execution pod for founders, CMOs, and Heads of Marketing who know
-            what needs to move but lack the hands to ship it. We run one motion at a
-            time: a single GTM priority — page, outbound, content, reporting — built
-            end to end to an agreed finish line.
+            For founder-led B2B SaaS teams with no marketing bench. We take one GTM
+            priority, ship it end to end, and tie it to one pipeline number: the page,
+            the outbound, the content, and the reporting that make it move.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#first-ship">
-              Get one GTM priority shipped free
+            <a className="button button-primary" href={heroBookingHref}>
+              Book a 30-minute call
             </a>
             <a className="text-link" href="#pricing">
-              See monthly plans <span aria-hidden="true">↗</span>
+              See plans and pricing <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <p className="hero-note">Senior-led. Shipped weekly. No long contract.</p>
+          <p className="hero-note">One senior owner. Shipped weekly. No long contract.</p>
         </div>
 
-        <MotionDemo />
+        <div className="hero-levers" aria-label="The four levers we work on">
+          <p className="hero-levers-label">EVERY MOTION MOVES ONE LEVER</p>
+          <ol>
+            <li><span>REACH</span><b>Do the right people find you?</b></li>
+            <li><span>CAPTURE</span><b>Do they turn into conversations?</b></li>
+            <li><span>CONVERT</span><b>Do conversations turn into revenue?</b></li>
+            <li><span>COMPOUND</span><b>Do you know what worked, and repeat it?</b></li>
+          </ol>
+        </div>
       </section>
 
       <section className="signal-strip" aria-label="Service highlights">
@@ -159,15 +168,16 @@ export default function Home() {
       <section className="problem" id="problem">
         <div className="problem-heading">
           <p className="section-kicker">THE REAL BOTTLENECK</p>
-          <h2>The work between the plan and the pipeline has no clear owner.</h2>
+          <h2>The gap is not strategy. It is the execution queue with no owner.</h2>
           <p>
-            More ideas will not fix it. More disconnected freelancers will not fix it.
-            The missing layer is senior, cross-functional execution with one finish line.
+            Another plan will not clear it, and five freelancers will produce five
+            disconnected assets you then have to integrate yourself. What is missing is
+            one senior person who takes a priority from decision to live.
           </p>
         </div>
         <div className="problem-grid" id="problem-logic">
           {audienceProblems.map((problem, index) => (
-            <article className="problem-card" data-circuit-target key={problem.audience}>
+            <article className="problem-card" key={problem.audience}>
               <span className="problem-audience">{problem.audience}</span>
               <LogicNode kind={audienceGateKinds[index]} />
               <h3>{problem.title}</h3>
@@ -193,7 +203,7 @@ export default function Home() {
         </div>
         <div className="motion-list">
           {motionExamples.map((motion) => (
-            <article className="motion-card" data-circuit-target key={motion.number}>
+            <article className="motion-card" key={motion.number}>
               <span className="motion-number">{motion.number}</span>
               <div>
                 <h3>{motion.title}</h3>
@@ -201,8 +211,6 @@ export default function Home() {
               </div>
               <Image
                 className="motion-glyph"
-                data-circuit-anchor
-                data-circuit-kind={motion.glyph === "or" ? "diamond" : motion.glyph === "ship" ? "circle" : "square"}
                 src={`/brand/logic-${motion.glyph}.svg`}
                 alt=""
                 aria-hidden="true"
@@ -225,15 +233,9 @@ export default function Home() {
           </p>
         </div>
         <div className="workflow-list">
-          {workflow.map((step, index) => (
-            <article className="workflow-step" data-circuit-target key={step.number}>
-              <span
-                className="workflow-number"
-                data-circuit-anchor
-                data-circuit-kind={index === 1 ? "diamond" : index === 2 ? "circle" : "square"}
-              >
-                {step.number}
-              </span>
+          {workflow.map((step) => (
+            <article className="workflow-step" key={step.number}>
+              <span className="workflow-number">{step.number}</span>
               <div>
                 <h3>{step.title}</h3>
                 <p>{step.copy}</p>
@@ -246,27 +248,25 @@ export default function Home() {
 
       <section className="capabilities" id="capabilities">
         <div className="capability-title">
-          <p className="section-kicker">WHAT WE COVER</p>
-          <h2>Everything needed to move one priority forward.</h2>
+          <p className="section-kicker">START FROM WHAT IS STUCK</p>
+          <h2>Find your problem. That is the entry point.</h2>
         </div>
         <div className="capability-grid" id="capability-logic">
           {serviceOfferings.map((capability, index) => (
             <a
-              aria-label={`${capability.title} service page (opens in a new tab)`}
+              aria-label={`${capability.title} service page`}
               className="capability-item"
-              data-circuit-target
               href={capability.href}
               id={`capability-${capability.slug}`}
               key={capability.slug}
-              rel="noopener noreferrer"
-              target="_blank"
             >
-              <span className="capability-number">{capability.number}</span>
+              <span className="capability-number">{capability.lever}</span>
               <LogicNode
                 kind={capabilityGateKinds[index]}
                 order={index < 5 ? index + 1 : 13 - index}
               />
-              <p>{capability.title}</p>
+              <p>{capability.problem}</p>
+              <small>{capability.title}. {capability.description}</small>
             </a>
           ))}
         </div>
@@ -283,8 +283,8 @@ export default function Home() {
           <p>
             Founders, CMOs, and Heads of Marketing work directly with Varun Choraria,
             former marketing leader at GTM Buddy. Every motion is guided by experienced
-            B2B SaaS judgment and sped up by AI workflows we build and run ourselves —
-            for research, writing, design, analysis, and operations.
+            B2B SaaS judgment and sped up by AI workflows we build and run ourselves for
+            research, writing, design, analysis, and operations.
           </p>
           <p>
             Judge the bar before you pay for it: the{" "}
@@ -334,8 +334,8 @@ export default function Home() {
               <li>Monthly priority planning</li>
               <li>Pause or cancel monthly</li>
             </ul>
-            <a className="button button-dark" href="mailto:hello@growandclose.com?subject=Pipeline%20One%20application">
-              Apply for Pipeline One
+            <a className="button button-dark" href={bookingHref("Pipeline One: one active motion, $3,500 per month")}>
+              Book a call about Pipeline One
             </a>
           </article>
 
@@ -358,8 +358,8 @@ export default function Home() {
               <li>Multi-stakeholder coordination</li>
               <li>Monthly GTM planning</li>
             </ul>
-            <a className="button button-accent" href="mailto:hello@growandclose.com?subject=Pipeline%20Team%20application">
-              Apply for Pipeline Team
+            <a className="button button-accent" href={bookingHref("Pipeline Team: two active motions, $7,000 per month")}>
+              Book a call about Pipeline Team
             </a>
           </article>
         </div>
@@ -371,25 +371,26 @@ export default function Home() {
       <section className="first-ship" id="first-ship">
         <div className="first-ship-copy">
           <p className="section-kicker">LOW-RISK START</p>
-          <h2>Give us one GTM priority. We&apos;ll ship it free.</h2>
+          <h2>Bring one priority. We will scope it on the call.</h2>
           <p>
-            If there&apos;s a fit, we&apos;ll audit one GTM problem and produce one useful,
-            live-ready asset in week one. No generic deck. No obligation to continue.
+            Thirty minutes, no deck. You leave with the priority scoped, the metric it
+            should move, and a straight answer on whether we are the right people to
+            ship it. If we are not, we will say so.
           </p>
-          <a className="button button-primary" href="mailto:hello@growandclose.com?subject=Ship%20one%20GTM%20priority%20free&body=Company%3A%0AWebsite%3A%0ABiggest%20GTM%20bottleneck%3A">
-            Get one GTM priority shipped free
+          <a className="button button-primary" href={bookingHref("One GTM priority shipped free: our biggest bottleneck")}>
+            Book a call with the founder
           </a>
-          <small>Application-gated · B2B SaaS only · limited weekly capacity</small>
+          <small>B2B SaaS only · $3,000 fixed-scope sprint · no long contract</small>
         </div>
         <div className="first-ship-options">
-          <p>CHOOSE ONE STARTING POINT</p>
-          <a href="mailto:hello@growandclose.com?subject=Free%20GTM%20priority%3A%20Homepage%20story">
+          <p>MOST CALLS START HERE</p>
+          <a href={bookingHref("Free GTM priority: homepage story")}>
             <span>A</span><strong>Homepage story</strong><small>Rewrite one decisive section.</small><i aria-hidden="true">↗</i>
           </a>
-          <a href="mailto:hello@growandclose.com?subject=Free%20GTM%20priority%3A%20Outbound%20sequence">
+          <a href={bookingHref("Free GTM priority: outbound sequence")}>
             <span>B</span><strong>Outbound sequence</strong><small>Build one focused sequence.</small><i aria-hidden="true">↗</i>
           </a>
-          <a href="mailto:hello@growandclose.com?subject=Free%20GTM%20priority%3A%20Campaign%20activation">
+          <a href={bookingHref("Free GTM priority: campaign activation")}>
             <span>C</span><strong>Campaign activation</strong><small>Turn one brief into a live-ready plan.</small><i aria-hidden="true">↗</i>
           </a>
         </div>
@@ -416,8 +417,8 @@ export default function Home() {
 
       <section className="closing" id="closing">
         <p className="section-kicker section-kicker-light">READY WHEN THE BACKLOG IS</p>
-        <h2>Stop carrying GTM work into next week.</h2>
-        <a className="button button-accent" href="#first-ship">Get one GTM priority shipped free</a>
+        <h2>Stop carrying the same priority into next quarter.</h2>
+        <a className="button button-accent" href="#first-ship">Book a call with the founder</a>
       </section>
 
       <SiteFooter id="contact" pageEndId="page-end" />

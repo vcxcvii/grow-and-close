@@ -6,6 +6,7 @@
 @import "./skills/skills.css";
 @import "./about/about.css";
 @import "./disclaimer/disclaimer.css";
+@import "./components/site-additions.css";
 
 :root {
   --ink: #090a0c;
@@ -1883,5 +1884,191 @@ summary:focus-visible {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- hero fit (must stay after the base rules; @import is hoisted): keep the headline and the CTA above the fold ---------- */
+
+.hero h1 {
+  font-size: clamp(52px, 6.6vw, 104px);
+  text-wrap: balance;
+}
+
+.hero-copy,
+.hero-levers,
+.skills-sample {
+  min-width: 0;
+}
+
+.hero h1,
+.hero h1 span {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 1100px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 780px) {
+  .hero h1 {
+    font-size: clamp(36px, 10.2vw, 58px);
+    letter-spacing: -0.05em;
+    line-height: 0.94;
+  }
+
+  .hero-lede {
+    max-width: 100%;
+  }
+
+  .hero-levers li b {
+    font-size: 16px;
+  }
+}
+
+.site-footer .footer-logic {
+  max-width: 100%;
+}
+
+/* ---------- type and rhythm consistency (last layer, wins deliberately) ---------- */
+
+:root {
+  --step-kicker: 11px;
+  --step-body: 17px;
+  --step-h3: clamp(20px, 1.8vw, 26px);
+  --step-h2: clamp(30px, 3.4vw, 52px);
+  --gutter: clamp(20px, 4vw, 72px);
+  --section-y: clamp(56px, 7vw, 104px);
+}
+
+main > section {
+  padding-inline: var(--gutter);
+}
+
+main > section:not(.hero) {
+  padding-block: var(--section-y);
+}
+
+main h2 {
+  font-size: var(--step-h2);
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+main h3 {
+  font-size: var(--step-h3);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+main p {
+  text-wrap: pretty;
+}
+
+.section-kicker,
+.eyebrow {
+  font-family: var(--mono);
+  font-size: var(--step-kicker);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+}
+
+.problem-heading > p,
+.section-intro > p,
+.workflow-heading > p,
+.pricing-heading > p,
+.faq-heading + *,
+.hero-lede {
+  max-width: 68ch;
+}
+
+.button {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 44px;
+}
+
+@media (hover: hover) {
+  .button {
+    transition: background-color 160ms ease-out, color 160ms ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .button:active {
+    scale: 0.97;
+    transition: scale 200ms ease-out;
+  }
+}
+
+/* ---------- bottom-of-page interlinking ---------- */
+
+.related-links {
+  border-top: 1px solid var(--line);
+}
+
+.related-heading h2 {
+  margin: 10px 0 28px;
+}
+
+.related-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.related-card {
+  border: 1px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 44px;
+  padding: 22px;
+  text-decoration: none;
+}
+
+.related-card span {
+  color: var(--electric);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.related-card b {
+  font-size: 18px;
+  font-weight: 550;
+  letter-spacing: -0.02em;
+}
+
+.related-card small {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.related-next {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  margin-top: 28px;
+}
+
+.related-next a {
+  align-items: center;
+  display: inline-flex;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  min-height: 44px;
+}
+
+@media (max-width: 860px) {
+  .related-grid {
+    grid-template-columns: 1fr;
   }
 }

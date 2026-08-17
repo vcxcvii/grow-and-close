@@ -6,6 +6,7 @@
 @import "./skills/skills.css";
 @import "./about/about.css";
 @import "./disclaimer/disclaimer.css";
+@import "./components/site-additions.css";
 
 :root {
   --ink: #090a0c;

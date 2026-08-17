@@ -5,8 +5,6 @@ export default function LogicNode({ kind, order }: { kind: LogicNodeKind; order?
     <span
       aria-hidden="true"
       className={`circuit-card-node circuit-card-node-${kind}`}
-      data-circuit-anchor
-      data-circuit-kind={kind}
       data-circuit-order={order}
     >
       <svg viewBox="0 0 72 44">

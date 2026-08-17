@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
+import { bookingHref } from "../site";
 
 export const metadata: Metadata = {
   title: "Disclaimer | Grow & Close",
@@ -12,8 +13,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const contactHref =
-  "mailto:hello@growandclose.com?subject=Question%20about%20the%20Grow%20%26%20Close%20disclaimer";
+const contactHref = bookingHref("Question about the Grow & Close disclaimer");
 
 export default function DisclaimerPage() {
   return (

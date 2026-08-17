@@ -1,14 +1,8 @@
 import type { ServicePageContent } from "./service-page-types";
+import { bookingHref } from "../site";
 
 function diagnosticHref(subject: string, prompt: string) {
-  const body = [
-    "Company:",
-    "Website:",
-    "Your role:",
-    prompt,
-  ].join("\n");
-
-  return `mailto:hello@growandclose.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return bookingHref(`${subject}. ${prompt}`);
 }
 
 export const positioningAndMessaging: ServicePageContent = {
@@ -23,7 +17,7 @@ export const positioningAndMessaging: ServicePageContent = {
   heroLead: "Your product is different.",
   heroAccent: "Your homepage doesn’t prove it.",
   heroLede:
-    "We turn founder context, customer language, competitor patterns, and sales friction into one written-down story — what you claim, what you refuse to claim, and the proof behind each line — that your site, deck, and campaigns all inherit.",
+    "We turn founder context, customer language, competitor patterns, and sales friction into one written-down story that your site, deck, and campaigns all inherit: what you claim, what you refuse to claim, and the proof behind each line.",
   diagnosticName: "Message Gap Map",
   ctaLabel: "Get the message map",
   diagnosticHref: diagnosticHref(
@@ -126,7 +120,7 @@ export const positioningAndMessaging: ServicePageContent = {
   faqs: [
     { question: "Is this a brand workshop?", answer: "No. This is a commercial positioning and message system tied to buyer comprehension, sales conversations, proof, and live GTM surfaces. Visual identity can inherit the decisions, but it is not the primary output." },
     { question: "Do you need customer research?", answer: "Usually. Existing interviews, call recordings, win-loss notes, support threads, and sales context may be enough to start. If the evidence is thin, we design a focused research pass before making confident claims." },
-    { question: "Will you rewrite the whole website?", answer: "Not by default. We first resolve the shared argument, then apply it to the surface with the highest commercial leverage. A broader page rebuild can become your next motion — the next campaign we build end to end." },
+    { question: "Will you rewrite the whole website?", answer: "Not by default. We first resolve the shared argument, then apply it to the surface with the highest commercial leverage. A broader page rebuild can become your next motion, the next campaign we build end to end." },
     { question: "How do we know the positioning works?", answer: "No single conversion rate proves positioning. We combine comprehension, sales adoption, objection patterns, qualified response, and downstream action. Strategy remains stable until evidence shows which assumption failed." },
   ],
   closingKicker: "STOP REWRITING A STORY YOU HAVE NOT DECIDED",
@@ -140,7 +134,7 @@ export const landingPages: ServicePageContent = {
   systemName: "Landing pages",
   circuitVariant: "argument",
   metaTitle: "B2B SaaS Landing Page Copy & Design | Grow & Close",
-  metaDescription: "Landing pages for B2B SaaS: strategy, copy, design, and build for pages that match traffic intent, put proof where doubt appears, and convert — live in 30 days.",
+  metaDescription: "Landing pages for B2B SaaS: strategy, copy, design, and build for pages that match traffic intent, put proof where doubt appears, and convert. Live in 30 days.",
   heroLead: "The page looks finished.",
   heroAccent: "The argument isn’t.",
   heroLede: "We connect traffic intent, message, proof, design, build quality, and measurement so your landing page does more than look done. It explains, qualifies, converts, and tells you exactly what to change next.",
@@ -175,7 +169,7 @@ export const landingPages: ServicePageContent = {
     { label: "MODULES", title: "Reusable proof system", copy: "Claims, testimonials, product evidence, process explanations, comparisons, and risk reducers with clear usage rules." },
     { label: "LEARNING", title: "Experiment log", copy: "Baseline, hypotheses, event meaning, test history, results, caveats, and the next safe change." },
   ],
-  packageHeading: "Ship one complete page — and its first learning cycle — in 30 days.",
+  packageHeading: "Ship one complete page, and its first learning cycle, in 30 days.",
   packageLede: "The first motion focuses on one valuable traffic path, one argument, one conversion action, and one measurement plan.",
   phases: [
     { period: "DAYS 01-05", title: "Diagnose the traffic path", copy: "Audit source, audience, current page, message drift, proof, form friction, and technical constraints.", deliverables: "Intent map · friction diagnosis · baseline" },
@@ -205,7 +199,7 @@ export const outboundActivation: ServicePageContent = {
   systemName: "Outbound activation",
   circuitVariant: "conversation",
   metaTitle: "B2B SaaS Outbound & Cold Email Programs | Grow & Close",
-  metaDescription: "Outbound for B2B SaaS: account selection, real buying triggers, human-approved cold email and LinkedIn, and reply learning — built for conversations, not volume.",
+  metaDescription: "Outbound for B2B SaaS: account selection, real buying triggers, human-approved cold email and LinkedIn, and reply learning, built for conversations rather than volume.",
   heroLead: "Cold outreach buyers answer",
   heroAccent: "because it’s actually about them.",
   heroLede: "We connect ICP decisions, account signals, focused research, human-approved outreach, and sales feedback so outbound earns replies without becoming a volume game.",
@@ -403,7 +397,7 @@ export const campaignStrategy: ServicePageContent = {
   metaDescription: "Campaign strategy for B2B SaaS: one falsifiable bet, a distinct job for every channel, coordinated launch, and clear rules for scaling, revising, or stopping.",
   heroLead: "One campaign idea, carried",
   heroAccent: "through every channel it touches.",
-  heroLede: "We connect audience, trigger, message, offer, channel jobs, assets, launch, and sales handoff so the buyer experiences one idea building across touches — not six teams shipping fragments on the same date.",
+  heroLede: "We connect audience, trigger, message, offer, channel jobs, assets, launch, and sales handoff so the buyer experiences one idea building across touches, instead of six teams shipping fragments on the same date.",
   diagnosticName: "Campaign Architecture Map",
   ctaLabel: "Get the campaign map",
   diagnosticHref: diagnosticHref("Campaign Architecture Map", "Which launch, segment, or commercial priority needs a campaign?:"),
@@ -468,7 +462,7 @@ export const gtmDashboards: ServicePageContent = {
   metaDescription: "GTM dashboards for B2B SaaS: exact metric definitions, validated data, views that show the driver behind the movement, and reviews that end in a recorded decision.",
   heroLead: "Reporting that ends in a decision,",
   heroAccent: "not another dashboard tour.",
-  heroLede: "We connect business questions, exact metric definitions, source quality, driver views, owners, and thresholds so the weekly review ends with someone deciding something — on the record.",
+  heroLede: "We connect business questions, exact metric definitions, source quality, driver views, owners, and thresholds so the weekly review ends with someone deciding something, on the record.",
   diagnosticName: "Measurement Gap Map",
   ctaLabel: "Get the measurement map",
   diagnosticHref: diagnosticHref("Measurement Gap Map", "Which GTM decision is your current reporting failing to support?:"),

@@ -1,0 +1,237 @@
+/* Phase 0 additions: hero levers, skills sample, pricing page, contact page.
+   Tokens only, mobile first, no hardcoded colours. */
+
+/* ---------- hero levers (replaces the decorative motion demo) ---------- */
+
+.hero-levers {
+  align-self: center;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  padding: clamp(20px, 3vw, 34px);
+}
+
+.hero-levers-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+.hero-levers ol {
+  counter-reset: lever;
+  display: grid;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-levers li {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 4px;
+  padding: 16px 0;
+}
+
+.hero-levers li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.hero-levers li span {
+  color: var(--electric);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.hero-levers li b {
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- skills sample output ---------- */
+
+.skills-sample {
+  align-self: center;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  padding: clamp(20px, 3vw, 32px);
+}
+
+.skills-sample-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+.skills-sample-io {
+  display: grid;
+  gap: 18px;
+}
+
+.skills-sample-io > div {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.skills-sample-io span {
+  color: var(--electric);
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.skills-sample-io p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  max-width: 62ch;
+}
+
+/* ---------- pricing page ---------- */
+
+.pricing-grid-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pricing-grid-three .price-card {
+  min-height: 0;
+}
+
+.pricing-page .legal-hero + .pricing {
+  padding-top: clamp(32px, 5vw, 64px);
+}
+
+/* ---------- contact page ---------- */
+
+.contact-options {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: clamp(40px, 6vw, 92px) clamp(20px, 4vw, 72px);
+}
+
+.contact-card {
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.contact-card-primary {
+  background: var(--ink);
+  color: white;
+}
+
+.contact-card-primary .section-kicker,
+.contact-card-primary small {
+  color: var(--electric-light);
+}
+
+.contact-card h2 {
+  font-size: clamp(24px, 2.4vw, 32px);
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.contact-card p {
+  margin: 0;
+  max-width: 46ch;
+}
+
+.contact-card .button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.contact-card small {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+}
+
+.contact-elsewhere {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 32px;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  padding: clamp(40px, 6vw, 92px) clamp(20px, 4vw, 72px);
+}
+
+.contact-elsewhere h2 {
+  font-size: clamp(28px, 3vw, 44px);
+  letter-spacing: -0.04em;
+  margin: 12px 0 0;
+}
+
+.contact-elsewhere ul {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-elsewhere li {
+  align-items: baseline;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 6px 24px;
+  grid-template-columns: minmax(0, 0.4fr) minmax(0, 1fr);
+  padding: 18px 0;
+}
+
+.contact-elsewhere li a {
+  font-weight: 600;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.contact-elsewhere li span {
+  color: var(--muted);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 1024px) {
+  .pricing-grid-three,
+  .contact-options {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-elsewhere {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-levers,
+  .skills-sample {
+    margin-top: 32px;
+  }
+
+  .contact-elsewhere li {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card .button {
+    margin-top: 8px;
+    width: 100%;
+    text-align: center;
+  }
+}

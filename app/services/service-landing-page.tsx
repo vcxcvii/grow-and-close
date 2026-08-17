@@ -4,10 +4,7 @@ import { JsonLd } from "../components/json-ld";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { skillForService } from "../skills/skill-page-content";
-import { ServiceCircuit } from "./service-circuit";
-import { ServiceHeroSystem } from "./service-hero-system";
 import type { ServicePageContent } from "./service-page-types";
-import { ServiceScrollCircuit } from "./service-scroll-circuit";
 
 interface ServiceLandingPageProps {
   service: ServicePageContent;
@@ -43,7 +40,6 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
     <main className="system-service-page" data-service={service.slug}>
       <JsonLd data={serviceJsonLd} />
       <JsonLd data={faqJsonLd} />
-      <ServiceScrollCircuit variant={service.circuitVariant} />
       <SiteHeader
         activeService={service.slug}
         ctaHref={service.diagnosticHref}
@@ -68,7 +64,6 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
           <p className="hero-note">SENIOR-LED · HUMAN-APPROVED · BUILT TO LEARN</p>
         </div>
 
-        <ServiceHeroSystem service={service} />
       </section>
 
       <section className="signal-strip" aria-label={`${service.name} outcomes`}>
@@ -77,7 +72,6 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
         ))}
       </section>
 
-      <ServiceCircuit service={service} />
 
       <section className="problem system-service-problem" id="problem">
         <div className="problem-heading">
@@ -87,7 +81,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
         </div>
         <div className="system-problem-grid">
           {service.problems.map((problem, index) => (
-            <article className="problem-card" data-service-circuit-target key={problem.title}>
+            <article className="problem-card" key={problem.title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{problem.title}</h3>
               <p>{problem.copy}</p>
@@ -109,7 +103,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
         </div>
         <div className="workflow-list">
           {service.stages.map((stage, index) => (
-            <article className="workflow-step" data-service-circuit-target key={stage.label}>
+            <article className="workflow-step" key={stage.label}>
               <span className="workflow-number">{String(index + 1).padStart(2, "0")}</span>
               <div>
                 <h3>{stage.title}</h3>
@@ -129,7 +123,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
         <p className="system-service-section-lede">{service.assetLede}</p>
         <div className="system-asset-grid">
           {service.assets.map((asset, index) => (
-            <article data-service-circuit-target key={asset.label}>
+            <article key={asset.label}>
               <div><span>{String(index + 1).padStart(2, "0")}</span><b>{asset.label}</b></div>
               <h3>{asset.title}</h3>
               <p>{asset.copy}</p>
@@ -146,7 +140,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
         </div>
         <div className="system-phase-grid">
           {service.phases.map((phase, index) => (
-            <article data-service-circuit-target key={phase.period}>
+            <article key={phase.period}>
               <div><span>{String(index + 1).padStart(2, "0")}</span><b>{phase.period}</b></div>
               <h3>{phase.title}</h3>
               <p>{phase.copy}</p>
@@ -157,11 +151,11 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
       </section>
 
       <section className="service-boundaries system-service-boundaries">
-        <div className="boundary-card boundary-card-dark" data-service-circuit-target>
+        <div className="boundary-card boundary-card-dark">
           <p>GROW &amp; CLOSE OWNS</p>
           <ul>{service.studioOwns.map((item) => <li key={item}>{item}</li>)}</ul>
         </div>
-        <div className="boundary-card" data-service-circuit-target>
+        <div className="boundary-card">
           <p>YOU OWN</p>
           <ul>{service.customerOwns.map((item) => <li key={item}>{item}</li>)}</ul>
         </div>
@@ -169,7 +163,6 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
 
       <section
         className="first-ship system-service-diagnostic"
-        data-service-circuit-target
         id="diagnostic"
       >
         <div className="first-ship-copy">
@@ -212,7 +205,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
         </div>
         <div className="faq-list">
           {service.faqs.map((faq, index) => (
-            <details data-service-circuit-target key={faq.question} open={index === 0}>
+            <details key={faq.question} open={index === 0}>
               <summary><span>{String(index + 1).padStart(2, "0")}</span>{faq.question}<b aria-hidden="true">+</b></summary>
               <p>{faq.answer}</p>
             </details>
@@ -220,7 +213,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
         </div>
       </section>
 
-      <section className="closing" data-service-circuit-target>
+      <section className="closing">
         <p className="section-kicker section-kicker-light">{service.closingKicker}</p>
         <h2>{service.closingHeading}</h2>
         <a className="button button-accent" href={service.diagnosticHref}>

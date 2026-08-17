@@ -5,6 +5,7 @@ import { JsonLd } from "../../components/json-ld";
 import { SiteFooter } from "../../components/site-footer";
 import { SiteHeader } from "../../components/site-header";
 import { bookingHref } from "../../site";
+import { RelatedLinks } from "../../components/related-links";
 
 export const metadata: Metadata = {
   title: "Founder-led Content for B2B SaaS | Grow & Close",
@@ -212,7 +213,7 @@ export default function FounderLedContentPage() {
       <SiteHeader
         activeService="founder-led-content"
         ctaHref={diagnosticHref}
-        ctaLabel="Get the signal map"
+        ctaLabel="Book a call"
       />
 
       <section className="hero founder-hero" id="top">
@@ -225,7 +226,7 @@ export default function FounderLedContentPage() {
             customer-proof loops, and amplify only what earns attention.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href={diagnosticHref}>Get your Founder Signal Map</a>
+            <a className="button button-primary" href={diagnosticHref}>Book a call with the founder</a>
             <a className="text-link" href="#loop">See the operating loop <span aria-hidden="true">↗</span></a>
           </div>
           <p className="hero-note">SOURCE-GROUNDED · HUMAN-APPROVED · BUILT TO COMPOUND</p>
@@ -389,7 +390,7 @@ export default function FounderLedContentPage() {
           <p className="section-kicker">START WITH THE MAP</p>
           <h2>Find where your founder signal stops compounding.</h2>
           <p>We&apos;ll review your founder voice, current channels, owned audience, proof capture, and distribution path. You get a one-page Founder Signal Map showing the broken handoffs and the first loop worth building.</p>
-          <a className="button button-primary" href={diagnosticHref}>Request your Founder Signal Map</a>
+          <a className="button button-primary" href={diagnosticHref}>Book a call with the founder</a>
           <small>APPLICATION-GATED · B2B SAAS · NO GENERIC CONTENT AUDIT</small>
         </div>
         <div className="first-ship-options">
@@ -417,8 +418,10 @@ export default function FounderLedContentPage() {
       <section className="closing">
         <p className="section-kicker section-kicker-light">YOUR THINKING SHOULD OUTLIVE THE FEED</p>
         <h2>Build an audience that remembers where the idea came from.</h2>
-        <a className="button button-accent" href={diagnosticHref}>Get the Founder Signal Map</a>
+        <a className="button button-accent" href={diagnosticHref}>Book a call with the founder</a>
       </section>
+
+      <RelatedLinks currentSlug="founder-led-content" />
 
       <SiteFooter />
     </main>

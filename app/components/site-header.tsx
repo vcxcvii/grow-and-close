@@ -87,8 +87,8 @@ export function SiteHeader({
           {servicesOpen ? (
             <div className="services-mega" id="services-mega-menu">
               <div className="services-mega-heading">
-                <p>ALL NINE SERVICES</p>
-                <strong>Pick the outcome. We connect the motion.</strong>
+                <p>START FROM THE PROBLEM</p>
+                <strong>Tell us what is stuck. We ship the fix.</strong>
               </div>
               <div className="services-mega-grid">
                 {serviceOfferings.map((service) => (
@@ -100,10 +100,10 @@ export function SiteHeader({
                     key={service.slug}
                     onClick={closeMenu}
                   >
-                    <span>{service.number}</span>
+                    <span>{service.lever}</span>
                     <div>
-                      <b>{service.title}</b>
-                      <small>{service.description}</small>
+                      <b>{service.problem}</b>
+                      <small>{service.title}. {service.description}</small>
                     </div>
                   </Link>
                 ))}

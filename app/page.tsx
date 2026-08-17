@@ -51,18 +51,18 @@ const capabilityGateKinds: LogicNodeKind[] = [
 const audienceProblems = [
   {
     audience: "FOR FOUNDERS",
-    title: "Marketing still lives in your head.",
-    copy: "Every campaign waits for you to brief it, review it, and connect the pieces. The business needs your context without needing your hands on every asset.",
+    title: "The story lives in your head, so everything waits on you.",
+    copy: "You can pitch it perfectly on a call and nobody can write it down. Every page, sequence, and deck queues behind your calendar, and you cannot tell whether the problem is positioning or execution.",
   },
   {
     audience: "FOR CMOs",
-    title: "The strategy is clear. Capacity is not.",
-    copy: "Your roadmap keeps losing to launches, sales requests, and quarter-end fire drills. You don’t need another plan. You need someone senior to take a priority and finish it.",
+    title: "The strategy is signed off. The quarter keeps eating it.",
+    copy: "Launches, sales requests, and board reporting consume the team, and the agency you hired sells senior then staffs junior. You do not need another plan. You need one priority finished to the standard you would sign your name to.",
   },
   {
     audience: "FOR HEADS OF MARKETING",
-    title: "You own the plan and the assembly line.",
-    copy: "You are too senior to spend the week stitching pages, sequences, and briefs together, but too under-resourced to hand the whole motion to one accountable owner.",
+    title: "You own the plan and you are also the assembly line.",
+    copy: "One marketer, a founder with opinions, and a sales team filing requests. You spend the week stitching pages, briefs, and sequences together instead of deciding what actually moves pipeline.",
   },
 ];
 
@@ -168,10 +168,11 @@ export default function Home() {
       <section className="problem" id="problem">
         <div className="problem-heading">
           <p className="section-kicker">THE REAL BOTTLENECK</p>
-          <h2>The work between the plan and the pipeline has no clear owner.</h2>
+          <h2>The gap is not strategy. It is the execution queue with no owner.</h2>
           <p>
-            More ideas will not fix it. More disconnected freelancers will not fix it.
-            The missing layer is senior, cross-functional execution with one finish line.
+            Another plan will not clear it, and five freelancers will produce five
+            disconnected assets you then have to integrate yourself. What is missing is
+            one senior person who takes a priority from decision to live.
           </p>
         </div>
         <div className="problem-grid" id="problem-logic">
@@ -247,8 +248,8 @@ export default function Home() {
 
       <section className="capabilities" id="capabilities">
         <div className="capability-title">
-          <p className="section-kicker">WHAT WE COVER</p>
-          <h2>Everything needed to move one priority forward.</h2>
+          <p className="section-kicker">START FROM WHAT IS STUCK</p>
+          <h2>Find your problem. That is the entry point.</h2>
         </div>
         <div className="capability-grid" id="capability-logic">
           {serviceOfferings.map((capability, index) => (
@@ -259,13 +260,13 @@ export default function Home() {
               id={`capability-${capability.slug}`}
               key={capability.slug}
             >
-              <span className="capability-number">{capability.number}</span>
+              <span className="capability-number">{capability.lever}</span>
               <LogicNode
                 kind={capabilityGateKinds[index]}
                 order={index < 5 ? index + 1 : 13 - index}
               />
-              <p>{capability.title}</p>
-              <small>{capability.description}</small>
+              <p>{capability.problem}</p>
+              <small>{capability.title}. {capability.description}</small>
             </a>
           ))}
         </div>
@@ -370,18 +371,19 @@ export default function Home() {
       <section className="first-ship" id="first-ship">
         <div className="first-ship-copy">
           <p className="section-kicker">LOW-RISK START</p>
-          <h2>Give us one GTM priority. We&apos;ll ship it free.</h2>
+          <h2>Bring one priority. We will scope it on the call.</h2>
           <p>
-            If there&apos;s a fit, we&apos;ll audit one GTM problem and produce one useful,
-            live-ready asset in week one. No generic deck. No obligation to continue.
+            Thirty minutes, no deck. You leave with the priority scoped, the metric it
+            should move, and a straight answer on whether we are the right people to
+            ship it. If we are not, we will say so.
           </p>
           <a className="button button-primary" href={bookingHref("One GTM priority shipped free: our biggest bottleneck")}>
-            Get one GTM priority shipped free
+            Book a call with the founder
           </a>
-          <small>Application-gated · B2B SaaS only · limited weekly capacity</small>
+          <small>B2B SaaS only · $3,000 fixed-scope sprint · no long contract</small>
         </div>
         <div className="first-ship-options">
-          <p>CHOOSE ONE STARTING POINT</p>
+          <p>MOST CALLS START HERE</p>
           <a href={bookingHref("Free GTM priority: homepage story")}>
             <span>A</span><strong>Homepage story</strong><small>Rewrite one decisive section.</small><i aria-hidden="true">↗</i>
           </a>
@@ -415,8 +417,8 @@ export default function Home() {
 
       <section className="closing" id="closing">
         <p className="section-kicker section-kicker-light">READY WHEN THE BACKLOG IS</p>
-        <h2>Stop carrying GTM work into next week.</h2>
-        <a className="button button-accent" href="#first-ship">Get one GTM priority shipped free</a>
+        <h2>Stop carrying the same priority into next quarter.</h2>
+        <a className="button button-accent" href="#first-ship">Book a call with the founder</a>
       </section>
 
       <SiteFooter id="contact" pageEndId="page-end" />

@@ -5,6 +5,7 @@ import { JsonLd } from "../components/json-ld";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { bookingHref } from "../site";
+import { RelatedLinks } from "../components/related-links";
 
 export const metadata: Metadata = {
   title: "Pricing | GTM Execution for B2B SaaS | Grow & Close",
@@ -229,6 +230,8 @@ export default function PricingPage() {
         <h2>Bring the priority. We will scope it live.</h2>
         <a className="button button-accent" href={sprintHref}>Book a 30-minute call</a>
       </section>
+
+      <RelatedLinks />
 
       <SiteFooter />
     </main>

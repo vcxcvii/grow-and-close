@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { bookingHref } from "../site";
+import { RelatedLinks } from "../components/related-links";
 
 export const metadata: Metadata = {
   title: "B2B SaaS GTM Services | Grow & Close",
@@ -365,6 +366,8 @@ export default function ServicesPage() {
         <h2>Bring one GTM priority. Your GTM backlog, shipped.</h2>
         <a className="button button-accent" href={diagnosticHref}>Map my GTM bottleneck</a>
       </section>
+
+      <RelatedLinks />
 
       <SiteFooter />
     </main>

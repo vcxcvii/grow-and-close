@@ -4,6 +4,7 @@ import Link from "next/link";
 import { JsonLd } from "../components/json-ld";
 import { SiteHeader } from "../components/site-header";
 import { skillPages } from "./skill-page-content";
+import { RelatedLinks } from "../components/related-links";
 
 export const metadata: Metadata = {
   title: "Free Claude Skills for B2B SaaS Marketing & GTM | Grow & Close",

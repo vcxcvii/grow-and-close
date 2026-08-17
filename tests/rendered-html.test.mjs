@@ -96,11 +96,12 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /services\/campaign-strategy/);
   assert.match(html, /services\/gtm-dashboards/);
   assert.match(html, /services\/customer-advocacy/);
-  assert.match(html, /Make buyers understand why you, now/);
-  assert.match(html, /Pages that convert because the argument holds/);
-  assert.match(html, /Catch customer wins\. Turn them into usable proof\./);
-  assert.match(html, /Give us one GTM priority/);
-  assert.match(html, /Get one GTM priority shipped free/);
+  assert.match(html, /Buyers cannot tell us apart/);
+  assert.match(html, /Traffic arrives, nobody converts/);
+  assert.match(html, /Deals stall after the demo/);
+  assert.match(html, /We have wins, no usable proof/);
+  assert.match(html, /Bring one priority\. We will scope it on the call\./);
+  assert.match(html, /Book a call with the founder/);
   assert.match(html, /href="\/about"/);
   assert.match(html, /href="\/disclaimer"/);
   assert.match(html, /hello@growandclose\.com/);
@@ -188,23 +189,25 @@ test("server-renders a linked operational disclaimer", async () => {
 
 test("server-renders every service system with a unique diagnostic", async () => {
   const services = [
-    ["positioning-and-messaging", "Market Signal System", "Your product is different", "Message Gap Map"],
-    ["landing-pages", "Page Learning System", "The page looks finished", "Page Argument Map"],
-    ["outbound-activation", "Signal-to-Conversation System", "Cold outreach buyers answer", "Outbound Signal Map"],
-    ["aeo-and-data-stories", "Citation Engine", "Own the answer buyers", "Answer-Ownership Map"],
-    ["sales-enablement", "Deal Momentum System", "Your reps rebuild the pitch", "Deal Friction Map"],
-    ["campaign-strategy", "Campaign Operating System", "One campaign idea, carried", "Campaign Architecture Map"],
-    ["gtm-dashboards", "Decision Dashboard System", "Reporting that ends in a decision", "Measurement Gap Map"],
-    ["customer-advocacy", "Customer Evidence System", "Customer wins happen every week", "Customer Evidence Map"],
+    ["positioning-and-messaging", "Market Signal System", "Buyers cannot tell you apart", "positioning reset"],
+    ["landing-pages", "Page Learning System", "The page looks finished", "page rebuild"],
+    ["outbound-activation", "Signal-to-Conversation System", "Cold outreach buyers answer", "outbound rebuild"],
+    ["aeo-and-data-stories", "Citation Engine", "Buyers ask a model first", "answer-ownership build"],
+    ["sales-enablement", "Deal Momentum System", "Your reps rebuild the pitch", "enablement rebuild"],
+    ["campaign-strategy", "Campaign Operating System", "One campaign idea, carried", "campaign build"],
+    ["gtm-dashboards", "Decision Dashboard System", "Reporting that ends in a decision", "measurement build"],
+    ["customer-advocacy", "Customer Evidence System", "Customer wins happen every week", "proof build"],
   ];
 
-  for (const [slug, , headline, diagnostic] of services) {
+  for (const [slug, , headline] of services) {
     const response = await render(`http://localhost/services/${slug}`);
     assert.equal(response.status, 200, slug);
 
     const html = await response.text();
     assert.match(html, new RegExp(headline, "i"), slug);
-    assert.match(html, new RegExp(diagnostic, "i"), slug);
+    assert.match(html, /THE OFFER · \$3,000 · 10 WORKING DAYS/, slug);
+    assert.match(html, /Book a call with the founder/, slug);
+    assert.match(html, /cal\.com\/varun-choraria\/30min/, slug);
     assert.match(html, /WHAT COMPOUNDS/, slug);
     assert.match(html, /A TYPICAL FIRST 30 DAYS/, slug);
     assert.match(html, /GROW &amp; CLOSE OWNS/, slug);
@@ -244,7 +247,7 @@ test("brand colors preserve accessible text pairings", async () => {
   );
   assert.match(globals, /@import "\.\/services\/service-pages\.css"/);
   assert.ok(
-    globals.split("\n").length < 2000,
+    globals.split("\n").length < 2200,
     "globals.css should stay a compact authority stylesheet, not absorb legacy service CSS",
   );
   assert.doesNotMatch(

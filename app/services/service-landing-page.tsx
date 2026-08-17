@@ -5,6 +5,7 @@ import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { skillForService } from "../skills/skill-page-content";
 import type { ServicePageContent } from "./service-page-types";
+import { RelatedLinks } from "../components/related-links";
 
 interface ServiceLandingPageProps {
   service: ServicePageContent;
@@ -43,7 +44,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
       <SiteHeader
         activeService={service.slug}
         ctaHref={service.diagnosticHref}
-        ctaLabel={service.ctaLabel}
+        ctaLabel="Book a call"
       />
 
       <section className="hero system-service-hero" id="top">
@@ -55,13 +56,13 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
           <p className="hero-lede">{service.heroLede}</p>
           <div className="hero-actions">
             <a className="button button-primary" href={service.diagnosticHref}>
-              Get your {service.diagnosticName}
+              Book a call with the founder
             </a>
-            <a className="text-link" href="#system-loop">
-              See the operating loop <span aria-hidden="true">↗</span>
+            <a className="text-link" href="#diagnostic">
+              See what ships in 10 days <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <p className="hero-note">SENIOR-LED · HUMAN-APPROVED · BUILT TO LEARN</p>
+          <p className="hero-note">$3,000 · 10 WORKING DAYS · ONE SENIOR OWNER</p>
         </div>
 
       </section>
@@ -166,16 +167,16 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
         id="diagnostic"
       >
         <div className="first-ship-copy">
-          <p className="section-kicker">START WITH THE {service.diagnosticName.toUpperCase()}</p>
+          <p className="section-kicker">THE OFFER · $3,000 · 10 WORKING DAYS</p>
           <h2>{service.diagnosticHeading}</h2>
           <p>{service.diagnosticCopy}</p>
           <a className="button button-primary" href={service.diagnosticHref}>
-            Request your {service.diagnosticName}
+            Book a call with the founder
           </a>
-          <small>APPLICATION-GATED · B2B SAAS · ONE USEFUL DIAGNOSIS</small>
+          <small>B2B SAAS ONLY · NO INVOICE IF THE FIRST DELIVERABLE MISSES THE RUBRIC</small>
         </div>
         <div className="first-ship-options">
-          <p>YOUR MAP INCLUDES</p>
+          <p>WHAT SHIPS</p>
           {service.diagnosticIncludes.map((item, index) => (
             <div key={item}><span>{index + 1}</span><strong>{item}</strong></div>
           ))}
@@ -217,9 +218,14 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
         <p className="section-kicker section-kicker-light">{service.closingKicker}</p>
         <h2>{service.closingHeading}</h2>
         <a className="button button-accent" href={service.diagnosticHref}>
-          Get the {service.diagnosticName}
+          Book a call with the founder
         </a>
       </section>
+
+      <RelatedLinks
+        currentSlug={service.slug}
+        skill={skillForService[service.slug]}
+      />
 
       <SiteFooter />
     </main>

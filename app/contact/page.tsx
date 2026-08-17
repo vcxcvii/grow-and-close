@@ -4,6 +4,7 @@ import Link from "next/link";
 import { JsonLd } from "../components/json-ld";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
+import { RelatedLinks } from "../components/related-links";
 import {
   BOOKING_URL,
   CONTACT_EMAIL,
@@ -143,6 +144,8 @@ export default function ContactPage() {
         <h2>Thirty minutes is enough to know if this fits.</h2>
         <a className="button button-accent" href={callHref}>Book a 30-minute call</a>
       </section>
+
+      <RelatedLinks />
 
       <SiteFooter />
     </main>

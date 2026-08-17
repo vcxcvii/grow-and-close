@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { JsonLd } from "../components/json-ld";
+import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { skillPages } from "./skill-page-content";
 import { RelatedLinks } from "../components/related-links";
@@ -80,6 +81,10 @@ export default function SkillsHubPage() {
           </Link>
         ))}
       </div>
+
+      <RelatedLinks />
+
+      <SiteFooter />
     </main>
   );
 }

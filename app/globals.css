@@ -1886,3 +1886,47 @@ summary:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---------- hero fit (must stay after the base rules; @import is hoisted): keep the headline and the CTA above the fold ---------- */
+
+.hero h1 {
+  font-size: clamp(52px, 6.6vw, 104px);
+  text-wrap: balance;
+}
+
+.hero-copy,
+.hero-levers,
+.skills-sample {
+  min-width: 0;
+}
+
+.hero h1,
+.hero h1 span {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 1100px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 780px) {
+  .hero h1 {
+    font-size: clamp(36px, 10.2vw, 58px);
+    letter-spacing: -0.05em;
+    line-height: 0.94;
+  }
+
+  .hero-lede {
+    max-width: 100%;
+  }
+
+  .hero-levers li b {
+    font-size: 16px;
+  }
+}
+
+.site-footer .footer-logic {
+  max-width: 100%;
+}

@@ -75,11 +75,66 @@ const breadcrumbJsonLd = {
   ],
 };
 
+/**
+ * Machine-readable offers. Without this an agent reading the page has to infer
+ * price from prose, which is the one thing a pricing page should never make a
+ * buyer (or a buyer's assistant) guess at.
+ */
+const offerCatalogJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: "Grow & Close engagements",
+  url: "https://growandclose.com/pricing",
+  provider: { "@id": "https://growandclose.com/#organization" },
+  itemListElement: [
+    {
+      "@type": "Offer",
+      name: "GTM Reset sprint",
+      description:
+        "One GTM priority, scoped on the call, shipped to a dated finish line in 10 working days and tied to qualified pipeline created.",
+      price: "3000",
+      priceCurrency: "USD",
+      url: "https://growandclose.com/pricing#plans",
+      availability: "https://schema.org/InStock",
+      itemOffered: {
+        "@type": "Service",
+        name: "GTM Reset sprint",
+        serviceType: "Go-to-market execution sprint",
+        provider: { "@id": "https://growandclose.com/#organization" },
+      },
+    },
+    ...pricingPlans.map((plan) => ({
+      "@type": "Offer",
+      name: plan.name,
+      description: plan.description,
+      price: String(plan.price),
+      priceCurrency: "USD",
+      url: "https://growandclose.com/pricing#plans",
+      availability: "https://schema.org/InStock",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: String(plan.price),
+        priceCurrency: "USD",
+        billingDuration: 1,
+        billingIncrement: 1,
+        unitText: "MONTH",
+      },
+      itemOffered: {
+        "@type": "Service",
+        name: plan.name,
+        serviceType: "Go-to-market execution subscription",
+        provider: { "@id": "https://growandclose.com/#organization" },
+      },
+    })),
+  ],
+};
+
 export default function PricingPage() {
   return (
     <main className="pricing-page" data-brand-system="gc-logic-v1">
       <JsonLd data={faqJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={offerCatalogJsonLd} />
       <SiteHeader ctaHref={sprintHref} ctaLabel="Book a call" />
 
       <section className="legal-hero">

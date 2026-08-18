@@ -419,6 +419,12 @@ test("server-renders the pricing page with plans, schema, and one booking path",
   assert.match(html, /FAQPage/);
   assert.match(html, /BreadcrumbList/);
   assert.match(html, /href="\/book-a-call\?topic=/);
+  // Prices must be machine-readable, not only prose.
+  assert.match(html, /"@type":"OfferCatalog"/);
+  assert.equal((html.match(/"@type":"Offer"/g) ?? []).length, 3);
+  assert.match(html, /"price":"3000","priceCurrency":"USD"/);
+  assert.match(html, /"price":"3500"/);
+  assert.match(html, /"price":"7000"/);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
   assert.doesNotMatch(html, /—/);
   assert.doesNotMatch(html, /no long contract/i);

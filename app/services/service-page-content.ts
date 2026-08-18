@@ -177,8 +177,8 @@ export const landingPages: ServicePageContent = {
   studioOwns: ["Traffic and page diagnosis", "Argument, copy, and proof sequence", "Design and responsive implementation", "Analytics and interaction QA", "Initial learning review"],
   customerOwns: ["Traffic source and campaign context", "Approved product and customer proof", "Form destination and follow-up ownership", "Legal and brand approval", "Access to lead-quality feedback"],
   diagnosticHeading: "Ten days. One page rebuilt around the objection that matters.",
-  diagnosticCopy: "We score the current page against a published rubric, rewrite the argument, then design and build it. You see the score before you commit, so nothing about the standard is a surprise.",
-  diagnosticIncludes: ["A scored teardown of the current page against a public rubric", "The rewritten argument: promise, objections, proof, action", "Copy and design for the page, built and live-ready", "The measurement plan for the conversion it should move"],
+  diagnosticCopy: "We score the current page against the eight published criteria at growandclose.com/rubric, rewrite the argument, then design and build it. The rubric is public before you commit, so nothing about the standard is a surprise.",
+  diagnosticIncludes: ["A scored teardown of the current page against the eight published rubric criteria", "The rewritten argument: promise, objections, proof, action", "Copy and design for the page, built and live-ready", "The measurement plan for the qualified pipeline it should move"],
   faqs: [
     { question: "Do you design and build the page?", answer: "Yes. The motion can include strategy, copy, interaction design, responsive implementation, analytics, and launch QA. We preserve a working stack unless a change has a clear commercial reason." },
     { question: "Can you improve an existing page instead?", answer: "Yes. If the page has usable traffic and a sound technical base, improving the argument or proof path may create more value than rebuilding it." },

@@ -59,9 +59,9 @@ const proofItems = [
   {
     kicker: "SCORED, NOT PROMISED",
     title: "A published rubric",
-    copy: "The GTM Reset sprint is scored against a rubric you see before you buy. Miss it, and there's no invoice.",
-    href: "/pricing#plans",
-    label: "See how pricing works →",
+    copy: "The first sprint deliverable is scored against eight published criteria. Five are blocking: fail one and there is no invoice.",
+    href: "/rubric",
+    label: "Read the rubric →",
   },
 ];
 

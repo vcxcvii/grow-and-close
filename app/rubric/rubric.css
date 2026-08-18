@@ -1,0 +1,127 @@
+.rubric-section {
+  border-bottom: 1px solid var(--ink);
+  padding: clamp(56px, 7vw, 110px) clamp(20px, 6vw, 100px);
+}
+
+.rubric-section-quality {
+  background: var(--paper-deep);
+}
+
+.rubric-section-heading {
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(36px, 4vw, 56px);
+  max-width: 70ch;
+  padding-bottom: clamp(24px, 3vw, 36px);
+}
+
+.rubric-section-heading h2 {
+  font-size: clamp(28px, 3.4vw, 48px);
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  margin: 0 0 16px;
+}
+
+.rubric-section-heading > p:last-child {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.rubric-list {
+  display: grid;
+  gap: clamp(20px, 2.5vw, 32px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rubric-item {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(22px, 2.4vw, 32px);
+}
+
+.rubric-item-blocking {
+  box-shadow: 6px 6px 0 var(--electric);
+}
+
+.rubric-item-topline {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.rubric-number {
+  color: var(--electric);
+  font-family: var(--mono);
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.rubric-tag {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.11em;
+  padding: 5px 9px;
+}
+
+.rubric-tag-quality {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.rubric-item h3 {
+  font-size: clamp(19px, 1.9vw, 23px);
+  letter-spacing: -0.03em;
+  line-height: 1.14;
+  margin: 0 0 12px;
+}
+
+.rubric-standard {
+  border-left: 2px solid var(--electric);
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.45;
+  margin: 0 0 20px;
+  padding-left: 14px;
+}
+
+.rubric-item dl {
+  margin: 0;
+}
+
+.rubric-item dt {
+  color: var(--electric);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.rubric-item dd {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+.rubric-item dd:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .rubric-item-blocking {
+    box-shadow: 4px 4px 0 var(--electric);
+  }
+}

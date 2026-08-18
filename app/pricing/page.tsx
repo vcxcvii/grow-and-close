@@ -32,12 +32,12 @@ const faqs = [
   {
     question: "Why start with a sprint instead of a subscription?",
     answer:
-      "A sprint is a smaller decision with a dated finish line. You see the standard of work on your own problem before committing to a monthly engagement, and most clients move to a subscription only after the first sprint lands.",
+      "A sprint is a smaller decision with a dated finish line. You see the standard of work on your own problem, on one priority, before committing to anything monthly.",
   },
   {
     question: "What happens if the first deliverable is weak?",
     answer:
-      "The sprint is scored against a published rubric that you see before you buy. If the first deliverable does not clear it, there is no invoice.",
+      "The first deliverable is scored against eight published criteria at growandclose.com/rubric, which you can read before you buy. Five of the eight are blocking: if any one of those fails, there is no invoice and you keep the work.",
   },
   {
     question: "Is there a contract or a minimum term?",
@@ -115,7 +115,10 @@ export default function PricingPage() {
               <li>The measurement plan for the lever it moves</li>
               <li>Ship log and the execution circuit that produced it</li>
               <li>90 minutes of your time in total</li>
-              <li>No invoice if the first deliverable misses the published rubric</li>
+              <li>
+                No invoice if the first deliverable misses the{" "}
+                <Link href="/rubric">published rubric</Link>
+              </li>
             </ul>
             <a className="button button-accent" href={sprintHref}>Book a call about the sprint</a>
           </article>
@@ -141,8 +144,9 @@ export default function PricingPage() {
           ))}
         </div>
         <p className="pricing-footnote">
-          Both monthly plans access all nine services. You are choosing capacity, not a
-          restricted menu. See <Link href="/services">what each service covers</Link>.
+          Pipeline One and Pipeline Team both access all nine Grow &amp; Close services. You
+          are choosing how many priorities move at once, not a restricted menu. See{" "}
+          <Link href="/services">what each service covers</Link>.
         </p>
       </section>
 
@@ -151,8 +155,8 @@ export default function PricingPage() {
           <p className="section-kicker">HOW TO CHOOSE</p>
           <h2>Pick by how full the queue is.</h2>
           <p>
-            The sprint answers one question well. The subscription keeps answering them.
-            Nobody needs to start at the top.
+            The GTM Reset sprint answers one question well. A Pipeline subscription keeps
+            answering them as they arrive. Nobody needs to start at the top.
           </p>
         </div>
         <div className="problem-grid">

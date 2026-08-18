@@ -109,9 +109,12 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /href="\/pricing"/);
   assert.match(html, /href="\/privacy"/);
   assert.match(html, /href="\/llms\.txt"/);
-  assert.match(html, /"@type":"Person","@id":"https:\/\/growandclose\.com\/#founder"/);
-  assert.match(html, /"@type":"Organization".*"sameAs":\["https:\/\/github\.com\/vcxcvii","https:\/\/www\.linkedin\.com\/in\/varunchoraria"\]/);
+  assert.match(html, /"@graph"/);
   assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /href="\/for\/founders"/);
+  assert.match(html, /href="\/for\/heads-of-marketing"/);
+  assert.match(html, /href="\/for\/cmos"/);
+  assert.match(html, /href="\/rubric"/);
   assert.match(html, /What counts as one active pipeline motion\?/);
   assert.doesNotMatch(html, /no long contract/i);
   assert.doesNotMatch(html, /target="_blank"[^>]*>\s*<span>0/);
@@ -471,7 +474,152 @@ test("the sitemap publishes real modification dates and the new routes", async (
 
   assert.doesNotMatch(sitemap, /lastModified:\s*now/);
   assert.doesNotMatch(sitemap, /const now = new Date\(\)/);
-  for (const route of ["/pricing", "/book-a-call", "/privacy", "/terms"]) {
+  for (const route of ["/pricing", "/book-a-call", "/privacy", "/terms", "/rubric", "/for/"]) {
     assert.ok(sitemap.includes(`${route}\``) || sitemap.includes(route), route);
+  }
+});
+
+// Regex-matching JSON-LD cannot catch malformed JSON, which is the failure that
+// actually breaks a parser. Parse every block on every route instead.
+test("every JSON-LD block on every route is valid parseable JSON", async () => {
+  const routes = [
+    "/",
+    "/pricing",
+    "/services",
+    "/skills",
+    "/about",
+    "/book-a-call",
+    "/rubric",
+    "/for/founders",
+    "/for/heads-of-marketing",
+    "/for/cmos",
+    "/services/landing-pages",
+    "/skills/icp-sharpener-b2b",
+  ];
+
+  for (const route of routes) {
+    const response = await render(`http://localhost${route}`);
+    assert.equal(response.status, 200, route);
+    const html = await response.text();
+
+    const blocks = [
+      ...html.matchAll(
+        /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,
+      ),
+    ].map((match) => match[1]);
+
+    assert.ok(blocks.length > 0, `${route} has no JSON-LD`);
+
+    for (const block of blocks) {
+      let parsed;
+      assert.doesNotThrow(() => {
+        parsed = JSON.parse(block);
+      }, `${route} has unparseable JSON-LD`);
+      assert.ok(parsed["@context"], `${route} JSON-LD missing @context`);
+      assert.ok(
+        parsed["@type"] || parsed["@graph"],
+        `${route} JSON-LD missing @type and @graph`,
+      );
+    }
+  }
+});
+
+test("the founder and organization resolve inside one graph, cross-referenced by @id", async () => {
+  const response = await render();
+  const html = await response.text();
+
+  const blocks = [
+    ...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g),
+  ].map((match) => JSON.parse(match[1]));
+
+  const graphBlock = blocks.find((block) => Array.isArray(block["@graph"]));
+  assert.ok(graphBlock, "no @graph block found");
+
+  const graph = graphBlock["@graph"];
+  const ids = graph.map((node) => node["@id"]);
+  assert.ok(ids.includes("https://growandclose.com/#founder"));
+  assert.ok(ids.includes("https://growandclose.com/#organization"));
+
+  const org = graph.find((node) => node["@type"] === "Organization");
+  const person = graph.find((node) => node["@type"] === "Person");
+
+  // Every @id the graph points at must exist as a node inside the same graph,
+  // otherwise the reference dangles and the entity link is silently lost.
+  assert.equal(org.founder["@id"], person["@id"]);
+  assert.equal(person.worksFor["@id"], org["@id"]);
+  assert.deepEqual(org.sameAs, [
+    "https://github.com/vcxcvii",
+    "https://www.linkedin.com/in/varunchoraria",
+  ]);
+  assert.ok(person.sameAs.includes("https://varunchoraria.com"));
+});
+
+test("the rubric page publishes the standard the guarantee refers to", async () => {
+  const response = await render("http://localhost/rubric");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>The Published Rubric \| Grow &amp; Close<\/title>/i);
+  assert.match(html, /rel="canonical" href="https:\/\/growandclose\.com\/rubric"/i);
+  assert.match(html, /there is no invoice/i);
+  assert.match(html, /BLOCKING/);
+  // Five blocking criteria plus three scored ones. Match the rendered element,
+  // not the bare class name: the RSC flight payload embedded further down the
+  // document repeats every className, so a class-only count doubles.
+  assert.equal((html.match(/<li class="rubric-item/g) ?? []).length, 8);
+  assert.equal((html.match(/<li class="rubric-item rubric-item-blocking/g) ?? []).length, 5);
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
+  assert.doesNotMatch(html, /—/);
+});
+
+test("no page promises a rubric without linking to the published one", async () => {
+  for (const route of ["/pricing", "/book-a-call", "/services/landing-pages"]) {
+    const response = await render(`http://localhost${route}`);
+    const html = await response.text();
+
+    if (/rubric/i.test(html)) {
+      assert.ok(
+        html.includes('href="/rubric"') || html.includes("growandclose.com/rubric"),
+        `${route} mentions a rubric but does not point at /rubric`,
+      );
+    }
+  }
+});
+
+test("no page claims a client base that does not exist yet", async () => {
+  for (const route of ["/", "/pricing", "/services", "/book-a-call", "/for/founders"]) {
+    const response = await render(`http://localhost${route}`);
+    const html = await response.text();
+    assert.doesNotMatch(html, /most clients/i, route);
+    assert.doesNotMatch(html, /our clients (say|tell|report)/i, route);
+    assert.doesNotMatch(html, /trusted by \d/i, route);
+  }
+});
+
+test("each persona page carries one reframe, one metric, and cited third-party evidence", async () => {
+  const personas = [
+    ["/for/founders", "You are the bottleneck", "Founder"],
+    ["/for/heads-of-marketing", "You own the plan", "Head of Marketing"],
+    ["/for/cmos", "The strategy is signed off", "CMO"],
+  ];
+
+  for (const [route, headline] of personas) {
+    const response = await render(`http://localhost${route}`);
+    assert.equal(response.status, 200, route);
+
+    const html = await response.text();
+    assert.match(html, new RegExp(headline, "i"), route);
+    // The shared villain and reframe must appear on every persona page.
+    assert.match(html, /THE OLD WAY: BUY MORE PRODUCTION/, route);
+    assert.match(html, /THE NEW WAY: BUY THE DECISION/, route);
+    // The one metric every page resolves to.
+    assert.match(html, /qualified pipeline created/i, route);
+    // Evidence is cited, not asserted.
+    assert.match(html, /<cite>/, route);
+    assert.match(html, /MKT1/, route);
+    assert.match(html, /href="\/rubric"/, route);
+    assert.equal((html.match(/<h1\b/g) ?? []).length, 1, route);
+    assert.doesNotMatch(html, /—/, route);
+    assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i, route);
   }
 });

@@ -114,6 +114,7 @@ export function SiteFooter({ id, pageEndId }: SiteFooterProps) {
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
           <Link href="/disclaimer">Disclaimer</Link>
+          <Link href="/llms.txt">llms.txt</Link>
         </div>
       </nav>
 

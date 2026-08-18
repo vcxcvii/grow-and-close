@@ -41,3 +41,9 @@ next-env.d.ts
 /outputs/
 /work/
 tsconfig.tsbuildinfo
+
+# rainmaker (SEO/AEO agent, vcxcvii/rainmaker)
+# Contains real crawl data, traffic, and conversion numbers.
+/data/
+# Real config (site, ICP, booking link). *.config.example.yml stays tracked.
+*.config.yml

@@ -108,6 +108,11 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /href="\/book-a-call\?topic=/);
   assert.match(html, /href="\/pricing"/);
   assert.match(html, /href="\/privacy"/);
+  assert.match(html, /href="\/llms\.txt"/);
+  assert.match(html, /"@type":"Person","@id":"https:\/\/growandclose\.com\/#founder"/);
+  assert.match(html, /"@type":"Organization".*"sameAs":\["https:\/\/github\.com\/vcxcvii","https:\/\/www\.linkedin\.com\/in\/varunchoraria"\]/);
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /What counts as one active pipeline motion\?/);
   assert.doesNotMatch(html, /no long contract/i);
   assert.doesNotMatch(html, /target="_blank"[^>]*>\s*<span>0/);
   assert.equal((html.match(/href="mailto:[^"]*\?subject/g) ?? []).length, 0);
@@ -129,6 +134,7 @@ test("server-renders the founder-led content service page", async () => {
   assert.match(html, /Customers become the proof layer/i);
   assert.match(html, /A typical first 90 days/i);
   assert.match(html, /Founder Signal Map/);
+  assert.match(html, /"@type":"BreadcrumbList".*services\/founder-led-content/);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
   assert.doesNotMatch(html, /fully autonomous/i);
   assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
@@ -152,7 +158,20 @@ test("server-renders the services SEO pillar with nine in-tab spokes", async () 
   const serviceLinks = html.match(/href="\/services\/[^"]+"/g) ?? [];
   assert.ok(serviceLinks.length >= 9);
   assert.doesNotMatch(html, /href="\/services\/[^"]+"[^>]*target="_blank"/);
+  assert.match(html, /"@type":"BreadcrumbList"/);
+  assert.match(html, /"@type":"CollectionPage","name":"B2B SaaS GTM Services"/);
+  assert.equal((html.match(/"@type":"Service"/g) ?? []).length, 9);
   assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
+});
+
+test("server-renders the skills hub with a breadcrumb and a full collection schema", async () => {
+  const response = await render("http://localhost/skills");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /"@type":"BreadcrumbList".*"name":"Skills"/);
+  assert.match(html, /"@type":"CollectionPage"/);
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
 });
 
 test("server-renders the self-driving company manifesto with an honest autonomy ledger", async () => {
@@ -169,6 +188,7 @@ test("server-renders the self-driving company manifesto with an honest autonomy 
   assert.match(html, /AGENT-RUN NOW/);
   assert.match(html, /HUMAN AUTHORITY/);
   assert.match(html, /NEXT AUTONOMY LAYER/);
+  assert.match(html, /"@type":"BreadcrumbList".*"name":"About"/);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
   assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
 });
@@ -212,6 +232,7 @@ test("server-renders every service system with a unique diagnostic", async () =>
     assert.match(html, /A TYPICAL FIRST 30 DAYS/, slug);
     assert.match(html, /GROW &amp; CLOSE OWNS/, slug);
     assert.match(html, /href="\/services"/, slug);
+    assert.match(html, new RegExp(`"@type":"BreadcrumbList".*services/${slug}`), slug);
     assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i, slug);
   }
 });
@@ -413,6 +434,11 @@ test("server-renders the book-a-call page with an embedded calendar, an email, a
   assert.match(html, /href="\/skills"/);
   assert.match(html, /Replies within one working day/i);
   assert.match(html, /AI-assisted delivery, human-approved before release/i);
+  assert.match(html, /class="book-split"/);
+  assert.match(html, /class="book-split-calendar" id="calendar"/);
+  assert.match(html, /class="book-split-info"/);
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /Is there a fee for the call\?/);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
   assert.doesNotMatch(html, /—/);
 });

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { JsonLd } from "./components/json-ld";
 import { pricingPlans } from "./components/pricing-plans";
 import { serviceOfferings } from "./components/service-offerings";
 import { SiteFooter } from "./components/site-footer";
@@ -116,6 +117,16 @@ const faqs = [
   },
 ];
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+
 const heroBookingHref = bookingHref(
   "GTM priority I need shipped, and the number it should move",
 );
@@ -123,6 +134,7 @@ const heroBookingHref = bookingHref(
 export default function Home() {
   return (
     <main data-brand-system="gc-logic-v1">
+      <JsonLd data={faqJsonLd} />
       <SiteHeader ctaHref={heroBookingHref} ctaLabel="Book a call" homeHref="/#top" />
 
       <section className="hero" id="top">

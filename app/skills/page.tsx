@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { JsonLd } from "../components/json-ld";
+import { buildBreadcrumbJsonLd, JsonLd } from "../components/json-ld";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { skillPages } from "./skill-page-content";
 import { RelatedLinks } from "../components/related-links";
+
+const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+  { name: "Home", item: "https://growandclose.com/" },
+  { name: "Skills", item: "https://growandclose.com/skills" },
+]);
 
 export const metadata: Metadata = {
   title: "Free Claude Skills for B2B SaaS Marketing & GTM | Grow & Close",
@@ -38,6 +43,7 @@ const collectionJsonLd = {
 export default function SkillsHubPage() {
   return (
     <main className="skills-hub-page">
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={collectionJsonLd} />
       <SiteHeader ctaHref="/#pricing" ctaLabel="See the plans" />
 

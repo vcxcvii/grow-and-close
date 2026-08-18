@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { JsonLd } from "../../components/json-ld";
+import { buildBreadcrumbJsonLd, JsonLd } from "../../components/json-ld";
 import { SiteFooter } from "../../components/site-footer";
 import { SiteHeader } from "../../components/site-header";
 import { bookingHref } from "../../site";
@@ -180,6 +180,12 @@ const faqs = [
 const diagnosticHref = bookingHref("Founder Signal Map: what is not compounding in our founder content");
 
 export default function FounderLedContentPage() {
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "Home", item: "https://growandclose.com/" },
+    { name: "Services", item: "https://growandclose.com/services" },
+    { name: "Founder-led Content", item: "https://growandclose.com/services/founder-led-content" },
+  ]);
+
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -208,6 +214,7 @@ export default function FounderLedContentPage() {
 
   return (
     <main className="founder-page" data-service="founder-led-content">
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={serviceJsonLd} />
       <JsonLd data={faqJsonLd} />
       <SiteHeader

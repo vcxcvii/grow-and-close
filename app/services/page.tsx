@@ -1,10 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { buildBreadcrumbJsonLd, JsonLd } from "../components/json-ld";
+import { serviceOfferings } from "../components/service-offerings";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { bookingHref } from "../site";
 import { RelatedLinks } from "../components/related-links";
+
+const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+  { name: "Home", item: "https://growandclose.com/" },
+  { name: "Services", item: "https://growandclose.com/services" },
+]);
+
+const collectionJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "B2B SaaS GTM Services",
+  url: "https://growandclose.com/services",
+  hasPart: serviceOfferings.map((service) => ({
+    "@type": "Service",
+    name: service.title,
+    url: `https://growandclose.com${service.href}`,
+    provider: { "@type": "Organization", name: "Grow & Close", url: "https://growandclose.com" },
+  })),
+};
 
 export const metadata: Metadata = {
   title: "B2B SaaS GTM Services | Grow & Close",
@@ -218,6 +238,8 @@ const faqs = [
 export default function ServicesPage() {
   return (
     <main className="services-hub-page" data-service="services">
+      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={collectionJsonLd} />
       <SiteHeader ctaHref={diagnosticHref} ctaLabel="Map the bottleneck" />
 
       <section className="services-hub-hero" id="top">

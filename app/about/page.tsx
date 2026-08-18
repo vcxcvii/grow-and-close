@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { buildBreadcrumbJsonLd, JsonLd } from "../components/json-ld";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { bookingHref } from "../site";
+
+const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+  { name: "Home", item: "https://growandclose.com/" },
+  { name: "About", item: "https://growandclose.com/about" },
+]);
 
 export const metadata: Metadata = {
   title: "About Grow & Close | The Self-Driving GTM Company",
@@ -92,6 +98,7 @@ const principles = [
 export default function AboutPage() {
   return (
     <main className="about-page" data-brand-system="gc-logic-v1" data-service="about">
+      <JsonLd data={breadcrumbJsonLd} />
       <SiteHeader ctaHref={mailtoHref} ctaLabel="Set a destination" />
 
       <section className="about-hero" id="top">

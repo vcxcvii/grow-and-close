@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { JsonLd } from "../components/json-ld";
+import { buildBreadcrumbJsonLd, JsonLd } from "../components/json-ld";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { skillForService } from "../skills/skill-page-content";
@@ -12,6 +12,12 @@ interface ServiceLandingPageProps {
 }
 
 export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "Home", item: "https://growandclose.com/" },
+    { name: "Services", item: "https://growandclose.com/services" },
+    { name: service.name, item: `https://growandclose.com/services/${service.slug}` },
+  ]);
+
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -39,6 +45,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
 
   return (
     <main className="system-service-page" data-service={service.slug}>
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={serviceJsonLd} />
       <JsonLd data={faqJsonLd} />
       <SiteHeader

@@ -4,9 +4,21 @@ import Script from "next/script";
 import "./globals.css";
 
 import { JsonLd } from "./components/json-ld";
+import { GITHUB_URL, LINKEDIN_URL } from "./site";
 
 // Measurement IDs are public; the env var only exists to disable GA in forks.
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-1873J5508N";
+
+const founderJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://growandclose.com/#founder",
+  name: "Varun Choraria",
+  jobTitle: "Founder",
+  url: "https://varunchoraria.com",
+  sameAs: [LINKEDIN_URL, GITHUB_URL, "https://varunchoraria.com"],
+  worksFor: { "@type": "Organization", name: "Grow & Close", url: "https://growandclose.com" },
+};
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
@@ -16,9 +28,9 @@ const organizationJsonLd = {
   logo: "https://growandclose.com/og.png",
   description:
     "Senior-led GTM execution studio for B2B SaaS. Strategy, campaigns, pages, content, and enablement, shipped one pipeline motion at a time.",
-  founder: { "@type": "Person", name: "Varun Choraria" },
+  founder: { "@id": "https://growandclose.com/#founder" },
   email: "hello@growandclose.com",
-  sameAs: ["https://github.com/vcxcvii"],
+  sameAs: [GITHUB_URL, LINKEDIN_URL],
 };
 
 const webSiteJsonLd = {
@@ -85,6 +97,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
       <body>
+        <JsonLd data={founderJsonLd} />
         <JsonLd data={organizationJsonLd} />
         <JsonLd data={webSiteJsonLd} />
         {children}

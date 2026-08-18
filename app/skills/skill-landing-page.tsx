@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { JsonLd } from "../components/json-ld";
+import { buildBreadcrumbJsonLd, JsonLd } from "../components/json-ld";
 import { SiteHeader } from "../components/site-header";
 import { SkillDownloadForm } from "./skill-download-form";
 import type { SkillPageContent } from "./skill-page-types";
@@ -10,6 +10,12 @@ interface SkillLandingPageProps {
 }
 
 export function SkillLandingPage({ skill }: SkillLandingPageProps) {
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "Home", item: "https://growandclose.com/" },
+    { name: "Skills", item: "https://growandclose.com/skills" },
+    { name: skill.name, item: `https://growandclose.com/skills/${skill.slug}` },
+  ]);
+
   const softwareJsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -38,6 +44,7 @@ export function SkillLandingPage({ skill }: SkillLandingPageProps) {
 
   return (
     <main className="skill-page" data-skill={skill.slug}>
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={softwareJsonLd} />
       <JsonLd data={faqJsonLd} />
       <SiteHeader ctaHref="#download" ctaLabel="Get the free skill" />

@@ -46,7 +46,7 @@
   box-shadow: 8px 8px 0 var(--electric);
   color: var(--ink);
   left: 50%;
-  padding: 28px;
+  padding: 0;
   position: fixed;
   top: 78px;
   transform: translateX(-50%);
@@ -54,41 +54,14 @@
   z-index: 30;
 }
 
-.services-mega-heading {
-  border-bottom: 1px solid var(--ink);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding-bottom: 22px;
-}
-
-.services-mega-heading p,
-.services-mega-heading strong,
-.services-home-link {
-  font-family: var(--mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.services-mega-heading p {
-  color: var(--electric);
-  font-size: 11px;
-  margin: 0;
-}
-
-.services-mega-heading strong {
-  font-size: 12px;
-}
-
 .services-mega-groups {
   border-top: 1px solid var(--ink);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 22px;
 }
 
 .services-mega-group {
-  border-right: 1px solid var(--ink);
+  border-right: 1px solid var(--line);
   display: flex;
   flex-direction: column;
 }
@@ -98,24 +71,38 @@
 }
 
 .services-mega-group-label {
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
   color: var(--electric);
   font-family: var(--mono);
   font-size: 10px;
+  font-weight: 650;
   letter-spacing: 0.08em;
   margin: 0;
-  padding: 16px 16px 12px;
+  padding: 14px 16px 10px;
   text-transform: uppercase;
 }
 
+/* The lever question, in place of the old per-tile lever badge. The badge
+   repeated the column heading on every tile, which is most of what made the
+   panel feel loud. */
+.services-mega-group-label span {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .services-mega-group > a {
-  border-top: 1px solid var(--ink);
   display: flex;
-  flex: 1;
   flex-direction: column;
-  gap: 9px;
-  padding: 16px;
-  position: relative;
-  transition: background 220ms ease-out, color 220ms ease-out;
+  gap: 4px;
+  padding: 12px 16px;
+  transition: background 160ms ease-out, color 160ms ease-out;
 }
 
 .services-mega-group > a:hover,
@@ -129,27 +116,22 @@
   display: none;
 }
 
-.services-mega-tile-lever {
-  color: var(--electric);
-  font-family: var(--mono);
-  font-size: 10px;
-  position: absolute;
-  right: 16px;
-  top: 16px;
-}
-
+/* Service name leads, at normal weight. The problem quote used to be a 16px
+   bold line and the service name a grey afterthought, which read as twelve
+   competing headlines. */
 .services-mega-group b {
   font-family: var(--sans);
-  font-size: 16px;
-  letter-spacing: -0.03em;
-  max-width: calc(100% - 54px);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
   text-transform: none;
 }
 
 .services-mega-group small {
   color: var(--muted);
   font-family: var(--sans);
-  font-size: 12.5px;
+  font-size: 12px;
+  font-weight: 400;
   letter-spacing: 0;
   line-height: 1.35;
   text-transform: none;
@@ -161,42 +143,89 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
-.services-mega-group > a:hover .services-mega-tile-lever,
-.services-mega-group > a:focus-visible .services-mega-tile-lever,
-.services-mega-group > a.is-current .services-mega-tile-lever {
-  color: var(--electric-light);
-}
-
-.services-mega-personas {
-  align-items: center;
-  border-top: 1px solid var(--line);
+/* Who it is for. Three entries, so it stays a simple stacked panel rather
+   than another grid. */
+.personas-menu {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--electric);
+  color: var(--ink);
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  margin-top: 20px;
-  padding-top: 18px;
+  flex-direction: column;
+  left: 0;
+  position: absolute;
+  top: calc(100% + 18px);
+  width: min(340px, calc(100vw - 40px));
+  z-index: 30;
 }
 
-.services-mega-personas p {
-  color: var(--muted);
+.personas-menu > a {
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 18px;
+  transition: background 160ms ease-out, color 160ms ease-out;
+}
+
+.personas-menu > a:last-child {
+  border-bottom: 0;
+}
+
+.personas-menu > a:hover,
+.personas-menu > a:focus-visible,
+.personas-menu > a.is-current {
+  background: var(--ink);
+  color: white;
+}
+
+.personas-menu > a::after {
+  display: none;
+}
+
+.personas-menu-role {
+  color: var(--electric);
   font-family: var(--mono);
   font-size: 9px;
   font-weight: 650;
-  letter-spacing: 0.11em;
-  margin: 0;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.services-mega-personas a {
-  color: var(--electric);
-  font-size: 13px;
-  font-weight: 650;
+.personas-menu b {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-transform: none;
 }
 
-.services-mega-personas a:hover,
-.services-mega-personas a:focus-visible {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.personas-menu small {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.35;
+  text-transform: none;
+}
+
+.personas-menu > a:hover small,
+.personas-menu > a:focus-visible small,
+.personas-menu > a.is-current small {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.personas-menu > a:hover .personas-menu-role,
+.personas-menu > a:focus-visible .personas-menu-role,
+.personas-menu > a.is-current .personas-menu-role {
+  color: var(--electric-light);
+}
+
+.services-home-link {
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .services-home-link {
@@ -209,7 +238,7 @@
   font-weight: 650;
   gap: 12px;
   justify-content: space-between;
-  margin-top: 14px;
+  margin-top: 0;
   min-height: 52px;
   padding: 0 18px;
   width: 100%;
@@ -322,12 +351,6 @@
     width: 100%;
   }
 
-  .services-mega-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 8px;
-  }
-
   .services-mega-groups {
     display: block;
   }
@@ -341,12 +364,22 @@
   }
 
   .services-mega-group > a {
-    min-height: 74px;
-    padding: 14px 0;
+    min-height: 64px;
+    padding: 12px 0;
   }
 
-  .services-mega-tile-lever {
-    right: 0;
+  /* Who it is for drops out of its popover and flows inline with the rest of
+     the stacked mobile nav. */
+  .personas-menu {
+    border: 0;
+    box-shadow: none;
+    padding: 8px 0 0;
+    position: static;
+    width: 100%;
+  }
+
+  .personas-menu > a {
+    padding: 12px 0;
   }
 }
 

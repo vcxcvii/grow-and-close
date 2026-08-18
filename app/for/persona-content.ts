@@ -359,3 +359,16 @@ export const personaPages: Record<string, PersonaPageContent> = {
 };
 
 export const personaList = Object.values(personaPages);
+
+/**
+ * "For heads of marketing" -> "Heads of marketing".
+ *
+ * Nav surfaces list these under their own heading, so the "For " prefix is
+ * already implied and only adds noise. Stripping it naively left the footer
+ * rendering "founders" and "heads of marketing" in lowercase, so the capital
+ * is restored here rather than at each call site.
+ */
+export function personaShortLabel(label: string) {
+  const stripped = label.replace(/^For /, "");
+  return stripped.charAt(0).toUpperCase() + stripped.slice(1);
+}

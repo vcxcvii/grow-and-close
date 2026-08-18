@@ -3,46 +3,53 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { personaList } from "../for/persona-content";
+import { personaList, personaShortLabel } from "../for/persona-content";
 import { serviceLeverGroups } from "./service-lever-groups";
 
 interface SiteHeaderProps {
   activeService?: string;
+  activePersona?: string;
   ctaHref: string;
   ctaLabel: string;
   homeHref?: string;
 }
 
+type OpenMenu = "services" | "personas" | null;
+
 export function SiteHeader({
   activeService,
+  activePersona,
   ctaHref,
   ctaLabel,
   homeHref = "/",
 }: SiteHeaderProps) {
   const [navOpen, setNavOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<OpenMenu>(null);
   const headerRef = useRef<HTMLElement>(null);
   const menuToggleRef = useRef<HTMLButtonElement>(null);
   const servicesTriggerRef = useRef<HTMLButtonElement>(null);
+  const personasTriggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (!navOpen && !servicesOpen) return;
+    if (!navOpen && !openMenu) return;
 
     const closeWhenOutside = (event: PointerEvent) => {
       if (!headerRef.current?.contains(event.target as Node)) {
         setNavOpen(false);
-        setServicesOpen(false);
+        setOpenMenu(null);
       }
     };
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setNavOpen(false);
-        setServicesOpen(false);
-        if (navOpen) {
-          menuToggleRef.current?.focus();
-        } else {
-          servicesTriggerRef.current?.focus();
-        }
+      if (event.key !== "Escape") return;
+      const wasOpen = openMenu;
+      setNavOpen(false);
+      setOpenMenu(null);
+      if (wasOpen === "services") {
+        servicesTriggerRef.current?.focus();
+      } else if (wasOpen === "personas") {
+        personasTriggerRef.current?.focus();
+      } else if (navOpen) {
+        menuToggleRef.current?.focus();
       }
     };
 
@@ -52,18 +59,23 @@ export function SiteHeader({
       document.removeEventListener("pointerdown", closeWhenOutside);
       document.removeEventListener("keydown", closeOnEscape);
     };
-  }, [navOpen, servicesOpen]);
+  }, [navOpen, openMenu]);
 
   const closeMenu = () => {
     setNavOpen(false);
-    setServicesOpen(false);
+    setOpenMenu(null);
+  };
+
+  const toggle = (menu: Exclude<OpenMenu, null>) => (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setOpenMenu((current) => (current === menu ? null : menu));
   };
 
   return (
     <header
       className="site-header site-header-services"
       onClick={() => {
-        if (navOpen || servicesOpen) closeMenu();
+        if (navOpen || openMenu) closeMenu();
       }}
       ref={headerRef}
     >
@@ -78,65 +90,82 @@ export function SiteHeader({
         data-open={navOpen ? "true" : "false"}
         id="site-navigation"
       >
-        <Link href="/about" onClick={closeMenu}>About</Link>
-        <Link href="/skills" onClick={closeMenu}>Free skills</Link>
         <div className="services-menu">
           <button
             aria-controls="services-mega-menu"
-            aria-expanded={servicesOpen}
+            aria-expanded={openMenu === "services"}
             className="services-trigger"
-            onClick={(event) => {
-              event.stopPropagation();
-              setServicesOpen((open) => !open);
-            }}
+            onClick={toggle("services")}
             ref={servicesTriggerRef}
             type="button"
           >
             Services <span aria-hidden="true">+</span>
           </button>
-          {servicesOpen ? (
+          {openMenu === "services" ? (
             <div className="services-mega" id="services-mega-menu">
-              <div className="services-mega-heading">
-                <p>START FROM THE PROBLEM</p>
-                <strong>Tell us what is stuck. We ship the fix.</strong>
-              </div>
               <div className="services-mega-groups">
                 {serviceLeverGroups.map((group) => (
                   <div className="services-mega-group" key={group.label}>
-                    <p className="services-mega-group-label">{group.label}</p>
+                    <p className="services-mega-group-label">
+                      {group.label}
+                      <span>{group.question}</span>
+                    </p>
                     {group.services.map((service) => (
                       <Link
-                        aria-label={`${service.title} service page`}
                         aria-current={activeService === service.slug ? "page" : undefined}
                         className={activeService === service.slug ? "is-current" : undefined}
                         href={service.href}
                         key={service.slug}
                         onClick={closeMenu}
                       >
-                        <span className="services-mega-tile-lever">{service.lever}</span>
-                        <b>{service.problem}</b>
-                        <small>{service.title}. {service.description}</small>
+                        <b>{service.title}</b>
+                        <small>{service.problem}</small>
                       </Link>
                     ))}
                   </div>
                 ))}
               </div>
-              <div className="services-mega-personas">
-                <p>OR START FROM WHERE YOU SIT</p>
-                {personaList.map((persona) => (
-                  <Link href={`/for/${persona.slug}`} key={persona.slug} onClick={closeMenu}>
-                    {persona.label.replace(/^For /, "")}
-                  </Link>
-                ))}
-              </div>
               <Link className="services-home-link" href="/services" onClick={closeMenu}>
-                Explore all B2B SaaS GTM services <span aria-hidden="true">→</span>
+                All B2B SaaS GTM services <span aria-hidden="true">→</span>
               </Link>
             </div>
           ) : null}
         </div>
+
+        <div className="services-menu">
+          <button
+            aria-controls="personas-menu"
+            aria-expanded={openMenu === "personas"}
+            className="services-trigger"
+            onClick={toggle("personas")}
+            ref={personasTriggerRef}
+            type="button"
+          >
+            Who it is for <span aria-hidden="true">+</span>
+          </button>
+          {openMenu === "personas" ? (
+            <div className="personas-menu" id="personas-menu">
+              {personaList.map((persona) => (
+                <Link
+                  aria-current={activePersona === persona.slug ? "page" : undefined}
+                  className={activePersona === persona.slug ? "is-current" : undefined}
+                  href={`/for/${persona.slug}`}
+                  key={persona.slug}
+                  onClick={closeMenu}
+                >
+                  <span className="personas-menu-role">{persona.role}</span>
+                  <b>{personaShortLabel(persona.label)}</b>
+                  <small>{persona.symptomHeading}</small>
+                </Link>
+              ))}
+            </div>
+          ) : null}
+        </div>
+
         <Link href="/#workflow" onClick={closeMenu}>How it works</Link>
         <Link href="/pricing" onClick={closeMenu}>Plans</Link>
+        <Link href="/skills" onClick={closeMenu}>Free skills</Link>
+        <Link href="/about" onClick={closeMenu}>About</Link>
         <Link href="/#faq" onClick={closeMenu}>FAQ</Link>
       </nav>
 
@@ -149,7 +178,7 @@ export function SiteHeader({
         onClick={(event) => {
           event.stopPropagation();
           setNavOpen((open) => !open);
-          setServicesOpen(false);
+          setOpenMenu(null);
         }}
         ref={menuToggleRef}
         type="button"

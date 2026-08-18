@@ -24,6 +24,7 @@ const siteGraphJsonLd = {
       name: "Varun Choraria",
       jobTitle: "Founder",
       url: "https://varunchoraria.com",
+      image: "https://growandclose.com/brand/varun-choraria.jpg",
       sameAs: [LINKEDIN_URL, GITHUB_URL, "https://varunchoraria.com"],
       worksFor: { "@id": "https://growandclose.com/#organization" },
     },

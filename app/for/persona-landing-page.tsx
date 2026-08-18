@@ -47,7 +47,7 @@ export function PersonaLandingPage({ persona }: { persona: PersonaPageContent })
       <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={serviceJsonLd} />
       <JsonLd data={faqJsonLd} />
-      <SiteHeader ctaHref={href} ctaLabel="Book a call" />
+      <SiteHeader activePersona={persona.slug} ctaHref={href} ctaLabel="Book a call" />
 
       <section className="legal-hero">
         <nav className="services-breadcrumb" aria-label="Breadcrumb">

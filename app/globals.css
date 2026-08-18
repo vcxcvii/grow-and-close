@@ -1015,6 +1015,44 @@ summary:focus-visible {
   max-width: calc(100% - 64px);
 }
 
+/* Every tile links to its service page, but nothing on the tile said so. The
+   arrow is the affordance; it nudges right on hover so the whole tile reads
+   as one target rather than a static card. */
+.capability-item::after {
+  bottom: 22px;
+  color: var(--electric);
+  content: "\2192";
+  font-size: 18px;
+  line-height: 1;
+  position: absolute;
+  right: 22px;
+  transition: transform 160ms ease, color 160ms ease;
+  z-index: 9;
+}
+
+.capability-item:hover::after,
+.capability-item:focus-visible::after {
+  color: var(--electric-light);
+  transform: translateX(5px);
+}
+
+/* Keeps the service name clear of the arrow. */
+.capability-item small {
+  display: block;
+  padding-right: 34px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capability-item::after {
+    transition: color 160ms ease;
+  }
+
+  .capability-item:hover::after,
+  .capability-item:focus-visible::after {
+    transform: none;
+  }
+}
+
 .capability-note {
   font-family: var(--mono);
   font-size: 11px;
@@ -1061,6 +1099,44 @@ summary:focus-visible {
   flex-direction: column;
   gap: 10px;
   padding: 28px;
+}
+
+/* Shared founder portrait. The source is a full standing shot, so the square
+   crop is pulled up to sit on the face rather than the centre of the frame. */
+.founder-portrait {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.founder-portrait img {
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  object-position: center 26%;
+}
+
+.founder-portrait span {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+  text-transform: uppercase;
+}
+
+.founder-portrait:hover span,
+.founder-portrait:focus-visible span {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.founder-portrait::after {
+  display: none;
 }
 
 .operator-core span,

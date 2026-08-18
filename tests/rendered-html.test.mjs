@@ -75,8 +75,11 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Buy the Decision, Not More Production \| Grow &amp; Close<\/title>/i);
-  assert.match(html, /Production got cheap/);
+  assert.match(html, /<title>Your GTM Backlog, Decided and Shipped \| B2B SaaS GTM Studio<\/title>/i);
+  assert.match(html, /Your GTM backlog/);
+  assert.match(html, /decided and shipped/);
+  // The hero still resolves to the one metric every page is held to.
+  assert.match(html, /qualified pipeline created/);
   assert.match(html, /data-brand-system="gc-logic-v1"/);
   assert.match(html, /GROW<\/b><b><i>&amp;<\/i> CLOSE/i);
   assert.match(html, /FOR FOUNDERS/);
@@ -181,20 +184,35 @@ test("server-renders the skills hub with a breadcrumb and a full collection sche
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
 });
 
-test("server-renders the self-driving company manifesto with an honest autonomy ledger", async () => {
+test("server-renders the marketing manifesto, addressed to all three buyers", async () => {
   const response = await render("http://localhost/about");
   assert.equal(response.status, 200);
 
   const html = await response.text();
-  assert.match(html, /<title>About Grow &amp; Close \| The Self-Driving GTM Company<\/title>/i);
-  assert.match(html, /A GTM company that learns to/);
-  assert.match(html, /drive itself/);
-  assert.match(html, /Self-driving does not mean human-free/);
+  assert.match(html, /<title>Our B2B SaaS Marketing Manifesto \| Grow &amp; Close<\/title>/i);
+  assert.match(html, /Everyone can produce/);
+  assert.match(html, /Almost nobody decides/);
+  assert.match(html, /Seven beliefs about B2B SaaS marketing/);
+
+  // The manifesto is the spine of the page, so every belief has to render.
+  assert.match(html, /Marketing is a decision function, not a production function/);
+  assert.match(html, /One motion finished beats five motions started/);
+  assert.match(html, /Sameness is what good tools produce by default/);
+  assert.match(html, /AI belongs at the keystroke\. Humans belong at the decision/);
   assert.match(html, /Minimum intervention is not zero responsibility/);
-  assert.match(html, /A category claim should come with a truth table/);
-  assert.match(html, /AGENT-RUN NOW/);
-  assert.match(html, /HUMAN AUTHORITY/);
-  assert.match(html, /NEXT AUTONOMY LAYER/);
+
+  // Relatable to all three personas means all three are named and linked.
+  assert.match(html, /href="\/for\/founders"/);
+  assert.match(html, /href="\/for\/heads-of-marketing"/);
+  assert.match(html, /href="\/for\/cmos"/);
+
+  // The honest ledger keeps the parts that cost deals.
+  assert.match(html, /WHAT WE WILL NOT SELL YOU/);
+  assert.match(html, /qualified pipeline created/i);
+
+  // The founder photo links out to the personal site everywhere it appears.
+  assert.match(html, /varunchoraria\.com/);
+
   assert.match(html, /"@type":"BreadcrumbList".*"name":"About"/);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
   assert.doesNotMatch(html, /#ff7a00|Geist|Georgia|Times New Roman/i);
@@ -339,11 +357,20 @@ test("navigation disclosures close predictably and keep mobile priorities explic
   ]);
 
   assert.match(header, /const \[navOpen, setNavOpen\]/);
-  assert.match(header, /const \[servicesOpen, setServicesOpen\]/);
+  // One state value drives both disclosures, so opening either closes the other.
+  assert.match(header, /const \[openMenu, setOpenMenu\]/);
+  assert.match(header, /type OpenMenu = "services" \| "personas" \| null/);
   assert.match(header, /document\.addEventListener\("pointerdown", closeWhenOutside\)/);
-  assert.match(header, /event\.key === "Escape"/);
+  // Escape closes whichever disclosure is open and returns focus to the
+  // trigger that opened it, rather than dropping focus to the document.
+  assert.match(header, /event\.key !== "Escape"/);
+  assert.match(header, /servicesTriggerRef\.current\?\.focus\(\)/);
+  assert.match(header, /personasTriggerRef\.current\?\.focus\(\)/);
   assert.match(header, /aria-label=\{navOpen \? "Close navigation" : "Open navigation"\}/);
-  assert.ok(header.indexOf('href="/about"') < header.indexOf('className="services-menu"'));
+  // Mobile stacks the nav in DOM order, so the two disclosures that lead to
+  // revenue pages come before the flat secondary links.
+  assert.ok(header.indexOf('className="services-menu"') < header.indexOf('href="/about"'));
+  assert.ok(header.indexOf('Who it is for') < header.indexOf('href="/#faq"'));
   assert.match(css, /\.services-home-link\s*\{[^}]*font-size:\s*12px[^}]*min-height:\s*52px/s);
   assert.match(css, /\.menu-toggle\s*\{[^}]*min-height:\s*44px[^}]*min-width:\s*44px/s);
 
@@ -355,10 +382,12 @@ test("navigation disclosures close predictably and keep mobile priorities explic
   const stopPropagationCount = (header.match(/event\.stopPropagation\(\)/g) ?? []).length;
   assert.equal(stopPropagationCount, 2);
   assert.match(header, /serviceLeverGroups/);
-  assert.match(
-    css,
-    /\.services-mega-group > a:hover \.services-mega-tile-lever[\s\S]*?color: var\(--electric-light\);/,
-  );
+  // The per-tile lever badge repeated the column heading on every tile and was
+  // removed; the lever question now sits once, in the group label.
+  assert.doesNotMatch(css, /services-mega-tile-lever/);
+  assert.match(css, /\.services-mega-group-label span\s*\{/);
+  assert.match(header, /personaShortLabel/);
+  assert.match(css, /\.personas-menu\s*\{/);
   assert.match(css, /\.services-mega-group\s*\{/);
   assert.doesNotMatch(css, /\.site-header-services \.header-cta\s*\{[^}]*display:\s*none/s);
 });

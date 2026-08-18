@@ -2,11 +2,7 @@
 
 import { useState } from "react";
 
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-  }
-}
+import { GENERATE_LEAD, trackEvent } from "../analytics";
 
 interface SkillDownloadFormProps {
   skillSlug: string;
@@ -36,7 +32,7 @@ export function SkillDownloadForm({ skillSlug, skillName }: SkillDownloadFormPro
         throw new Error(payload.error ?? "Something went wrong. Try again.");
       }
 
-      window.gtag?.("event", "generate_lead", { skill: skillSlug });
+      trackEvent(GENERATE_LEAD, { skill: skillSlug });
       setDownloadUrl(payload.downloadUrl);
       setStatus("done");
     } catch (err) {

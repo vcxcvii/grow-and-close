@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { FounderPortrait } from "../components/founder-portrait";
 import { buildBreadcrumbJsonLd, JsonLd } from "../components/json-ld";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
@@ -144,6 +145,14 @@ export default async function BookACallPage({
             hire us.
           </p>
           <small className="book-split-note">REPLIES WITHIN ONE WORKING DAY · B2B SAAS ONLY</small>
+
+          <div className="book-split-host">
+            <FounderPortrait size={64} />
+            <p>
+              You are booking directly with Varun Choraria, who runs every engagement.
+              Not a qualification call with someone who hands you off afterwards.
+            </p>
+          </div>
 
           <div className="book-proof-list" aria-label="Judge the standard of work before you book">
             {proofItems.map((item) => (

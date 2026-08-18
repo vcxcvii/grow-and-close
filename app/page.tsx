@@ -5,14 +5,15 @@ import { JsonLd } from "./components/json-ld";
 import { pricingPlans } from "./components/pricing-plans";
 import { serviceOfferings } from "./components/service-offerings";
 import { SiteFooter } from "./components/site-footer";
+import { FounderPortrait } from "./components/founder-portrait";
 import { SiteHeader } from "./components/site-header";
 import LogicNode, { type LogicNodeKind } from "./logic-node";
 import { bookingHref } from "./site";
 
 export const metadata: Metadata = {
-  title: "Buy the Decision, Not More Production | Grow & Close",
+  title: "Your GTM Backlog, Decided and Shipped | B2B SaaS GTM Studio",
   description:
-    "AI made GTM production abundant, so deciding what to ship became the scarce part. One person narrows the options, makes the call, and ships it, measured on qualified pipeline created.",
+    "B2B SaaS GTM studio for founder-led teams with no marketing bench. Positioning, landing pages, outbound, founder-led content, sales enablement and GTM dashboards: one motion a month, decided, built end to end, and measured against qualified pipeline created.",
   alternates: { canonical: "/" },
 };
 
@@ -139,16 +140,16 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow">Decision studio for B2B SaaS</p>
+          <p className="eyebrow">B2B SaaS GTM studio</p>
           <h1>
-            Production got cheap.
-            <span>Deciding did not.</span>
+            Your GTM backlog,
+            <span>decided and shipped.</span>
           </h1>
           <p className="hero-lede">
-            For founder-led B2B SaaS teams with no marketing bench. You can generate ten
-            landing pages before lunch and still not know which one to ship. We take one
-            motion, decide it, build it end to end, and hold it to one number: qualified
-            pipeline created.
+            For founder-led B2B SaaS teams with no marketing bench. Positioning,
+            landing pages, outbound, founder-led content, sales enablement, GTM
+            dashboards: we take the one that matters this month, make the call, build it
+            end to end, and measure it against one number, qualified pipeline created.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href={heroBookingHref}>
@@ -317,8 +318,9 @@ export default function Home() {
         </div>
         <div className="operator-diagram" aria-label="One decision maker coordinating specialist systems">
           <div className="operator-core">
+            <FounderPortrait size={104} />
             <span>WHO DECIDES</span>
-            <strong>VARUN</strong>
+            <strong>VARUN CHORARIA</strong>
             <small>Judgment · taste · accountability</small>
           </div>
           <div className="agent-grid">

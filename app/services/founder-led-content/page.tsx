@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Turn founder insight into an audience you own | Grow & Close",
     description:
-      "A senior-led content, newsletter, UGC, distribution, and learning system for B2B SaaS founders.",
+      "A decided content, newsletter, UGC, distribution, and learning system for B2B SaaS founders.",
     url: "https://growandclose.com/services/founder-led-content",
     type: "website",
   },

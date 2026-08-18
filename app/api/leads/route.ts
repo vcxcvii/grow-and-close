@@ -44,7 +44,7 @@ async function sendSkillEmail(email: string, skillName: string, downloadUrl: str
         "Install: Claude → Settings → Capabilities → Skills → upload the .skill file.",
         "In Claude Code: unzip it into your skills directory.",
         "",
-        "Questions, or a GTM backlog that needs shipping? Just reply.",
+        "Questions, or a decision you keep postponing? Just reply.",
         "",
         "— Varun, Grow & Close",
         "https://growandclose.com",

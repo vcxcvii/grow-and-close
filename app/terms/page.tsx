@@ -65,7 +65,7 @@ export default function TermsPage() {
             <p>
               Every engagement names its outcome, deliverables, finish line, and the
               metric lever it targets before work starts. Sprints are fixed scope for a
-              fixed fee. Monthly plans run one or two active motions at a time, drawn from
+              fixed fee. Monthly plans keep one or two motions in flight at a time, drawn from
               a backlog you prioritise. Work outside the agreed scope is quoted separately
               rather than absorbed silently.
             </p>
@@ -86,7 +86,7 @@ export default function TermsPage() {
             <span>04</span>
             <h2>Revisions</h2>
             <p>
-              Revisions continue inside an active motion until the agreed finish line is
+              Revisions continue inside a motion in flight until the agreed finish line is
               met. A change of direction after the finish line is a new motion, not a
               revision, and is scoped as such.
             </p>

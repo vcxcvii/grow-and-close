@@ -69,7 +69,7 @@ export function ServiceLandingPage({ service }: ServiceLandingPageProps) {
               See what ships in 10 days <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <p className="hero-note">$3,000 · 10 WORKING DAYS · ONE SENIOR OWNER</p>
+          <p className="hero-note">$3,000 · 10 WORKING DAYS · ONE DECIDER</p>
         </div>
 
       </section>

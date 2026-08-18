@@ -10,9 +10,9 @@ import LogicNode, { type LogicNodeKind } from "./logic-node";
 import { bookingHref } from "./site";
 
 export const metadata: Metadata = {
-  title: "GTM Execution Studio for B2B SaaS | Grow & Close",
+  title: "Buy the Decision, Not More Production | Grow & Close",
   description:
-    "Senior-led GTM execution for B2B SaaS founders and marketing leaders. Positioning, landing pages, outbound, and campaigns shipped weekly on a monthly subscription.",
+    "AI made GTM production abundant, so deciding what to ship became the scarce part. One person narrows the options, makes the call, and ships it, measured on qualified pipeline created.",
   alternates: { canonical: "/" },
 };
 
@@ -20,20 +20,20 @@ const motionExamples = [
   {
     number: "01",
     glyph: "and",
-    title: "Sharpen the story",
-    copy: "Positioning, messaging, homepage narratives, launch angles, and sales stories that make the value obvious.",
+    title: "Narrow the field",
+    copy: "Positioning, messaging, homepage narrative, launch angle. Not more options to weigh. One argument, decided, that the rest of the work has to serve.",
   },
   {
     number: "02",
     glyph: "or",
-    title: "Launch the motion",
-    copy: "Landing pages, outbound sequences, campaign assets, founder content, and enablement, built together so they tell one story.",
+    title: "Ship the one that counts",
+    copy: "Landing page, outbound sequence, campaign assets, founder content, enablement. Built together, because they are arguing the same case to the same buyer.",
   },
   {
     number: "03",
     glyph: "ship",
-    title: "Learn and improve",
-    copy: "A clear ship log, useful signals, and the next best iteration, so month two starts where month one finished rather than from zero.",
+    title: "Prove it moved the number",
+    copy: "A ship log, the signal it produced, and the next iteration. Month two starts where month one finished rather than from zero.",
   },
 ];
 
@@ -59,51 +59,51 @@ const audienceProblems = [
   {
     audience: "FOR CMOs",
     title: "The strategy is signed off. The quarter keeps eating it.",
-    copy: "Launches, sales requests, and board reporting consume the team, and the agency you hired sells senior then staffs junior. You do not need another plan. You need one priority finished to the standard you would sign your name to.",
+    copy: "Launches, sales requests, and board reporting consume the team, and the partner you hired brings you options instead of a recommendation. You do not need another plan. You need one priority decided and finished to a standard you would sign your name to.",
   },
   {
     audience: "FOR HEADS OF MARKETING",
     title: "You own the plan and you are also the assembly line.",
-    copy: "One marketer, a founder with opinions, and a sales team filing requests. You spend the week stitching pages, briefs, and sequences together instead of deciding what actually moves pipeline.",
+    copy: "One marketer, a founder with opinions, and a sales team filing requests. You spend the week stitching pages, briefs, and sequences together instead of deciding what actually creates qualified pipeline.",
   },
 ];
 
 const workflow = [
   {
     number: "01",
-    title: "Queue the priority",
-    copy: "Drop priorities into one shared backlog. We sharpen the outcome, define the finish line, and order the work together.",
-    meta: "UNLIMITED BACKLOG · ONE CLEAR ORDER",
+    title: "Name every option",
+    copy: "Put everything you could do into one shared list. We rank it against the number you are trying to move, then agree what dies this month.",
+    meta: "EVERY OPTION NAMED · ONE CHOSEN",
   },
   {
     number: "02",
-    title: "We ship the motion",
-    copy: "One or two priorities stay active. We build the connected strategy, copy, page, campaign, and enablement needed to get them live.",
-    meta: "WEEKLY OUTPUT · ASYNC VISIBILITY",
+    title: "We ship the one that survives",
+    copy: "One motion stays in flight, two on Pipeline Team. We build the strategy, copy, page, campaign, and enablement it needs to go live.",
+    meta: "VISIBLE PROGRESS · ASYNC BY DEFAULT",
   },
   {
     number: "03",
     title: "Review, learn, repeat",
-    copy: "You get a concise walkthrough and ship log. Feedback and real signals shape the next iteration, not a fresh round of agency theater.",
+    copy: "You get a concise walkthrough and a ship log. Real signal shapes the next decision, not a fresh round of agency theater.",
     meta: "FAST FEEDBACK · NO RESET",
   },
 ];
 
 const faqs = [
   {
-    question: "What counts as one active pipeline motion?",
+    question: "What counts as one motion?",
     answer:
-      "A bounded initiative with an agreed outcome, deliverables, owner, and finish line, such as launching a dormant-lead reactivation campaign or rebuilding the story for a new segment. Not an endless category such as ‘fix marketing.’",
+      "A bounded initiative with an agreed outcome, deliverables, an owner, and a finish line, such as launching a dormant-lead reactivation campaign or rebuilding the story for a new segment. Not an open-ended category such as ‘fix marketing.’",
   },
   {
     question: "Is this an agency, consultancy, or AI service?",
     answer:
-      "A senior-led GTM execution studio. You get strategic judgment and direct collaboration, backed by AI workflows we build ourselves for research, drafting, design, analysis, and operations. The tools make us faster; accountability stays human.",
+      "None of the three. An agency sells you production capacity and a consultancy sells you a recommendation you still have to execute. You are buying the decision and the finished work behind it from one person, backed by AI workflows we build ourselves for research, drafting, design, analysis, and operations. The tools make the production fast; the judgment stays human and named.",
   },
   {
-    question: "What does unlimited backlog mean?",
+    question: "Can I add as many priorities as I want?",
     answer:
-      "Add as many priorities as you like. We keep them ordered together, then work through one or two active motions depending on your plan. Revisions remain inside the active motion until its agreed finish line is reached.",
+      "Yes, and we will refuse to work on most of them at once. Add anything to the list. We keep exactly one motion in flight, two on Pipeline Team, because the limit is the point: work in progress is what turns a decision back into a queue. Revisions stay inside the live motion until its agreed finish line.",
   },
   {
     question: "What is not included?",
@@ -113,7 +113,7 @@ const faqs = [
   {
     question: "Can I pause or cancel?",
     answer:
-      "Month-to-month, built to earn renewal every cycle. Pause when the backlog is light, or cancel before the next billing cycle if it is not working.",
+      "Month-to-month, built to earn renewal every cycle. Pause when the list is light, or cancel before the next billing cycle if it is not working.",
   },
 ];
 
@@ -128,7 +128,7 @@ const faqJsonLd = {
 };
 
 const heroBookingHref = bookingHref(
-  "GTM priority I need shipped, and the number it should move",
+  "The GTM decision I keep postponing, and the pipeline it should create",
 );
 
 export default function Home() {
@@ -139,15 +139,16 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow">GTM execution studio for B2B SaaS</p>
+          <p className="eyebrow">Decision studio for B2B SaaS</p>
           <h1>
-            Your GTM plan, shipped.
-            <span>One priority at a time.</span>
+            Production got cheap.
+            <span>Deciding did not.</span>
           </h1>
           <p className="hero-lede">
-            For founder-led B2B SaaS teams with no marketing bench. We take one GTM
-            priority, ship it end to end, and tie it to one pipeline number: the page,
-            the outbound, the content, and the reporting that make it move.
+            For founder-led B2B SaaS teams with no marketing bench. You can generate ten
+            landing pages before lunch and still not know which one to ship. We take one
+            motion, decide it, build it end to end, and hold it to one number: qualified
+            pipeline created.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href={heroBookingHref}>
@@ -157,7 +158,9 @@ export default function Home() {
               See plans and pricing <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <p className="hero-note">One senior owner. Shipped weekly. Built to renew.</p>
+          <p className="hero-note">
+            One motion at a time. One number to move. Cancel whenever.
+          </p>
         </div>
 
         <div className="hero-levers" aria-label="The four levers we work on">
@@ -172,20 +175,23 @@ export default function Home() {
       </section>
 
       <section className="signal-strip" aria-label="Service highlights">
-        <p><strong>01</strong> One senior owner</p>
-        <p><strong>02</strong> Weekly shipping</p>
-        <p><strong>03</strong> Flat monthly fee</p>
+        <p><strong>01</strong> One decider</p>
+        <p><strong>02</strong> One number</p>
+        <p><strong>03</strong> One price, no hours</p>
         <p><strong>04</strong> Pause anytime</p>
       </section>
 
       <section className="problem" id="problem">
         <div className="problem-heading">
           <p className="section-kicker">THE REAL BOTTLENECK</p>
-          <h2>The gap is not strategy. It is the execution queue with no owner.</h2>
+          <h2>The shortage is not capacity. It is that nothing gets ruled out.</h2>
           <p>
-            Another plan will not clear it, and five freelancers will produce five
-            disconnected assets you then have to integrate yourself. What is missing is
-            one senior person who takes a priority from decision to live.
+            Two years ago the constraint was hands. Now anyone can produce ten variants of
+            anything in an afternoon, which means the list of things you could be doing
+            grows faster than the week. Another plan will not clear it, and five
+            freelancers will hand you five disconnected assets to integrate yourself. What
+            is missing is somebody who kills nine of the ten options and is accountable
+            for the one that ships.
           </p>
         </div>
         <div className="problem-grid" id="problem-logic">
@@ -199,9 +205,11 @@ export default function Home() {
           ))}
         </div>
         <p className="problem-diagnosis">
-          <span>THE VISIBLE SYMPTOM</span> A growing GTM backlog.
+          <span>THE OLD WAY: BUY MORE PRODUCTION</span> Another agency, another
+          freelancer, another agent.
           <i aria-hidden="true">→</i>
-          <span>THE ACTUAL PROBLEM</span> No owner from strategy through ship.
+          <span>THE NEW WAY: BUY THE DECISION</span> One person narrows, chooses, and
+          closes, against qualified pipeline created.
         </p>
       </section>
 
@@ -210,8 +218,9 @@ export default function Home() {
           <p className="section-kicker">WHAT WE OWN</p>
           <h2>One motion. End to end.</h2>
           <p>
-            Not a vending machine for disconnected assets. Each engagement starts with
-            the pipeline problem, ships the pieces together, and closes with learning.
+            Not a vending machine for disconnected assets. Each engagement starts with the
+            pipeline problem, ships the pieces together, and closes with what it taught
+            you.
           </p>
         </div>
         <div className="motion-list">
@@ -241,7 +250,7 @@ export default function Home() {
           <p className="section-kicker section-kicker-light">HOW WE WORK</p>
           <h2>Simple enough to run. Serious enough to keep what it learns.</h2>
           <p>
-            One backlog. A fixed amount of active work. Direct feedback. The operating
+            One list. A hard limit on what is in flight. Direct feedback. The operating
             model stays deliberately light so more energy reaches the market.
           </p>
         </div>
@@ -284,32 +293,33 @@ export default function Home() {
           ))}
         </div>
         <p className="capability-note">
-          Both plans access the same capabilities. You choose capacity, not a restricted
-          service menu.
+          Pipeline One and Pipeline Team reach the same nine entry points. You choose how
+          much runs in parallel, not a restricted service menu.
         </p>
       </section>
 
       <section className="operating-model" id="studio">
         <div className="operator-copy">
           <p className="section-kicker section-kicker-light">HOW THE STUDIO RUNS</p>
-          <h2>One senior owner. A decade of B2B SaaS behind every call.</h2>
+          <h2>One person makes the call. A decade of B2B SaaS behind it.</h2>
           <p>
             Founders, CMOs, and Heads of Marketing work directly with Varun Choraria,
-            former marketing leader at GTM Buddy. Every motion is guided by experienced
+            former marketing leader at GTM Buddy. Every motion is decided by experienced
             B2B SaaS judgment and sped up by AI workflows we build and run ourselves for
             research, writing, design, analysis, and operations.
           </p>
           <p>
             Judge the bar before you pay for it: the{" "}
-            <Link href="/skills">free Claude skills</Link> we publish and this site are
-            the work. Both were built the way we&apos;d build yours.
+            <Link href="/skills">free Claude skills</Link> we publish, the{" "}
+            <Link href="/rubric">rubric this work is scored against</Link>, and this site
+            are the work. All three were built the way we&apos;d build yours.
           </p>
         </div>
-        <div className="operator-diagram" aria-label="Senior operator coordinating specialist systems">
+        <div className="operator-diagram" aria-label="One decision maker coordinating specialist systems">
           <div className="operator-core">
-            <span>YOUR SENIOR OWNER</span>
+            <span>WHO DECIDES</span>
             <strong>VARUN</strong>
-            <small>Strategy · taste · accountability</small>
+            <small>Judgment · taste · accountability</small>
           </div>
           <div className="agent-grid">
             <span>RESEARCH</span>
@@ -326,7 +336,7 @@ export default function Home() {
         <div className="pricing-heading">
           <p className="section-kicker">SIMPLE MONTHLY CAPACITY</p>
           <h2>Pick your shipping speed.</h2>
-          <p>Same senior owner. Same nine services. Different parallel capacity.</p>
+          <p>Same decider. Same nine entry points. Different parallel capacity.</p>
         </div>
         <div className="pricing-grid">
           {pricingPlans.map((plan) => (
@@ -363,11 +373,11 @@ export default function Home() {
       <section className="first-ship" id="first-ship">
         <div className="first-ship-copy">
           <p className="section-kicker">LOW-RISK START</p>
-          <h2>Bring one priority. We will scope it on the call.</h2>
+          <h2>Bring the decision you keep postponing.</h2>
           <p>
-            Thirty minutes, no deck. You leave with the priority scoped, the metric it
-            should move, and a straight answer on whether we are the right people to
-            ship it. If we are not, we will say so.
+            Thirty minutes, no deck. You leave with the motion scoped, the qualified
+            pipeline it should create, and a straight answer on whether we are the right
+            people to ship it. If we are not, we will say so.
           </p>
           <a className="button button-primary" href={bookingHref("One GTM priority shipped free: our biggest bottleneck")}>
             Book a call with the founder
@@ -408,8 +418,8 @@ export default function Home() {
       </section>
 
       <section className="closing" id="closing">
-        <p className="section-kicker section-kicker-light">READY WHEN THE BACKLOG IS</p>
-        <h2>Stop carrying the same priority into next quarter.</h2>
+        <p className="section-kicker section-kicker-light">READY WHEN THE LIST IS</p>
+        <h2>Stop carrying the same undecided priority into next quarter.</h2>
         <a className="button button-accent" href="#first-ship">Book a call with the founder</a>
       </section>
 

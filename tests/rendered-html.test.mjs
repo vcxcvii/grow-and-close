@@ -75,14 +75,14 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>GTM Execution Studio for B2B SaaS \| Grow &amp; Close<\/title>/i);
-  assert.match(html, /Your GTM plan, shipped/);
+  assert.match(html, /<title>Buy the Decision, Not More Production \| Grow &amp; Close<\/title>/i);
+  assert.match(html, /Production got cheap/);
   assert.match(html, /data-brand-system="gc-logic-v1"/);
   assert.match(html, /GROW<\/b><b><i>&amp;<\/i> CLOSE/i);
   assert.match(html, /FOR FOUNDERS/);
   assert.match(html, /FOR CMOs/);
   assert.match(html, /FOR HEADS OF MARKETING/);
-  assert.match(html, /Queue the priority/);
+  assert.match(html, /Name every option/);
   assert.match(html, /Review, learn, repeat/);
   assert.match(html, /Pipeline One/);
   assert.match(html, /Pipeline Team/);
@@ -100,7 +100,7 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /Traffic arrives, nobody converts/);
   assert.match(html, /Deals stall after the demo/);
   assert.match(html, /We have wins, no usable proof/);
-  assert.match(html, /Bring one priority\. We will scope it on the call\./);
+  assert.match(html, /Bring the decision you keep postponing\./);
   assert.match(html, /Book a call with the founder/);
   assert.match(html, /href="\/about"/);
   assert.match(html, /href="\/disclaimer"/);
@@ -108,6 +108,10 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /href="\/book-a-call\?topic=/);
   assert.match(html, /href="\/pricing"/);
   assert.match(html, /href="\/privacy"/);
+  // The locked position must be argued on the homepage, not only on /for/*.
+  assert.match(html, /THE OLD WAY: BUY MORE PRODUCTION/);
+  assert.match(html, /THE NEW WAY: BUY THE DECISION/);
+  assert.match(html, /qualified pipeline created/i);
   assert.match(html, /href="\/llms\.txt"/);
   assert.match(html, /"@graph"/);
   assert.match(html, /"@type":"FAQPage"/);
@@ -115,7 +119,7 @@ test("server-renders the Grow & Close landing page", async () => {
   assert.match(html, /href="\/for\/heads-of-marketing"/);
   assert.match(html, /href="\/for\/cmos"/);
   assert.match(html, /href="\/rubric"/);
-  assert.match(html, /What counts as one active pipeline motion\?/);
+  assert.match(html, /What counts as one motion\?/);
   assert.doesNotMatch(html, /no long contract/i);
   assert.doesNotMatch(html, /target="_blank"[^>]*>\s*<span>0/);
   assert.equal((html.match(/href="mailto:[^"]*\?subject/g) ?? []).length, 0);
@@ -410,7 +414,7 @@ test("server-renders the pricing page with plans, schema, and one booking path",
   assert.equal(response.status, 200);
 
   const html = await response.text();
-  assert.match(html, /<title>Pricing \| GTM Execution for B2B SaaS \| Grow &amp; Close<\/title>/i);
+  assert.match(html, /<title>Pricing \| Decision Studio for B2B SaaS \| Grow &amp; Close<\/title>/i);
   assert.match(html, /rel="canonical" href="https:\/\/growandclose\.com\/pricing"/i);
   assert.match(html, /GTM RESET/);
   assert.match(html, /\$3,000/);

@@ -34,7 +34,7 @@ const siteGraphJsonLd = {
       url: "https://growandclose.com",
       logo: "https://growandclose.com/og.png",
       description:
-        "Senior-led GTM execution studio for B2B SaaS. Strategy, campaigns, pages, content, and enablement, shipped one pipeline motion at a time.",
+        "Decision studio for B2B SaaS. AI made production abundant, so the scarce thing is deciding what to ship. Strategy, campaigns, pages, content, and enablement, one motion at a time against qualified pipeline created.",
       founder: { "@id": "https://growandclose.com/#founder" },
       email: "hello@growandclose.com",
       sameAs: [GITHUB_URL, LINKEDIN_URL],
@@ -65,14 +65,14 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Grow & Close | Your GTM backlog, shipped.",
+  title: "Grow & Close | Production got cheap. Deciding did not.",
   description:
-    "Senior-led GTM execution for B2B SaaS. Strategy, campaigns, pages, content, and enablement, shipped one pipeline motion at a time.",
+    "Decision studio for B2B SaaS. Strategy, campaigns, pages, content, and enablement, one motion at a time against qualified pipeline created.",
   metadataBase: new URL("https://growandclose.com"),
   openGraph: {
-    title: "Grow & Close | Your GTM backlog, shipped.",
+    title: "Grow & Close | Production got cheap. Deciding did not.",
     description:
-      "Senior-led GTM execution for B2B SaaS. One pipeline motion at a time.",
+      "Decision studio for B2B SaaS. One motion at a time, against qualified pipeline created.",
     type: "website",
     url: "https://growandclose.com",
     siteName: "Grow & Close",
@@ -81,14 +81,14 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Grow & Close | Your GTM backlog, shipped.",
+        alt: "Grow & Close | Production got cheap. Deciding did not.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Grow & Close | Your GTM backlog, shipped.",
-    description: "Senior-led GTM execution for B2B SaaS.",
+    title: "Grow & Close | Production got cheap. Deciding did not.",
+    description: "Decision studio for B2B SaaS.",
     images: ["/og.png"],
   },
   icons: {

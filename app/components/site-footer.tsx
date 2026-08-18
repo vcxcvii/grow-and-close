@@ -49,7 +49,7 @@ export function SiteFooter({ id, pageEndId }: SiteFooterProps) {
           <span className="brand-name"><b>GROW</b><b><i>&amp;</i> CLOSE</b></span>
         </Link>
         <p>
-          GTM execution for founder-led B2B SaaS. One priority at a time, taken from
+          Decisions, and the work behind them, for founder-led B2B SaaS. One motion at a time, taken from
           strategy to live, tied to one pipeline number.
         </p>
         <div className="footer-cta-group">
@@ -132,7 +132,7 @@ export function SiteFooter({ id, pageEndId }: SiteFooterProps) {
 
       <div className="footer-bottom" id={pageEndId}>
         <p>© {new Date().getFullYear()} Grow &amp; Close</p>
-        <p>ONE SENIOR OWNER. WEEKLY SHIPPING. BUILT TO RENEW.</p>
+        <p>ONE DECIDER. ONE MOTION. BUILT TO RENEW.</p>
       </div>
     </footer>
   );

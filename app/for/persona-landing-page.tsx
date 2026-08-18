@@ -29,7 +29,7 @@ export function PersonaLandingPage({ persona }: { persona: PersonaPageContent })
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: `GTM execution for ${persona.role}`,
+    name: `The GTM decision, made and shipped, for ${persona.role}`,
     description: persona.metaDescription,
     url,
     serviceType: "Go-to-market execution",

@@ -58,9 +58,9 @@ export const personaPages: Record<string, PersonaPageContent> = {
     slug: "founders",
     label: "For founders",
     role: "Founder / CEO",
-    metaTitle: "GTM Execution for B2B SaaS Founders | Grow & Close",
+    metaTitle: "GTM Help for B2B SaaS Founders With No Marketing Bench | Grow & Close",
     metaDescription:
-      "For founder-led B2B SaaS with no marketing bench. The story lives in your head and nothing ships without you. One senior owner takes a priority from decision to live, tied to qualified pipeline created.",
+      "For founder-led B2B SaaS with no marketing bench. The story lives in your head and nothing ships without you. One person decides the priority and ships it, tied to qualified pipeline created.",
     eyebrow: "FOR FOUNDERS",
     heroLead: "You are the bottleneck,",
     heroAccent: "and more output will not fix it.",
@@ -140,7 +140,7 @@ export const personaPages: Record<string, PersonaPageContent> = {
       {
         question: "How is this different from a fractional CMO?",
         answer:
-          "A fractional CMO usually sells you strategy and leaves execution to whoever you can find. This is one senior owner who makes the call and then ships the asset, because at your stage those cannot be two different people.",
+          "A fractional CMO usually sells you strategy and leaves execution to whoever you can find. This is one person who makes the call and then ships the asset, because at your stage those cannot be two different people.",
       },
       {
         question: "I do not have time to manage another vendor.",
@@ -159,9 +159,9 @@ export const personaPages: Record<string, PersonaPageContent> = {
     slug: "heads-of-marketing",
     label: "For heads of marketing",
     role: "Head of Marketing / Marketing Lead",
-    metaTitle: "Senior GTM Execution Support for Heads of Marketing | Grow & Close",
+    metaTitle: "GTM Support for a Marketing Team of One | Grow & Close",
     metaDescription:
-      "For the marketing team of one. You own the plan and you are also the assembly line. One senior owner takes a priority end to end so you can go back to deciding, tied to qualified pipeline created.",
+      "For the marketing team of one. You own the plan and you are also the assembly line. One person decides which experiment is worth running and ships it so it returns an answer, tied to qualified pipeline created.",
     eyebrow: "FOR HEADS OF MARKETING",
     heroLead: "You own the plan.",
     heroAccent: "You are also the assembly line.",
@@ -244,9 +244,9 @@ export const personaPages: Record<string, PersonaPageContent> = {
           "One scoping call, then we write the brief and bring it back to you. The design assumption is that your review time is the constraint, so we spend ours reducing it.",
       },
       {
-        question: "What if I need something outside the active motion?",
+        question: "What if I need something outside the motion in flight?",
         answer:
-          "Add it to the backlog and it queues in order. Pipeline One runs one active motion, Pipeline Team runs two in parallel when a launch and a demand motion genuinely cannot wait for each other.",
+          "Add it to the list and it queues in order. Pipeline One keeps one motion in flight, Pipeline Team keeps two when a launch and a demand motion genuinely cannot wait for each other.",
       },
     ],
     planNudge:
@@ -260,9 +260,9 @@ export const personaPages: Record<string, PersonaPageContent> = {
     slug: "cmos",
     label: "For CMOs",
     role: "CMO / VP Marketing",
-    metaTitle: "Senior GTM Execution for CMOs and VPs of Marketing | Grow & Close",
+    metaTitle: "GTM Delivery for CMOs and VPs of Marketing | Grow & Close",
     metaDescription:
-      "The strategy is signed off and the quarter keeps eating it. One senior owner takes the priority that cannot slip, ships it to a published standard, and reports against qualified pipeline created.",
+      "The strategy is signed off and the quarter keeps eating it. One person owns the priority that cannot slip, ships it to a published standard, and reports against qualified pipeline created.",
     eyebrow: "FOR CMOs AND VPs OF MARKETING",
     heroLead: "The strategy is signed off.",
     heroAccent: "The quarter keeps eating it.",
@@ -342,7 +342,7 @@ export const personaPages: Record<string, PersonaPageContent> = {
       {
         question: "What stops this becoming another vendor to manage?",
         answer:
-          "One senior owner, one active motion, one metric, and a ship log you can forward. If the first deliverable misses the published rubric there is no invoice, which is the accountability an agency retainer does not offer.",
+          "One decider, one motion in flight, one metric, and a ship log you can forward. If the first deliverable misses the published rubric there is no invoice, which is the accountability an agency retainer does not offer.",
       },
       {
         question: "Can you operate at our level of governance?",

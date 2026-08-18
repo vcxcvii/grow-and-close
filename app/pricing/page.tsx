@@ -9,9 +9,9 @@ import { bookingHref } from "../site";
 import { RelatedLinks } from "../components/related-links";
 
 export const metadata: Metadata = {
-  title: "Pricing | GTM Execution for B2B SaaS | Grow & Close",
+  title: "Pricing | Decision Studio for B2B SaaS | Grow & Close",
   description:
-    "Grow & Close pricing: a fixed-scope GTM Reset sprint at $3,000, and monthly execution from $3,500. One senior owner, weekly shipping, month-to-month.",
+    "Grow & Close pricing: a fixed-scope GTM Reset sprint at $3,000, and monthly execution from $3,500. One decider, one motion in flight, month-to-month.",
   alternates: { canonical: "/pricing" },
   openGraph: {
     title: "Pricing | Grow & Close",
@@ -25,7 +25,7 @@ const sprintHref = bookingHref("GTM Reset sprint: the priority I want shipped in
 
 const faqs = [
   {
-    question: "What is one active motion?",
+    question: "What is one motion?",
     answer:
       "A bounded initiative with an agreed outcome, deliverables, owner, finish line, and one metric lever. Rebuilding the homepage story for a new segment is a motion. Fixing marketing is not.",
   },
@@ -146,7 +146,7 @@ export default function PricingPage() {
         <p>
           Two ways to work together. A fixed-scope sprint when you have one thing that
           needs to move, and a monthly engagement when the queue never empties. Same
-          senior owner either way.
+          decider either way.
         </p>
         <small>PRICES IN USD · MONTH-TO-MONTH · PAUSE ANY MONTH</small>
       </section>

@@ -50,7 +50,7 @@ export default function PrivacyPage() {
             <span>01</span>
             <h2>Who we are</h2>
             <p>
-              Grow &amp; Close is a GTM execution studio operated by Varun Choraria. The
+              Grow &amp; Close is a decision studio operated by Varun Choraria. The
               site is growandclose.com. For anything on this page, write to{" "}
               <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
             </p>

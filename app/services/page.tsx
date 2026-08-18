@@ -29,12 +29,12 @@ const collectionJsonLd = {
 export const metadata: Metadata = {
   title: "B2B SaaS GTM Services | Grow & Close",
   description:
-    "Senior-led B2B SaaS GTM services spanning positioning, landing pages, outbound, founder content, AEO, sales enablement, campaigns, dashboards, and customer advocacy.",
+    "Nine B2B SaaS GTM services under one decider: positioning, landing pages, outbound, founder content, AEO, sales enablement, campaigns, dashboards, and customer advocacy.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "B2B SaaS GTM Services | Grow & Close",
     description:
-      "Nine GTM services, one senior owner: strategy, assets, activation, and measurement built together around one pipeline priority.",
+      "Nine GTM services, one decider: strategy, assets, activation, and measurement built together around one motion.",
     images: [
       {
         url: "/og.png",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "B2B SaaS GTM Services | Grow & Close",
     description:
-      "Senior-led B2B SaaS GTM services: positioning, landing pages, outbound, AEO, campaigns, dashboards, and customer advocacy under one owner.",
+      "B2B SaaS GTM services: positioning, landing pages, outbound, AEO, campaigns, dashboards, and customer advocacy, all decided by one person.",
     images: ["/og.png"],
   },
 };
@@ -211,7 +211,7 @@ const faqs = [
   {
     question: "Are these separate agency retainers?",
     answer:
-      "No. They are nine services inside one senior-led GTM execution model. You choose the commercial bottleneck and finish line. We combine the services needed to move that priority instead of forcing the work into one departmental box.",
+      "No. They are nine entry points into one decision. You choose the commercial bottleneck and finish line. We combine the services needed to move that priority instead of forcing the work into one departmental box.",
   },
   {
     question: "Which B2B SaaS GTM service should we start with?",
@@ -250,7 +250,7 @@ export default function ServicesPage() {
           <p className="eyebrow">B2B SAAS GTM SERVICES</p>
           <h1>Choose the bottleneck.<span>We ship what moves it.</span></h1>
           <p className="hero-lede">
-            Grow &amp; Close is a senior-led GTM execution studio for founders, CMOs,
+            Grow &amp; Close is a decision studio for founders, CMOs,
             and lean B2B SaaS marketing teams. We connect strategy, copy, design,
             activation, proof, measurement, and learning around one pipeline priority.
           </p>
@@ -279,7 +279,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="signal-strip" aria-label="Grow and Close service principles">
-        <p><strong>01</strong> Senior-led strategy</p>
+        <p><strong>01</strong> One decider</p>
         <p><strong>02</strong> Cross-functional build</p>
         <p><strong>03</strong> Human approval</p>
         <p><strong>04</strong> Learning built in</p>
@@ -385,7 +385,7 @@ export default function ServicesPage() {
 
       <section className="closing services-hub-closing">
         <p className="section-kicker section-kicker-light">START WITH THE CONSTRAINT, NOT THE SERVICE NAME</p>
-        <h2>Bring one GTM priority. Your GTM backlog, shipped.</h2>
+        <h2>Bring the decision. We ship what follows from it.</h2>
         <a className="button button-accent" href={diagnosticHref}>Map my GTM bottleneck</a>
       </section>
 

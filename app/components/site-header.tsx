@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
+import { personaList } from "../for/persona-content";
 import { serviceLeverGroups } from "./service-lever-groups";
 
 interface SiteHeaderProps {
@@ -118,6 +119,14 @@ export function SiteHeader({
                       </Link>
                     ))}
                   </div>
+                ))}
+              </div>
+              <div className="services-mega-personas">
+                <p>OR START FROM WHERE YOU SIT</p>
+                {personaList.map((persona) => (
+                  <Link href={`/for/${persona.slug}`} key={persona.slug} onClick={closeMenu}>
+                    {persona.label.replace(/^For /, "")}
+                  </Link>
                 ))}
               </div>
               <Link className="services-home-link" href="/services" onClick={closeMenu}>

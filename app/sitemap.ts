@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { personaList } from "./for/persona-content";
 import { servicePages } from "./services/service-page-content";
 import { SITE_URL } from "./site";
 import { skillPages } from "./skills/skill-page-content";
@@ -14,6 +15,7 @@ const LAST_MODIFIED: Record<string, string> = {
   "/services": "2026-08-17",
   "/pricing": "2026-08-17",
   "/book-a-call": "2026-08-18",
+  "/rubric": "2026-08-18",
   "/skills": "2026-08-17",
   "/about": "2026-07-17",
   "/disclaimer": "2026-07-17",
@@ -23,6 +25,7 @@ const LAST_MODIFIED: Record<string, string> = {
 
 const SERVICE_LAST_MODIFIED = "2026-08-17";
 const SKILL_LAST_MODIFIED = "2026-07-17";
+const PERSONA_LAST_MODIFIED = "2026-08-18";
 
 function lastModified(path: string, fallback: string) {
   return new Date(LAST_MODIFIED[path] ?? fallback);
@@ -35,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/pricing`, lastModified: lastModified("/pricing", "2026-08-17"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/skills`, lastModified: lastModified("/skills", "2026-08-17"), changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/book-a-call`, lastModified: lastModified("/book-a-call", "2026-08-18"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/rubric`, lastModified: lastModified("/rubric", "2026-08-18"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/about`, lastModified: lastModified("/about", "2026-07-17"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/privacy`, lastModified: lastModified("/privacy", "2026-08-17"), changeFrequency: "yearly", priority: 0.2 },
     { url: `${SITE_URL}/terms`, lastModified: lastModified("/terms", "2026-08-17"), changeFrequency: "yearly", priority: 0.2 },
@@ -57,5 +61,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...skillRoutes];
+  const personaRoutes: MetadataRoute.Sitemap = personaList.map((persona) => ({
+    url: `${SITE_URL}/for/${persona.slug}`,
+    lastModified: new Date(PERSONA_LAST_MODIFIED),
+    changeFrequency: "monthly",
+    priority: 0.9,
+  }));
+
+  return [...staticRoutes, ...personaRoutes, ...serviceRoutes, ...skillRoutes];
 }

@@ -7,6 +7,8 @@
 @import "./about/about.css";
 @import "./disclaimer/disclaimer.css";
 @import "./book-a-call/book-a-call.css";
+@import "./rubric/rubric.css";
+@import "./for/persona.css";
 @import "./components/site-additions.css";
 
 :root {

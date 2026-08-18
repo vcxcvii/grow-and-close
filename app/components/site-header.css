@@ -167,6 +167,38 @@
   color: var(--electric-light);
 }
 
+.services-mega-personas {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 20px;
+  padding-top: 18px;
+}
+
+.services-mega-personas p {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.11em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.services-mega-personas a {
+  color: var(--electric);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.services-mega-personas a:hover,
+.services-mega-personas a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .services-home-link {
   align-items: center;
   background: var(--electric);
@@ -177,7 +209,7 @@
   font-weight: 650;
   gap: 12px;
   justify-content: space-between;
-  margin-top: 22px;
+  margin-top: 14px;
   min-height: 52px;
   padding: 0 18px;
   width: 100%;

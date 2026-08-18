@@ -6,6 +6,7 @@ import {
   GITHUB_URL,
   LINKEDIN_URL,
 } from "../site";
+import { personaList } from "../for/persona-content";
 import { serviceLeverGroups } from "./service-lever-groups";
 
 function LinkedInGlyph() {
@@ -98,11 +99,22 @@ export function SiteFooter({ id, pageEndId }: SiteFooterProps) {
         </div>
 
         <div>
+          <p>WHO IT IS FOR</p>
+          <small className="footer-lever-question">Start where you sit.</small>
+          {personaList.map((persona) => (
+            <Link href={`/for/${persona.slug}`} key={persona.slug}>
+              {persona.label.replace(/^For /, "")}
+            </Link>
+          ))}
+        </div>
+
+        <div>
           <p>COMPANY</p>
           <small className="footer-lever-question">How the studio runs.</small>
           <Link href="/about">About</Link>
           <Link href="/services">All GTM services</Link>
           <Link href="/pricing">Pricing</Link>
+          <Link href="/rubric">The rubric</Link>
           <Link href="/book-a-call">Book a call</Link>
           <Link href="/#workflow">How it works</Link>
           <Link href="/#faq">FAQ</Link>

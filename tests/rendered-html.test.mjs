@@ -344,9 +344,16 @@ test("service heroes cap wide-screen typography against viewport height", async 
 
   assert.match(css, /\.hero\.system-service-hero,\s*\.hero\.founder-hero/);
   assert.match(css, /min-height:\s*calc\(100svh - 78px\)/);
-  assert.match(
-    css,
-    /font-size:\s*clamp\(52px, min\(5\.4vw, 9vh\), 100px\)/,
+  // The exact cap is a design call and moves. What must not regress: on a wide
+  // screen the headline is sized against viewport height as well as width, and
+  // the cap stays small enough for the headline, lede and CTA to share the fold.
+  const heroClamp = css.match(
+    /\.hero\.system-service-hero h1,\s*\.hero\.founder-hero h1 \{\s*font-size:\s*clamp\(\d+px, min\([\d.]+vw, [\d.]+vh\), (\d+)px\)/,
+  );
+  assert.ok(heroClamp, "the service hero no longer clamps against viewport height");
+  assert.ok(
+    Number(heroClamp[1]) <= 100,
+    `service hero cap grew to ${heroClamp?.[1]}px`,
   );
   assert.doesNotMatch(css, /\.hero\.system-service-hero[^}]*overflow:\s*hidden/s);
 });

@@ -7,11 +7,18 @@
   padding: clamp(72px, 9vw, 145px) clamp(20px, 6vw, 100px);
 }
 
+/*
+ * Display scale for the legal-hero headline. 11vw with a 190px cap was tuned
+ * for a two-word title like "Privacy policy". Every page that borrows this
+ * hero now leads with a sentence, and a sentence at 158px on a 1440 screen
+ * wraps to three lines and pushes the lede and the CTA below the fold. This
+ * matches the scale the homepage hero was already stepped down to.
+ */
 .legal-hero h1 {
-  font-size: clamp(72px, 11vw, 190px);
-  letter-spacing: -0.085em;
-  line-height: 0.82;
-  margin: 34px 0 42px;
+  font-size: clamp(46px, 6.2vw, 104px);
+  letter-spacing: -0.075em;
+  line-height: 0.88;
+  margin: 30px 0 38px;
 }
 
 .legal-hero h1 span {

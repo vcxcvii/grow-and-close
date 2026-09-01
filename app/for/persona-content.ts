@@ -1,7 +1,7 @@
 /**
- * The three buyer pages.
+ * The four buyer pages.
  *
- * One reframe, three entry points. Every page carries the same villain
+ * One reframe, four entry points. Every page carries the same villain
  * (AI made production abundant, so the decision became the scarce thing) and
  * resolves to the same metric (qualified pipeline created). What changes per
  * page is the symptom that buyer actually feels, their objection, and the
@@ -41,7 +41,7 @@ export interface PersonaPageContent {
   resolutionHeading: string;
   resolutionCopy: string;
   resolutionSteps: { title: string; copy: string }[];
-  /** Third-party evidence, cited. */
+  /** Third-party evidence, cited. Empty when the page argues without it. */
   evidence: PersonaEvidence[];
   /** The objection this buyer raises, and the honest answer. */
   objections: { question: string; answer: string }[];
@@ -355,6 +355,98 @@ export const personaPages: Record<string, PersonaPageContent> = {
     bookingTopic: "CMO: the priority the quarter keeps eating, and the number it should move",
     closingKicker: "THE ONE THAT CANNOT SLIP AGAIN",
     closingHeading: "One priority, finished to a published standard.",
+  },
+  agencies: {
+    slug: "agencies",
+    label: "For agencies and fractional leaders",
+    role: "Agency principal / fractional CMO or CRO",
+    metaTitle: "White-Label GTM Execution for Agencies and Fractional CMOs | Grow & Close",
+    metaDescription:
+      "For agency principals, fractional CMOs and fractional CROs. You sell and keep the client. We take one client project end to end and ship it under your brand, tied to qualified pipeline created.",
+    eyebrow: "FOR AGENCY PRINCIPALS AND FRACTIONAL LEADERS",
+    heroLead: "You are not short of clients.",
+    heroAccent: "You are short of delivery.",
+    heroLede:
+      "Delivery runs through you, so every client you win costs you the hours you needed for selling. We take one client project end to end and ship it under your brand.",
+    heroNote: `SHIPPED UNDER YOUR BRAND · TIED TO ${METRIC.toUpperCase()}`,
+    symptomKicker: "THE SYMPTOM YOU FEEL",
+    symptomHeading: "Winning the work is the easy part.",
+    symptomCopy:
+      "Delivery is where it stops. Everything a client needs comes back to you for a decision, so the book only grows as fast as your week allows.",
+    symptoms: [
+      {
+        title: "You sold strategy. You are doing production.",
+        copy: "The fee was priced on your thinking. Most of the hours go to pages, decks and sequences you cannot bill at your rate.",
+      },
+      {
+        title: "A hire costs you before a client pays you.",
+        copy: "Salary starts in month one. The revenue it was hired for starts in month three, if the pitch lands.",
+      },
+      {
+        title: "Freelancers still need you.",
+        copy: "Three good freelancers make three good pieces. Turning them into one story is your job, in the week you meant to spend selling.",
+      },
+    ],
+    triedHeading: "What you have already tried, and why it stalled.",
+    tried: [
+      {
+        label: "A JUNIOR HIRE",
+        copy: "More hands, more review. You bought production and paid for it in your own hours.",
+      },
+      {
+        label: "A FREELANCE BENCH",
+        copy: "Good people who need briefing. Briefing is the hour you were short of.",
+      },
+      {
+        label: "AI TOOLS",
+        copy: "Drafts got faster. Choosing which draft is right did not, and that was the slow part.",
+      },
+    ],
+    resolutionHeading: "One client project, shipped under your brand.",
+    resolutionCopy:
+      "You sell and keep the client. We take one project end to end, make the calls it needs, and hand it back finished in your name.",
+    resolutionSteps: [
+      {
+        title: "You send the problem. We write the brief.",
+        copy: "Put the client problem and the deadline in a shared board. We come back with the brief before anything gets built, so briefing stops being your job.",
+      },
+      {
+        title: "We work in your name.",
+        copy: "Your brand, your voice, your tools. No mark of ours on the work, no contact with your client unless you ask for it, and a non-solicit written into the agreement.",
+      },
+      {
+        title: "You get proof you can forward.",
+        copy: `A ship log in your name, a baseline for ${METRIC}, and the published rubric: if the first deliverable misses it, there is no invoice.`,
+      },
+    ],
+    evidence: [],
+    objections: [
+      {
+        question: "Will you go around me to my client?",
+        answer:
+          "No. Non-solicit in the agreement, your brand on the work, no direct contact unless you ask for it. The client stays yours whether or not we keep working together.",
+      },
+      {
+        question: "What do I charge my client?",
+        answer:
+          "You pay $3,500 a month for one project in flight and bill your client whatever your positioning supports. The markup is your margin, because the relationship and the strategy are yours.",
+      },
+      {
+        question: "How is this different from a white-label production shop?",
+        answer:
+          "They sell hands, and hands are the cheap part now. Here you are buying the decisions: what to claim, what to cut, and what number the work should move.",
+      },
+      {
+        question: "Can you work in my brand and my stack?",
+        answer:
+          "Yes. Your templates, your tools, your voice, and every document written for you to present as your own.",
+      },
+    ],
+    planNudge:
+      "Most partners start on Pipeline One at $3,500/month for one client project, and add Pipeline Team when two clients cannot wait for each other.",
+    bookingTopic: "Agency partner: the client project I want shipped under my brand",
+    closingKicker: "SELL MORE, WITHOUT HIRING",
+    closingHeading: "You keep the client. We finish the work.",
   },
 };
 

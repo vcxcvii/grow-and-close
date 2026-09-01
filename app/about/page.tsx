@@ -226,7 +226,7 @@ export default function AboutPage() {
       <section className="about-ledger">
         <header>
           <p className="section-kicker">WHO FEELS IT</p>
-          <h2>Three jobs, one shortage.</h2>
+          <h2>Four jobs, one shortage.</h2>
           <p>
             The same missing decision shows up differently depending on where you sit.
             Each of these has its own page, written for that week specifically.

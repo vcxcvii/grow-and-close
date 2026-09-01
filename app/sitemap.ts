@@ -25,7 +25,7 @@ const LAST_MODIFIED: Record<string, string> = {
 
 const SERVICE_LAST_MODIFIED = "2026-08-17";
 const SKILL_LAST_MODIFIED = "2026-07-17";
-const PERSONA_LAST_MODIFIED = "2026-08-18";
+const PERSONA_LAST_MODIFIED = "2026-09-01";
 
 function lastModified(path: string, fallback: string) {
   return new Date(LAST_MODIFIED[path] ?? fallback);

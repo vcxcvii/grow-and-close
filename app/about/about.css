@@ -453,7 +453,7 @@
 .about-ledger-grid {
   border-left: 1px solid var(--ink);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   margin-top: clamp(72px, 9vw, 130px);
 }
 
@@ -573,6 +573,10 @@
   .about-control {
     margin-top: 72px;
     max-width: 800px;
+  }
+
+  .about-ledger-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .about-loop {

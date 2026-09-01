@@ -120,24 +120,26 @@ export function PersonaLandingPage({ persona }: { persona: PersonaPageContent })
         </ol>
       </section>
 
-      <section className="persona-evidence" aria-label="Third-party market evidence">
-        <div className="persona-section-heading">
-          <p className="section-kicker">WHY THIS IS TRUE NOW, NOT A PITCH</p>
-          <h2>Published numbers, not our adjectives.</h2>
-          <p>
-            We have no client testimonials to show you yet, so here is third-party evidence
-            for the argument instead, with sources you can check.
-          </p>
-        </div>
-        <div className="persona-evidence-grid">
-          {persona.evidence.map((item) => (
-            <blockquote key={item.stat}>
-              <p>{item.stat}</p>
-              <cite>{item.source}</cite>
-            </blockquote>
-          ))}
-        </div>
-      </section>
+      {persona.evidence.length > 0 ? (
+        <section className="persona-evidence" aria-label="Third-party market evidence">
+          <div className="persona-section-heading">
+            <p className="section-kicker">WHY THIS IS TRUE NOW, NOT A PITCH</p>
+            <h2>Published numbers, not our adjectives.</h2>
+            <p>
+              We have no client testimonials to show you yet, so here is third-party evidence
+              for the argument instead, with sources you can check.
+            </p>
+          </div>
+          <div className="persona-evidence-grid">
+            {persona.evidence.map((item) => (
+              <blockquote key={item.stat}>
+                <p>{item.stat}</p>
+                <cite>{item.source}</cite>
+              </blockquote>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="faq" id="faq">
         <div className="faq-heading">

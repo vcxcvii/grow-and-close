@@ -1,3 +1,15 @@
+/**
+ * The buyer pages borrow the legal-page hero, whose display size is tuned for
+ * a two-word title. This headline is two sentences, so it is stepped down for
+ * this page only: the other three personas keep the size they shipped with,
+ * and the shared rule that /privacy and /terms use stays untouched.
+ */
+.persona-page[data-persona="agencies"] .legal-hero h1 {
+  font-size: clamp(46px, 6vw, 104px);
+  letter-spacing: -0.06em;
+  line-height: 0.92;
+}
+
 .persona-hero-actions {
   align-items: center;
   display: flex;
